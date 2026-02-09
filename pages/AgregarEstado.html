@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agregar Estado</title>
-  <link rel="stylesheet" href="css/sidebar.css">
-  <link rel="stylesheet" href="css/addCountry.css">
-  <link rel="stylesheet" href="css/general.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="../css/addCountry.css">
+  <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
     <div class="display-sidebar-container">
@@ -30,7 +30,7 @@
     </div>
 
     <script type="module">
-        import apiClient from "./API/apiClient.js";
+        import apiClient from "../js/API/apiClient.js";
         
         document.addEventListener('DOMContentLoaded', () => {
             const acceptBtn = document.getElementById('acceptBtn');
@@ -74,9 +74,9 @@
         });
     </script>
 
-    <script type="module" src="js/verification.js"></script>
-    <script type="module" src="js/sidebar.js"></script>
+    <script type="module" src="../js/modules/verification.js"></script>
+    <script type="module" src="../js/modules/sidebar.js"></script>
 </body>
-<script type="module" src="js/verification.js"></script>
-<script type="module" src="js/sidebar.js"></script>
+<script type="module" src="../js/modules/verification.js"></script>
+<script type="module" src="../js/modules/sidebar.js"></script>
 </html>

@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lista de Miembros</title>
-  <link rel="stylesheet" href="css/sidebar.css">
-  <link rel="stylesheet" href="css/estilos-miembros.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="../css/estilos-miembros.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <link rel="stylesheet" href="css/general.css">
+  <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
   <div class="container">
@@ -80,8 +80,8 @@
 
 <script type="module">
   
-  import membersService from './API/services/members.js';
-  import loginService from './API/services/login.js';
+  import membersService from '../js/API/services/members.js';
+  import loginService from '../js/API/services/login.js';
 
   const members = await membersService.get();
   
@@ -132,7 +132,7 @@
 
 </script>
 
-<script type="module" src="js/verification.js"></script>
-<script type="module" src="js/sidebar.js"></script>
+<script type="module" src="../js/modules/verification.js"></script>
+<script type="module" src="../js/modules/sidebar.js"></script>
 
 </html>

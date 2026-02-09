@@ -1,5 +1,5 @@
 const API_Config = {
-    baseURL: 'http://localhost/MembresiasREDMIS/backend/public',
+    baseURL: 'http://localhost/MembresiasREDMIS_API/backend/public',
     // baseURL: 'http://localhost:8080/backend/public',
     timeout: 30000,
     headers: {

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miembros</title>
-    <link rel="stylesheet" href="css/VisualizacionDeMiembros.css">
+    <link rel="stylesheet" href="../css/VisualizacionDeMiembros.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="css/sidebar.css">
-    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
 
@@ -77,10 +77,10 @@
     </div>
 
     <script type="module">
-        import membersService from './API/services/members.js';
-        import loginService from './API/services/login.js';
-        import membresiaUsuarioService from './API/services/membresiaUsuario.js';
-        import { getPDF } from './js/pdfProcessor.js';
+        import membersService from '../js/API/services/members.js';
+        import loginService from '../js/API/services/login.js';
+        import membresiaUsuarioService from '../js/API/services/membresiaUsuario.js';
+        import { getPDF } from './../js/modules/pdfProcessor.js';
 
         const urlParams = new URLSearchParams(window.location.search);
         const memberID = urlParams.get('memberID');
@@ -169,8 +169,8 @@
     </script>
 
 </body>
-<script type="module" src="js/verification.js"></script>
-<script type="module" src="js/sidebar.js"></script>
+<script type="module" src="../js/modules/verification.js"></script>
+<script type="module" src="../js/modules/sidebar.js"></script>
 
 
 

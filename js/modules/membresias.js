@@ -1,7 +1,7 @@
-import apiClient from '../apiClient.js';
-import loginService from '../services/login.js';
-import membresiaUsuarioService from '../services/membresiaUsuario.js';
-import membersService from '../services/members.js';
+import apiClient from '/js/API/apiClient.js';
+import loginService from '/js/API/services/login.js';
+import membresiaUsuarioService from '/js/API/services/membresiaUsuario.js';
+import membersService from '/js/API/services/members.js';
 
 const { jsPDF } = window.jspdf;
 
@@ -110,7 +110,7 @@ async function generateMembershipPDF(membresia) {
         // Cargar logo REDMIS para usar en varias secciones
         let logoREDMIS;
         try {
-            logoREDMIS = await loadImageToDataURL('./img/logo_REDMIS.png');
+            logoREDMIS = await loadImageToDataURL('../img/logo_REDMIS.png');
         } catch (e) {
             console.log('No se pudo cargar el logo:', e);
         }
@@ -334,7 +334,7 @@ async function generateMembershipPDF(membresia) {
         // Imágenes de la parte inferior: Firma
         let firmaImg;
         try {
-            firmaImg = await loadImageToDataURL('./img/firma.png');
+            firmaImg = await loadImageToDataURL('../img/firma.png');
         } catch(e) {
             console.log('No se pudo cargar firma:', e);
         }

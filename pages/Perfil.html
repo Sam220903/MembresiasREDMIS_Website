@@ -4,64 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil</title>
-  <link rel="stylesheet" href="css/profile.css">
-  <link rel="stylesheet" href="css/sidebar.css">
-  <link rel="stylesheet" href="css/general.css">
+  <link rel="stylesheet" href="../css/profile.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
+
   <div class="display-sidebar-container">
     <button id="display-sidebar">☰</button>
   </div>
 
   <div id="sidebar"></div> 
+  <div class="title-container">Perfil</div>
 
-  <div class="main-container">
-    <div class="title-container">
-      <h2>Perfil</h2>
-    </div>
-
-    <div class="form-container">
-      <div class="form-box">
-        <label>Nombre</label>
-        <input id="nombre" type="text" placeholder="Nombre" disabled>
-        <label>Apellido(s)</label>
-        <input id="apellidos" type="text" placeholder="Apellido(s)" disabled>
-        <label>Género</label>
-        <input id="genero" type="text" placeholder="Género" disabled>
-        <label>Universidad</label>
-        <div id="universidad-container">
-          <input id="universidad" type="text" placeholder="Universidad" disabled>
-        </div>
-      </div>
-      <div class="form-box">
-        <label>Estado</label>
-        <div id="estado-container">
-          <input id="estado" type="text" placeholder="Estado" disabled>
-        </div>
-        <label>País</label>
-        <div id="pais-container">
-          <input id="pais" type="text" placeholder="País" disabled>
-        </div>
-        <label>Email</label>
-        <input id="email" type="email" placeholder="Email" disabled>
-        <label>Contraseña</label>
-        <input id="password" type="password" placeholder="Contraseña" disabled>
+  <div class="form-container">
+    <div class="form-box">
+      <label>Nombre</label>
+      <input id="nombre" type="text" placeholder="Nombre" disabled>
+      <label>Apellido(s)</label>
+      <input id="apellidos" type="text" placeholder="Apellido(s)" disabled>
+      <label>Género</label>
+      <input id="genero" type="text" placeholder="Género" disabled>
+      <label>Universidad</label>
+      <div id="universidad-container">
+        <input id="universidad" type="text" placeholder="Universidad" disabled>
       </div>
     </div>
-    <div class="edit-button-container">
-      <button class="edit-button" id="editBtn">Editar</button>
-      <button class="edit-button" id="acceptBtn" style="display: none;">Aceptar</button>
-      <button class="cancel-Btn" id="cancelBtn" style="display: none;">Cancelar</button>
+    <div class="form-box">
+      <label>Estado</label>
+      <div id="estado-container">
+        <input id="estado" type="text" placeholder="Estado" disabled>
+      </div>
+      <label>País</label>
+      <div id="pais-container">
+        <input id="pais" type="text" placeholder="País" disabled>
+      </div>
+      <label>Email</label>
+      <input id="email" type="email" placeholder="Email" disabled>
+      <label>Contraseña</label>
+      <input id="password" type="password" placeholder="Contraseña" disabled>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <div class="edit-button-container">
+    <button class="edit-button" id="editBtn">Editar</button>
+    <button class="edit-button" id="acceptBtn" style="display: none;">Aceptar</button>
+    <button class="cancel-Btn" id="cancelBtn" style="display: none;">Cancelar</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-../js/4.1.1/crypto-js.min.js"></script>
 
   <script type="module">
-    import membersService from './API/services/members.js';
-    import loginService from './API/services/login.js';
-    import universitiesService from './API/services/universities.js';
-    import statesService from './API/services/states.js';
-    import countriesService from './API/services/country.js';
+    import membersService from '../js/API/services/members.js';
+    import loginService from '../js/API/services/login.js';
+    import universitiesService from '../js/API/services/universities.js';
+    import statesService from '../js/API/services/states.js';
+    import countriesService from '../js/API/services/country.js';
 
     // Get user data from loginService instead of localStorage directly
     const userData = loginService.getUserData();
@@ -236,6 +232,6 @@
   </script>
 
 </body>
-<script type="module" src="js/verification.js"></script>
-<script type="module" src="js/sidebar.js"></script>
+<script type="module" src="../js/modules/verification.js"></script>
+<script type="module" src="../js/modules/sidebar.js"></script>
 </html>

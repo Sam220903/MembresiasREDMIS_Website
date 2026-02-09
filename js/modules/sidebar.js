@@ -1,11 +1,11 @@
-import loginService from '../API/services/login.js';
+import loginService from '/js/API/services/login.js';
 
 
 document.addEventListener("DOMContentLoaded", function() {
 
     const userRole = loginService.getUserRole(); // Obtener el rol del usuario desde el servicio de autenticación
-    const sidebarUser = 'sidebar.html';
-    const sidebarAdmin = 'SidebarAdmin.html';
+    const sidebarUser = '/partials/sidebar.html';
+    const sidebarAdmin = '/partials/sidebarAdmin.html';
 
     if (userRole === 1) { 
         loadSidebar(sidebarAdmin);

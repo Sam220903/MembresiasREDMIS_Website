@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solicitudes de membresía</title>
-  <link rel="stylesheet" href="css/membership_applications.css">
-  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="../css/membership_applications.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="css/general.css">
+  <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
     <div class="display-sidebar-container">
@@ -41,11 +41,11 @@
 
     <!-- jQuery y DataTables -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/../js/jquery.dataTables.min.js"></script>
 
     <script type="module">
-      import membershipApplicationService from './API/services/membershipApplication.js';
-      import loginService from './API/services/login.js';
+      import membershipApplicationService from '../js/API/services/membershipApplication.js';
+      import loginService from '../js/API/services/login.js';
 
       const applications = await membershipApplicationService.obtener();
       const pendingApplications = applications.filter(application => application.estado === 'PENDIENTE');
@@ -94,6 +94,6 @@
     
 </body>
 
-<script type="module" src="js/verification.js"></script>
-<script type="module" src="js/sidebar.js"></script>
+<script type="module" src="../js/modules/verification.js"></script>
+<script type="module" src="../js/modules/sidebar.js"></script>
 </html>

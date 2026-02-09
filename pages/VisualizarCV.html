@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizar CV</title>
-    <link rel="stylesheet" href="css/visualizaCV.css">
-    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="../css/visualizaCV.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="../css/general.css">
     <style>
         body {
             margin: 0;
@@ -144,9 +144,9 @@
     </div>
 
     <script type="module">
-        import membershipApplicationService from './API/services/membershipApplication.js';
-        import loginService from './API/services/login.js';
-        import { getPDF } from './js/pdfProcessor.js';
+        import membershipApplicationService from '../js/API/services/membershipApplication.js';
+        import loginService from '../js/API/services/login.js';
+        import { getPDF } from './../js/modules/pdfProcessor.js';
 
 
         const getBackButton = document.getElementById('back-button');
@@ -249,6 +249,6 @@
     </script>
 
 </body>
-<script type="module" src="js/verification.js"></script>
-<script type="module" src="js/sidebar.js"></script>
+<script type="module" src="../js/modules/verification.js"></script>
+<script type="module" src="../js/modules/sidebar.js"></script>
 </html>
