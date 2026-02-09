@@ -92,10 +92,10 @@
 
     <div class="container">
         <button id="back-button">&#8592; Regresar</button>
-        <div class="header">Revisión de CV</div>
+        <div class="header">Evaluación de solicitud</div>
 
         <div class="card">
-            <h2>Información del Candidato</h2>
+            <h2>Información del candidato</h2>
             <p><strong>Nombre:</strong> <span id="applicator_name"></span> </p>
             <p><strong>Email:</strong> <span id="applicator_email"></span> </p>
             <p><strong>Estatus de la solicitud:</strong> <span id="application_status"> </span></p>
@@ -144,14 +144,14 @@
     </div>
 
     <script type="module">
-        import membershipApplicationService from '../js/API/services/membershipApplication.js';
-        import loginService from '../js/API/services/login.js';
+        import membershipApplicationService from '../js/api/services/membershipApplication.js';
+        import loginService from '../js/api/services/login.js';
         import { getPDF } from './../js/modules/pdfProcessor.js';
 
 
         const getBackButton = document.getElementById('back-button');
         getBackButton.addEventListener('click', () => {
-            window.location.href = 'solicitudes_membresias.html';
+            window.location.href = 'applications.html';
         });
 
         // Obtener el ID de la solicitud de membresía desde la URL
@@ -159,7 +159,7 @@
         const applicationId = urlParams.get('application_id');
         if (!applicationId) {
             alert('No se ha proporcionado un ID de solicitud de membresía.');
-            window.location.href = 'solicitudes_membresias.html'; // Redirigir a la página de solicitudes si no hay ID
+            window.location.href = 'applications.html'; // Redirigir a la página de solicitudes si no hay ID
         }
 
         const application = await membershipApplicationService.obtenerPorID(applicationId);
@@ -210,7 +210,7 @@
                 const response = await membershipApplicationService.aceptar(applicationId, {reason});
                 if (response) {
                     alert("Solicitud aceptada correctamente.");
-                    window.location.href = 'solicitudes_membresias.html'; 
+                    window.location.href = 'applications.html'; 
                 } else {
                     alert("Error al aceptar la solicitud. Inténtalo de nuevo.");
                 }
@@ -230,7 +230,7 @@
                     const response = await membershipApplicationService.rechazar(applicationId, {reason});
                     if (response) {
                         alert("Solicitud rechazada correctamente.");
-                        window.location.href = 'solicitudes_membresias.html'; 
+                        window.location.href = 'applications.html'; 
                     } else {
                         alert("Error al rechazar la solicitud. Inténtalo de nuevo.");
                     }

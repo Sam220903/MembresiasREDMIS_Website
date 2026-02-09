@@ -1,7 +1,7 @@
-import apiClient from '/js/API/apiClient.js';
-import loginService from '/js/API/services/login.js';
-import membresiaUsuarioService from '/js/API/services/membresiaUsuario.js';
-import membersService from '/js/API/services/members.js';
+import apiClient from '/js/api/apiClient.js';
+import loginService from '/js/api/services/login.js';
+import membresiaUsuarioService from '/js/api/services/membresiaUsuario.js';
+import membersService from '/js/api/services/members.js';
 
 const { jsPDF } = window.jspdf;
 

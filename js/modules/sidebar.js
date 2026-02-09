@@ -1,4 +1,4 @@
-import loginService from '/js/API/services/login.js';
+import loginService from '/js/api/services/login.js';
 
 
 document.addEventListener("DOMContentLoaded", function() {

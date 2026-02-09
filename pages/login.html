@@ -35,19 +35,19 @@
             </div>
           </form>
 
-          <p>¿No tienes una cuenta? <a href="crearcuenta.html" id="sign-in-btn">Regístrate</a></p>
+          <p>¿No tienes una cuenta? <a href="signin.html" id="sign-in-btn">Regístrate</a></p>
         </div>
       </div>
     </div>
 
     <footer class="footer">
-        <p>© 2025, REDMIS</p>
+        <p>© 2025 REDMIS. Todos los derechos reservados</p>
     </footer>
 
     <script src="../js/modules/login.js"></script>
 
     <script type="module">
-      import loginService from '../js/API/services/login.js';
+      import loginService from '../js/api/services/login.js';
     
       document.getElementById('login-form').addEventListener('submit', async (event) => {
           event.preventDefault(); // Prevent form from reloading the page
@@ -83,10 +83,10 @@
                   if (userData && userData.role) {
                       switch (userData.role) {
                           case 1: // Admin role
-                              window.location.href = 'perfil_admin.html';
+                              window.location.href = 'profile.html';
                               break;
                           case 2: // General user role
-                              window.location.href = 'Perfil.html';
+                              window.location.href = 'profile.html';
                               break;
                           default:
                               alert('Rol desconocido, no se puede redirigir');

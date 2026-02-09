@@ -77,9 +77,9 @@
     </div>
 
     <script type="module">
-        import membersService from '../js/API/services/members.js';
-        import loginService from '../js/API/services/login.js';
-        import membresiaUsuarioService from '../js/API/services/membresiaUsuario.js';
+        import membersService from '../js/api/services/members.js';
+        import loginService from '../js/api/services/login.js';
+        import membresiaUsuarioService from '../js/api/services/membresiaUsuario.js';
         import { getPDF } from './../js/modules/pdfProcessor.js';
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -87,7 +87,7 @@
 
         if(!memberID) {
             alert('No se ha proporcionado un ID de miembro válido.');
-            window.location.href = 'miembros.html';
+            window.location.href = 'members.html';
         }
 
         const member = await membersService.getbyID(memberID);
@@ -128,7 +128,7 @@
             if (confirmation) {
                 await membersService.deleteMember(memberID);
                 alert('Usuario eliminado exitosamente.');
-                window.location.href = 'miembros.html';
+                window.location.href = 'members.html';
             }
         });
 
@@ -144,7 +144,7 @@
                 if (confirmation) {
                     await membresiaUsuarioService.updateMembershipStatus(memberID, {estado: 2});
                     alert('Membresía revocada exitosamente.');
-                    window.location.href = 'miembros.html';
+                    window.location.href = 'members.html';
                 }
             });
         } else if (membershipStatus === 'INACTIVA') {
@@ -155,7 +155,7 @@
                 if (confirmation) {
                     await membresiaUsuarioService.updateMembershipStatus(memberID, {estado: 1});
                     alert('Membresía reactivada exitosamente.');
-                    window.location.href = 'miembros.html';
+                    window.location.href = 'members.html';
                 }
             });
         } else {

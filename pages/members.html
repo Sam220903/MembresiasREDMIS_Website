@@ -80,8 +80,8 @@
 
 <script type="module">
   
-  import membersService from '../js/API/services/members.js';
-  import loginService from '../js/API/services/login.js';
+  import membersService from '../js/api/services/members.js';
+  import loginService from '../js/api/services/login.js';
 
   const members = await membersService.get();
   
@@ -101,7 +101,7 @@
       <span>${member.nombre_completo}</span>
       <span>${member.membresia}</span>
       <span>${new Date(member.fecha_solicitud).toLocaleDateString()}</span>
-      <button class="btn-editar"><i class="fas fa-edit"></i><a href="visualizarMiembro.html?memberID=${member.usuario_id}">Editar</a></button>
+      <button class="btn-editar"><i class="fas fa-edit"></i><a href="member_info.html?memberID=${member.usuario_id}">Editar</a></button>
     `;
     acceptedTable.appendChild(row);
   });
@@ -113,7 +113,7 @@
       <span>${member.nombre_completo}</span>
       <span>${member.membresia}</span>
       <span>${new Date(member.fecha_solicitud).toLocaleDateString()}</span>
-      <button class="btn-editar"><i class="fas fa-edit"></i><a href="visualizarMiembro.html?memberID=${member.usuario_id}">Editar</a></button>
+      <button class="btn-editar"><i class="fas fa-edit"></i><a href="member_info.html?memberID=${member.usuario_id}">Editar</a></button>
     `;
     rejectedTable.appendChild(row);
   });
@@ -125,7 +125,7 @@
       <span>${member.nombre_completo}</span>
       <span>${member.membresia}</span>
       <span>${new Date(member.fecha_solicitud).toLocaleDateString()}</span>
-      <button class="btn-editar"><i class="fas fa-edit"></i><a href="visualizarMiembro.html?memberID=${member.usuario_id}">Editar</a></button>
+      <button class="btn-editar"><i class="fas fa-edit"></i><a href="member_info.html?memberID=${member.usuario_id}">Editar</a></button>
     `;
     pendingTable.appendChild(row);
   });

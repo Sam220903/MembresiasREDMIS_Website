@@ -1,4 +1,4 @@
-import loginService from '/js/API/services/login.js';
+import loginService from '/js/api/services/login.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const userRole = loginService.getUserRole(); 
@@ -11,22 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const adminRoutes = [
-        'perfil_admin.html',
         'membresia.html',
-        'solicitudes_membresias.html',
-        'alta_admin.html',
-        'estadisticas.html',
-        'miembros.html',
-        'visualizarCV.html',
-        'visualizarMiembro.html',
-        'alta_admin.html',
+        'applications.html',
+        'admin_registration.html',
+        'statistics.html',
+        'members.html',
+        'application_info.html',
+        'member_info.html',
+        'admin_registration.html',
         'AgregarEstado.html',
         'AgregarPais.html',
         'AgregarUniversidad.html'
     ];
 
     const userRoutes = [
-        'Perfil.html',
         'application_membership.html',
     ];
 
@@ -39,13 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isAdmin && userRoutes.includes(currentPath)) {
         // Pantalla en blanco para evitar el parpadeo
         document.body.innerHTML = ''; // Limpiar el contenido de la página
-        window.location.href = 'miembros.html';
+        window.location.href = 'members.html';
     }
     // Verificar si el usuario es un usuario y redirigir a la página de perfil si intenta acceder a una página de administración
     if (isUser && adminRoutes.includes(currentPath)) {
         // Pantalla en blanco para evitar el parpadeo
         document.body.innerHTML = ''; // Limpiar el contenido de la página
-        window.location.href = 'Perfil.html';
+        window.location.href = 'profile.html';
     }
 
     // Verificar si el usuario está autenticado, de lo contrario redirigir a la página de inicio de sesión

@@ -133,6 +133,10 @@
       transition: 0.1s;
     }
 
+    footer p{
+      color: #64748b;
+    }
+
 @media only screen and (min-width: 600px) and (max-width: 959px){
   .form-container {
       margin: 100px 0 0 0;
