@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const userRoutes = [
-        'application_membership.html',
+        'membership_application.html',
     ];
 
     const currentPath = window.location.pathname.split('/').pop(); 

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajustes</title>
+  <link rel="stylesheet" href="../css/settings.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="../css/general.css">
+</head>
+<body>
+    <div class="display-sidebar-container">
+      <button id="display-sidebar">☰</button>
+    </div>
+    <div id="sidebar"></div> 
+
+    <div class="background"></div>
+    
+
+    <div class="main-container">
+
+      <div class="title-container">Ajustes</div>
+
+      <div class="theme-settings">
+          <div class="theme-description">
+            <h3>Tema</h3>
+            <p>Apariencia del sistema, incluyendo colores, tipografía y otros elementos visuales.</p>
+          </div>
+          <div class="theme-options">
+              <button id="system-theme-btn">
+                <i class="fa-solid fa-laptop"></i>
+                Sistema
+              </button>
+              <button id="light-theme-btn">
+                <i class="fa-regular fa-sun"></i>
+                Claro</button>
+              <button id="dark-theme-btn">
+                <i class="fa-regular fa-moon"></i>
+                Oscuro</button>
+          </div>
+      </div>
+
+      <div class="language-settings">
+          <div class="language-description">
+            <h3>Idioma</h3>
+            <p>Selecciona el idioma en el que deseas usar la plataforma.</p>
+          </div>
+          <div class="language-options">
+              <button id="spanish-btn">
+                <i class="fa-solid fa-language"></i>
+                Español
+              </button>
+              <button id="english-btn">
+                <i class="fa-solid fa-language"></i>
+                Inglés
+              </button>
+          </div>
+      </div>
+
+      <div class="entities-settings">
+          <div class="entities-description">
+            <h2>Entidades</h2>
+          </div>
+          <div class="entities-options">
+
+              <div class="countries-panel">
+                <h3>Países</h3>
+                <div id="search-country">
+                  <input type="text" placeholder="Buscar país...">
+                  <button id="add-country-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+
+              <div class="states-panel">
+                <h3>Estados</h3>
+                <div id="search-state">
+                  <input type="text" placeholder="Buscar estado...">
+                  <button id="add-state-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+
+              <div class="universities-panel">
+                <h3>Universidades</h3>
+                <div id="search-university">
+                  <input type="text" placeholder="Buscar universidad...">
+                  <button id="add-university-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+
+          </div>
+      </div>
+    </div>
+
+    
+</body>
+
+<script type="module" src="../js/modules/settings.js"></script>
+<script type="module" src="../js/modules/verification.js"></script>
+<script type="module" src="../js/modules/sidebar.js"></script>
+
+</html>
