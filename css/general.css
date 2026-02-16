@@ -1,3 +1,16 @@
+@font-face {
+    font-family: "Instrument Sans";
+    src: url("../assets/fonts/InstrumentSans-VariableFont_wdth\,wght.ttf") format("truetype");
+    font-weight: 100 700;
+    font-style: normal;
+}
+
+
+* {
+  font-family: "Instrument Sans", sans-serif;
+}
+
+
 .display-sidebar-container {
     display: none;
 }

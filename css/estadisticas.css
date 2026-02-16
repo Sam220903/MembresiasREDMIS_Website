@@ -12,13 +12,6 @@
     --secondary : #475569;
 }
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Instrument Sans", sans-serif;
-}
-
 body {
     background-color: var(--bgcolor) !important;
     margin: 0;

@@ -1,12 +1,6 @@
-/* Aplicar la tipografía a toda la página en negrita */
-* {
-    font-family: 'Instrument Sans', sans-serif;
-    font-weight: bold;
-}
 
 body {
     margin: 0;
-  font-family: 'Instrument Sans', sans-serif;
   background-color: #f4f4f4;
 }
 
