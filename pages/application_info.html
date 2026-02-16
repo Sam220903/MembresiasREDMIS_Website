@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizar CV</title>
+    <title data-translate="application_info_title">Información de la solicitud</title>
     <link rel="stylesheet" href="../css/visualizaCV.css">
     <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -89,41 +89,53 @@
     </div>
    
     <div id="sidebar"></div>
+    <div class="background"></div>
 
     <div class="container">
-        <button id="back-button">&#8592; Regresar</button>
-        <div class="header">Evaluación de solicitud</div>
+        <button id="back-button">&#8592; 
+            <span data-translate="back_button_text">Regresar</span>
+        </button>
+        <div class="header">
+            <span data-translate="application_info_header">Información de la solicitud de membresía</span>
+        </div>
 
         <div class="card">
-            <h2>Información del candidato</h2>
-            <p><strong>Nombre:</strong> <span id="applicator_name"></span> </p>
-            <p><strong>Email:</strong> <span id="applicator_email"></span> </p>
-            <p><strong>Estatus de la solicitud:</strong> <span id="application_status"> </span></p>
-            <p><strong>Comentarios:</strong> <span id="applicant-comments"> </span></p>
+            <h2 data-translate="application_info_candidate">Información del candidato</h2>
+            <p><strong data-translate="application_info_name">Nombre:</strong> <span id="applicator_name"></span> </p>
+            <p><strong data-translate="application_info_email">Email:</strong> <span id="applicator_email"></span> </p>
+            <p><strong data-translate="application_info_status">Estatus de la solicitud:</strong> <span id="application_status"> </span></p>
+            <p><strong data-translate="application_info_comments">Comentarios:</strong> <span id="applicant-comments"> </span></p>
         </div>
 
         <div class="card cv-viewer">
-            <h2>Curriculum Vitae</h2>
+            <h2 data-translate="application_info_cv">Curriculum Vitae</h2>
             <iframe src=""></iframe>
-            <button class="btn btn-primary"> <i class="fas fa-download"></i><a id="download-cv" href="" download>Descargar CV</a></button>
+            <button class="btn btn-primary"> <i class="fas fa-download"></i><a id="download-cv" href="" download>
+                <span data-translate="application_info_download_cv">Descargar CV</span>
+            </a></button>
         </div>
 
         <div class="card">
-            <h2>Solicitud</h2>
+            <h2 data-translate="application_info_application">Solicitud</h2>
             <div class="buttons">
-                <button id="show-accept-modal" type="button" class="button approve">Aprobar</button>
-                <button id="show-reject-modal" type="button" class="button reject">Rechazar</button>
+                <button id="show-accept-modal" type="button" class="button approve">
+                    <span data-translate="application_info_approve_button">Aprobar</span>
+                </button>
+                <button id="show-reject-modal" type="button" class="button reject">
+                    <span data-translate="application_info_reject_button">Rechazar</span>
+                </button>
             </div>
         </div>
 
         <div id="modal-reject" class="modal">
             <div id="modal-reject-content" class="modal-content">
                 <span id="close-reject-modal" class="close-modal">&times;</span>
-                <h3>Rechazar solicitud de membresía:</h3>
-                <label for="name">Escriba el motivo del rechazo:</label>
+                <h3 data-translate="application_info_reject_modal_header">Rechazar solicitud de membresía:</h3>
+                <label for="name" data-translate="application_info_rejection_reason_label">Escriba el motivo del rechazo:</label>
                 <textarea id="rejection-reason" rows="5" placeholder="Motivo de rechazo..."></textarea>
                 <div class="modal-action-btn">
-                    <button id="reject-application" type="button" class="button reject">Confirmar Rechazo</button>
+                    <button id="reject-application" type="button" class="button reject">
+                        <span data-translate="application_info_confirm_reject">Confirmar Rechazo</span></button>
                 </div>
             </div>
         </div>
@@ -131,11 +143,12 @@
         <div id="modal-accept" class="modal">
             <div id="modal-accept-content" class="modal-content">
                 <span id="close-accept-modal" class="close-modal">&times;</span>
-                <h3>Aceptar solicitud de membresía:</h3>
-                <label for="name">Escriba comentarios para el solicitante (Opcional):</label>
+                <h3 data-translate="application_info_accept_modal_header">Aceptar solicitud de membresía:</h3>
+                <label for="name" data-translate="application_info_accept_modal_comments_label">Escriba comentarios para el solicitante (Opcional):</label>
                 <textarea id="acceptation-comments" rows="5" placeholder="Comentarios..."></textarea>
                 <div class="modal-action-btn">
-                    <button id="accept-application" type="button" class="button approve">Aprobar solicitud</button>
+                    <button id="accept-application" type="button" class="button approve">
+                        <span data-translate="application_info_confirm_accept">Confirmar Aceptación</span></button>
                 </div>
             </div>
         </div>

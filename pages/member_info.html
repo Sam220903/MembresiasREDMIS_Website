@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miembros</title>
+    <title data-translate="member_info_title">Miembros</title>
     <link rel="stylesheet" href="../css/VisualizacionDeMiembros.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="../css/sidebar.css">
@@ -16,64 +16,71 @@
 </div>
 
 <div id="sidebar"></div>
-    <div class="content">
-        <h1>Miembros</h1>
-        <div class="user-card">
-            <div class="user-header">
-                <i class="fas fa-user-circle"></i> <span>Usuario</span>
+<div class="background"></div>
+
+<div class="content">
+    <h1 data-translate="member_info_title">Miembros</h1>
+    <div class="user-card">
+        <div class="user-header">
+            <i class="fas fa-user-circle"></i> 
+            <span data-translate="member_info_user">Usuario</span>
+        </div>
+        <div class="user-details">
+            <div class="info-group">
+                <label data-translate="member_info_id">ID</label>
+                <input id="member-id" type="text" value="" disabled>
             </div>
-            <div class="user-details">
-                <div class="info-group">
-                    <label>ID</label>
-                    <input id="member-id" type="text" value="" disabled>
-                </div>
-                <div class="info-group">
-                    <label>Nombre Completo</label>
-                    <input id="member-name" type="text" value="" disabled>
-                </div>
-                <div class="info-group">
-                    <label>Género</label>
-                    <input id="member-gender" type="text" value="" disabled>
-                </div>
-                <div class="info-group">
-                    <label>Tipo de Usuario</label>
-                    <input id="member-usertype" type="text" value="" disabled>
-                </div>
-                <div class="info-group">
-                    <label>Estatus</label>
-                    <input id="member-status" type="text" value="" disabled>
-                </div>
-                <div class="info-group">
-                    <label>País</label>
-                    <input id="member-country" type="text" value="" disabled>
-                </div>
-                <div class="info-group">
-                    <label>Estado</label>
-                    <input id="member-state" type="text" value="" disabled>
-                </div>
-                <div class="info-group">
-                    <label>Universidad</label>
-                    <input id="member-university" type="text" value="" disabled>
-                </div>
-                <div class="info-group">
-                    <label>Fecha de Registro</label>
-                    <input id="member-register-date" type="text" value="" disabled>
-                </div>
-                <div class="info-group">
-                    <label>Fecha de Acceso</label>
-                    <input id="member-last-access" type="text" value="" disabled>
-                </div>
-                <div class="info-group">
-                    <label>Última Actualización</label>
-                    <input id="member-last-update" type="text" value="" disabled>
-                </div>
+            <div class="info-group">
+                <label data-translate="member_info_name">Nombre Completo</label>
+                <input id="member-name" type="text" value="" disabled>
             </div>
-            <div class="actions">
-                <button class="btn btn-primary"> <i class="fas fa-download"></i> <a id="download-cv" href="" download="">Descargar CV</a></button>
-                <button id="change-membership-status" class="btn"> <i class="fas fa-times"></i> </button>
-                <button id="delete-user" class="btn btn-danger"> <i class="fas fa-trash"></i> Eliminar Usuario</button>
+            <div class="info-group">
+                <label data-translate="member_info_gender">Género</label>
+                <input id="member-gender" type="text" value="" disabled>
+            </div>
+            <div class="info-group">
+                <label data-translate="member_info_user_type">Tipo de Usuario</label>
+                <input id="member-usertype" type="text" value="" disabled>
+            </div>
+            <div class="info-group">
+                <label data-translate="member_info_status">Estatus</label>
+                <input id="member-status" type="text" value="" disabled>
+            </div>
+            <div class="info-group">
+                <label data-translate="member_info_country">País</label>
+                <input id="member-country" type="text" value="" disabled>
+            </div>
+            <div class="info-group">
+                <label data-translate="member_info_state">Estado</label>
+                <input id="member-state" type="text" value="" disabled>
+            </div>
+            <div class="info-group">
+                <label data-translate="member_info_university">Universidad</label>
+                <input id="member-university" type="text" value="" disabled>
+            </div>
+            <div class="info-group">
+                <label data-translate="member_info_register_date">Fecha de Registro</label>
+                <input id="member-register-date" type="text" value="" disabled>
+            </div>
+            <div class="info-group">
+                <label data-translate="member_info_last_access">Fecha de Acceso</label>
+                <input id="member-last-access" type="text" value="" disabled>
+            </div>
+            <div class="info-group">
+                <label data-translate="member_info_last_update">Última Actualización</label>
+                <input id="member-last-update" type="text" value="" disabled>
             </div>
         </div>
+        <div class="actions">
+            <button class="btn btn-primary"> <i class="fas fa-download"></i> <a id="download-cv" href="" download="">
+                <span data-translate="member_info_download_cv">Descargar CV</span>
+            </a></button>
+            <button id="change-membership-status" class="btn"> <i class="fas fa-times"></i> </button>
+            <button id="delete-user" class="btn btn-danger"> <i class="fas fa-trash"></i> 
+                <span data-translate="member_info_delete_user">Eliminar Usuario</span>
+            </button>
+        </div>
+    </div>
     </div>
 
     <script type="module">
@@ -169,8 +176,10 @@
     </script>
 
 </body>
-<script type="module" src="../js/modules/verification.js"></script>
+
 <script type="module" src="../js/modules/sidebar.js"></script>
+<script type="module" src="../js/modules/verification.js"></script>
+
 
 
 

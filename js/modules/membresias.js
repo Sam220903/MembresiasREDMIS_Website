@@ -1,4 +1,3 @@
-import apiClient from '/js/api/apiClient.js';
 import loginService from '/js/api/services/login.js';
 import membresiaUsuarioService from '/js/api/services/membresiaUsuario.js';
 import membersService from '/js/api/services/members.js';
@@ -6,6 +5,8 @@ import membersService from '/js/api/services/members.js';
 const { jsPDF } = window.jspdf;
 
 let tipoMembresia = ""
+
+let currentLanguage = localStorage.getItem('language') || 'es';
 
 document.addEventListener('DOMContentLoaded', async () => {
     if (!loginService.isAuthenticated()) {
@@ -23,7 +24,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const response = await membresiaUsuarioService.getByUserId(userData.userId);
         
         if (response.success && response.data) {
-            console.log('Datos de membresías a renderizar:', response.data);
             tipoMembresia = response.data[0].membresia_nombre;
             renderMembresias(response.data);
         } else {
@@ -55,7 +55,7 @@ function renderMembresias(membresiasData) {
             <td>${formatDate(membresia.fecha_inicio)}</td>
             <td>${formatDate(membresia.fecha_fin)}</td>
             <td>${membresia.membresia_nombre || 'N/A'}</td>
-            <td><span class="${getEstadoClass(estado)}">${membresia.estado || 'N/A'}</span></td>
+            <td><span data-translate="membership_status_${estado}" class="${getEstadoClass(estado)}"></span></td>
             <td class="action-cell"></td>
         `;
 
@@ -66,12 +66,16 @@ function renderMembresias(membresiasData) {
             downloadIcon.className = "fa-solid fa-download";
             downloadBtn.className = 'download-btn';
 
-            downloadBtn.textContent = 'Descargar';
-            downloadBtn.addEventListener('click', () => generateMembershipPDF(membresia));
+            const spanText = document.createElement('span');
+            spanText.setAttribute('data-translate', 'membership_download');
             downloadBtn.appendChild(downloadIcon);
+            downloadBtn.appendChild(spanText);
+            
+            downloadBtn.addEventListener('click', () => generateMembershipPDF(membresia));
+            
             actionCell.appendChild(downloadBtn);
         } else {
-            actionCell.textContent = 'No disponible';
+            actionCell.setAttribute('data-translate', 'membership_no_actions');
         }
 
         tbody.appendChild(row);

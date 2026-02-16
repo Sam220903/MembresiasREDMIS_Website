@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alta de administrador</title>
+  <title data-translate="admin_registration_title">Alta de administrador</title>
   <link rel="stylesheet" href="../css/alta_admin.css">
   <link rel="stylesheet" href="../css/sidebar.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -17,19 +17,19 @@
     <div id="sidebar"></div> 
 
     <div class="background"></div>
-    <div class="title-container">Alta de administrador</div>
+    <div  class="title-container" data-translate="admin_registration_title">Alta de administrador</div>
 
     <div class="table-container">
       <div class="table-box">
-        <h3>Lista de miembros según rol</h3>
+        <h3 data-translate="admin_registration_table_title">Lista de miembros según rol</h3>
         <table id="members-per-role" class="display">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>MIEMBRO</th>
-              <th>MEMBRESIA</th>
-              <th>ROL</th>
-              <th>ACCIONES</th>
+              <th data-translate="admin_registration_id">ID</th>
+              <th data-translate="admin_registration_member">MIEMBRO</th>
+              <th data-translate="admin_registration_membership">MEMBRESIA</th>
+              <th data-translate="admin_registration_role">ROL</th>
+              <th data-translate="admin_registration_actions">ACCIONES</th>
             </tr>
           </thead>
           <tbody id="members-per-role-body">
@@ -87,7 +87,7 @@
           <td><label class="id">${member.usuario_id}</label></td>
           <td><label class="name">${member.nombre_completo}</label></td>
           <td><label class="membership">${member.membresia}</label></td>
-          <td><label class="role">${role}</label></td>
+          <td><label class="role" data-translate="admin_registration_role_${member.rol}"></label></td>
           <td>
             <div class="toggle-container">
                 <label class="toggle-switch">
@@ -131,6 +131,7 @@
     
 </body>
 
-<script type="module" src="../js/modules/verification.js"></script>
 <script type="module" src="../js/modules/sidebar.js"></script>
+<script type="module" src="../js/modules/verification.js"></script>
+
 </html>

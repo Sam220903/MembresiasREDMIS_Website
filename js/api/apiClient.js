@@ -30,8 +30,6 @@ class ApiClient {
 
     async request(endpoint, method = 'GET', data = null, customConfig = {}){
         const url = `${this.config.baseURL}/${endpoint}`;
-
-        console.log(url);
         
 
         const config = {

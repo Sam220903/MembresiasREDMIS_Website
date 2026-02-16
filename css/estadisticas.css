@@ -23,12 +23,14 @@ body {
 
 .background {
     width: 100%;
-    color: var(--textcolor);
+    height: 100%;
+    background-color: #E2E8F0;
     position: absolute;
     top: 0;
     left: 0;
     z-index: -1;
   }
+
   
   .title-container {
     font-size: 36px;

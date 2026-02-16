@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redmis-Estadísticas</title>
+    <title data-translate="statistics_title">Estadísticas</title>
     <link rel="stylesheet" href="../css/estadisticas.css">
     <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,12 +22,12 @@
     <div class="background"></div>
     
     <div class="title-container">
-        <p>Estadisticas</p>
+        <p data-translate="statistics_title">Estadísticas</p>
         <div class="filtro-estadisticas">
             <select id="selector-estadisticas" class="selector-estadisticas">
-                <option value="geograficas">Estadísticas Geográficas</option>
-                <option value="solicitudes">Estadísticas de Solicitudes</option>
-                <option value="membresias">Estadísticas de Membresías</option>
+                <option value="geograficas" data-translate="statistics_geographic">Estadísticas Geográficas</option>
+                <option value="solicitudes" data-translate="statistics_requests">Recuento de Solicitudes</option>
+                <option value="membresias" data-translate="statistics_memberships">Recuento por Membresías</option>
             </select>
         </div>
         
@@ -38,52 +38,56 @@
             
             <div class="contenedor-header">
                 <div class="tarjeta-estadistica">
-                    <h3>Total de miembros</h3>
+                    <h3 data-translate="statistics_total_members">Total de miembros</h3>
                     <p class="valor-estadistica" id="total-miembros">Cargando...</p>
                 </div>
                 
                 <div class="tarjeta-estadistica">
-                    <h3>Solicitudes Pendientes</h3>
+                    <h3 data-translate="statistics_pending_requests">Solicitudes Pendientes</h3>
                     <p class="valor-estadistica" id="solicitudes-pendientes">Cargando...</p>
                 </div>
                 <div class="tarjeta-estadistica">
-                    <h3>Solicitudes Aceptadas</h3>
+                    <h3 data-translate="statistics_accepted_requests">Solicitudes Aceptadas</h3>
                     <p class="valor-estadistica" id="solicitudes-aceptadas">Cargando...</p>
                 </div>
                 <div class="tarjeta-estadistica">
-                    <h3>Solicitudes rechazadas</h3>
+                    <h3 data-translate="statistics_rejected_requests">Solicitudes Rechazadas</h3>
                     <p class="valor-estadistica" id="solicitudes-rechazadas">Cargando...</p>
                 </div>
                 <div class="tarjeta-estadistica">
-                    <h3>Membresias Activas</h3>
+                    <h3 data-translate="statistics_active_memberships">Membresías Activas</h3>
                     <p class="valor-estadistica" id="membresias-activas">Cargando...</p>
                 </div>
                 <div class="tarjeta-estadistica">
-                    <h3>Membresias Vencidas</h3>
+                    <h3 data-translate="statistics_expired_memberships">Membresías Vencidas</h3>
                     <p class="valor-estadistica" id="membresias-vencidas">Cargando...</p>
                 </div>
                
             </div>
             <div class="contenedor-graficos"> 
                 <div class="grafico-pais">
-                    <h2>Distribución de Miembros por País</h2>
+                    <h2 data-translate="statistics_country_distribution">Distribución de Miembros por País</h2>
                     <div class="contenedor-canvas">
                         <canvas id="grafica-pais"></canvas>
                     </div>
                 </div>
                 <div class="grafico-estado">
-                    <h2>Distribución de Miembros por Estado de Mexico</h2>
+                    <h2 data-translate="statistics_state_distribution">Distribución de Miembros por Estado de Mexico</h2>
                     <div class="contenedor-canvas">
                         <canvas id="grafica-estado"></canvas>
                     </div>
                 </div>
                 
                 <div class="grafico-universidad">
-                    <h2>Miembros por Universidad</h2>
+                    <h2 data-translate="statistics_university_distribution">Miembros por Universidad</h2>
                     <div class="tabla-universidad">
                         <div class="cabecera-tabla">
-                            <div class="columna-universidad">Universidad</div>
-                            <div class="columna-numero">Número de Miembros</div>
+                            <div class="columna-universidad">
+                                <span data-translate="statistics_university">Universidad</span>
+                            </div>
+                            <div class="columna-numero">
+                                <span data-translate="statistics_number_of_members">Número de miembros</span>
+                            </div>
                         </div>
                         <div class="cuerpo-tabla" id="tabla-universidades">
                             <!-- Los datos de la tabla se cargarán con JS -->

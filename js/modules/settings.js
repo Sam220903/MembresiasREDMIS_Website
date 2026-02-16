@@ -1,6 +1,7 @@
 import countryService from "../api/services/country.js";
 import stateService from "../api/services/states.js";
 import universityService from "../api/services/universities.js";
+import { setLanguage } from "./translate.js";
 
 const countriesList = await countryService.get();
 const statesList = await stateService.get();
@@ -273,6 +274,19 @@ openAddStateBtn.addEventListener('click', openStateModal);
 
 const openAddUniversityBtn = document.getElementById('add-university-btn');
 openAddUniversityBtn.addEventListener('click', openUniversityModal);
+
+
+// Traducción de la página
+const spanishBtn = document.getElementById('spanish-btn');
+const englishBtn = document.getElementById('english-btn');
+
+spanishBtn.addEventListener('click', () => {
+    setLanguage('es');
+});
+
+englishBtn.addEventListener('click', () => {
+    setLanguage('en');
+});
 
 
 

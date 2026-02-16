@@ -1,4 +1,22 @@
 import loginService from '/js/api/services/login.js';
+import { translate } from './translate.js';
+
+
+// Obtener el idioma de local storage y establecerlo al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLanguage = localStorage.getItem('language');
+    const browserLanguage = navigator.language.slice(0, 2);
+    const defaultLanguage = 'es';
+    const supportedLanguages = ['es', 'en'];
+
+    const currentLanguage = savedLanguage || (supportedLanguages.includes(browserLanguage) ? browserLanguage : defaultLanguage);
+
+    translate(currentLanguage);
+
+});
+
+
+// Verificar el token y el rol del usuario al cargar la página
 
 document.addEventListener('DOMContentLoaded', () => {
     const userRole = loginService.getUserRole(); 

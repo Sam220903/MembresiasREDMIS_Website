@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lista de Miembros</title>
+  <title data-translate="members_title">Lista de Miembros</title>
   <link rel="stylesheet" href="../css/sidebar.css">
   <link rel="stylesheet" href="../css/estilos-miembros.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -19,18 +19,20 @@
     <!-- Sidebar dinámico -->
     <div id="sidebar"></div>
 
+    <div class="background"></div>
+
     <!-- Contenido principal -->
     <main class="main-content">
-      <h1 class="titulo">Lista de Miembros</h1>
+      <h1 class="titulo" data-translate="members_title">Lista de Miembros</h1>
 
       <!-- Sección de solicitudes aceptadas -->
       <section class="seccion">
-        <h2 class="seccion-titulo aceptadas">Solicitudes Aceptadas</h2>
+        <h2 class="seccion-titulo aceptadas" data-translate="members_accepted_requests">Solicitudes Aceptadas</h2>
         <div class="tabla" id="tabla-miembros-aceptados">
           <div class="tabla-header">
-            <span>Nombre</span>
-            <span>Tipo de Membresía</span>
-            <span>Fecha Aceptada</span>
+            <span data-translate="members_name">Nombre</span>
+            <span data-translate="members_membership_type">Tipo de Membresía</span>
+            <span data-translate="members_accepted_date">Fecha Aceptada</span>
             <span></span>
           </div>
           <div class="tabla-body"></div>
@@ -40,12 +42,12 @@
 
       <!-- Sección de solicitudes rechazadas -->
       <section class="seccion">
-        <h2 class="seccion-titulo rechazadas">Solicitudes Rechazadas</h2>
+        <h2 class="seccion-titulo rechazadas" data-translate="members_rejected_requests">Solicitudes Rechazadas</h2>
         <div class="tabla" id="tabla-miembros-rechazados">
           <div class="tabla-header">
-            <span>Nombre</span>
-            <span>Tipo de Membresía</span>
-            <span>Fecha Solicitada</span>
+            <span data-translate="members_name">Nombre</span>
+            <span data-translate="members_membership_type">Tipo de Membresía</span>
+            <span data-translate="members_requested_date">Fecha Solicitada</span>
             <span></span>
           </div>
           <div class="tabla-body">
@@ -57,12 +59,12 @@
 
       <!-- Sección de solicitudes pendientes -->
       <section class="seccion">
-        <h2 class="seccion-titulo pendientes">Solicitudes Pendientes</h2>
+        <h2 class="seccion-titulo pendientes" data-translate="members_pending_requests">Solicitudes Pendientes</h2>
         <div class="tabla" id="tabla-miembros-pendientes">
           <div class="tabla-header">
-            <span>Nombre</span>
-            <span>Tipo de Membresía</span>
-            <span>Fecha Solicitada</span>
+            <span data-translate="members_name">Nombre</span>
+            <span data-translate="members_membership_type">Tipo de Membresía</span>
+            <span data-translate="members_requested_date">Fecha Solicitada</span>
             <span></span>
           </div>
           <div class="tabla-body">
@@ -101,7 +103,11 @@
       <span>${member.nombre_completo}</span>
       <span>${member.membresia}</span>
       <span>${new Date(member.fecha_solicitud).toLocaleDateString()}</span>
-      <button class="btn-editar"><i class="fas fa-edit"></i><a href="member_info.html?memberID=${member.usuario_id}">Editar</a></button>
+      <button class="btn-editar"><i class="fas fa-edit"></i>
+        <a href="member_info.html?memberID=${member.usuario_id}">
+          <span data-translate="members_edit">Editar</span>
+        </a>
+        </button>
     `;
     acceptedTable.appendChild(row);
   });
@@ -113,7 +119,9 @@
       <span>${member.nombre_completo}</span>
       <span>${member.membresia}</span>
       <span>${new Date(member.fecha_solicitud).toLocaleDateString()}</span>
-      <button class="btn-editar"><i class="fas fa-edit"></i><a href="member_info.html?memberID=${member.usuario_id}">Editar</a></button>
+      <button class="btn-editar"><i class="fas fa-edit"></i><a href="member_info.html?memberID=${member.usuario_id}">
+        <span data-translate="members_edit">Editar</span>
+        </a></button>
     `;
     rejectedTable.appendChild(row);
   });
@@ -125,14 +133,17 @@
       <span>${member.nombre_completo}</span>
       <span>${member.membresia}</span>
       <span>${new Date(member.fecha_solicitud).toLocaleDateString()}</span>
-      <button class="btn-editar"><i class="fas fa-edit"></i><a href="member_info.html?memberID=${member.usuario_id}">Editar</a></button>
+      <button class="btn-editar"><i class="fas fa-edit"></i><a href="member_info.html?memberID=${member.usuario_id}">
+        <span data-translate="members_edit">Editar</span>
+        </a></button>
     `;
     pendingTable.appendChild(row);
   });
 
 </script>
 
-<script type="module" src="../js/modules/verification.js"></script>
 <script type="module" src="../js/modules/sidebar.js"></script>
+<script type="module" src="../js/modules/verification.js"></script>
+
 
 </html>

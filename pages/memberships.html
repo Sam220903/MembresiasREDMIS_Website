@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Membresías</title>
+  <title data-translate="membership_title">Membresías</title>
   <link rel="stylesheet" href="../css/membresias.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
   <!-- Asegurarnos de que jsPDF está cargado correctamente -->
@@ -19,22 +19,24 @@
 
   <div id="sidebar"></div> 
 
+  <div class="background"></div>
+
   <main class="content">
     <header>
       <!-- Espacio para header si es necesario -->
     </header>
 
     <section class="membership-table">
-      <h1>Membresías</h1>
+      <h1 data-translate="membership_title">Membresías</h1>
       <table>
         <thead>
             <tr>
-                <th>Código de membresía</th>
-                <th>Miembro desde</th>
-                <th>Válido hasta</th>
-                <th>Tipo</th>
-                <th>Estado</th>
-                <th>Acción</th> <!-- Cambiado a "Acción" para ser más genérico -->
+                <th data-translate="membership_code">Código de membresía</th>
+                <th data-translate="membership_member_since">Miembro desde</th>
+                <th data-translate="membership_valid_until">Válido hasta</th>
+                <th data-translate="membership_type">Tipo</th>
+                <th data-translate="membership_status">Estado</th>
+                <th data-translate="membership_action">Acción</th> <!-- Cambiado a "Acción" para ser más genérico -->
             </tr>
         </thead>
         <tbody>
@@ -44,9 +46,11 @@
     </section>
   </main>
 
-  <script type="module" src="/js/modules/membresias.js"></script>
+
   
 </body>
+<script type="module" src="/js/modules/membresias.js"></script>
 <script type="module" src="/js/modules/verification.js"></script>
 <script type="module" src="/js/modules/sidebar.js"></script>
+
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ajustes</title>
+  <title data-translate="settings-title">Ajustes</title>
   <link rel="stylesheet" href="../css/settings.css">
   <link rel="stylesheet" href="../css/sidebar.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -21,52 +21,54 @@
 
     <div class="main-container">
 
-      <div class="title-container">Ajustes</div>
+      <div data-translate="settings-title" class="title-container">Ajustes</div>
 
       <div class="theme-settings">
           <div class="theme-description">
-            <h3>Tema</h3>
-            <p>Apariencia del sistema, incluyendo colores, tipografía y otros elementos visuales.</p>
+            <h3 data-translate="settings-theme">Tema</h3>
+            <p data-translate="settings-theme-description">Apariencia del sistema, incluyendo colores, tipografía y otros elementos visuales.</p>
           </div>
           <div class="theme-options">
               <button id="system-theme-btn">
                 <i class="fa-solid fa-laptop"></i>
-                Sistema
+                <span data-translate="settings-theme-system">Sistema</span>
               </button>
               <button id="light-theme-btn">
                 <i class="fa-regular fa-sun"></i>
-                Claro</button>
+                <span data-translate="settings-theme-light">Claro</span>
+              </button>
               <button id="dark-theme-btn">
                 <i class="fa-regular fa-moon"></i>
-                Oscuro</button>
+                <span data-translate="settings-theme-dark">Oscuro</span>
+              </button>
           </div>
       </div>
 
       <div class="language-settings">
           <div class="language-description">
-            <h3>Idioma</h3>
-            <p>Selecciona el idioma en el que deseas usar la plataforma.</p>
+            <h3 data-translate="settings-language">Idioma</h3>
+            <p data-translate="settings-language-description">Selecciona el idioma en el que deseas usar la plataforma.</p>
           </div>
           <div class="language-options">
               <button id="spanish-btn">
                 <i class="fa-solid fa-language"></i>
-                Español
+                <span data-translate="settings-language-spanish">Español</span>
               </button>
               <button id="english-btn">
                 <i class="fa-solid fa-language"></i>
-                Inglés
+                <span data-translate="settings-language-english">Inglés</span>
               </button>
           </div>
       </div>
 
       <div class="entities-settings">
           <div class="entities-description">
-            <h2>Entidades</h2>
+            <h2 data-translate="settings-entities">Entidades</h2>
           </div>
           <div class="entities-options">
 
               <div class="countries-panel">
-                <h3>Países</h3>
+                <h3 data-translate="settings-countries">Países</h3>
                 <div id="search-country">
                   <div id="found-countries" class="found-items-container">
                     <input type="text" id="searchCountry" placeholder="Buscar país...">
@@ -80,7 +82,7 @@
               </div>
 
               <div class="states-panel">
-                <h3>Estados</h3>
+                <h3 data-translate="settings-states">Estados</h3>
                 <div id="search-state">
                   <div id="found-states" class="found-items-container">
                     <input type="text" id="searchState" placeholder="Buscar estado...">
@@ -93,7 +95,7 @@
               </div>
 
               <div class="universities-panel">
-                <h3>Universidades</h3>
+                <h3 data-translate="settings-universities">Universidades</h3>
                 <div id="search-university">
                   <div id="found-universities" class="found-items-container">
                     <input type="text" id="searchUniversity" placeholder="Buscar universidad...">
@@ -116,8 +118,10 @@
     
 </body>
 
+<script type="module" src="../js/modules/sidebar.js"></script>
 <script type="module" src="../js/modules/settings.js"></script>
 <script type="module" src="../js/modules/verification.js"></script>
-<script type="module" src="../js/modules/sidebar.js"></script>
+<script type="module" src="../js/modules/translate.js"></script>
+
 
 </html>

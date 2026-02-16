@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solicitud de Membresía</title>
+  <title data-translate="membership_application_title">Solicitud de Membresía</title>
   <link rel="stylesheet" href="../css/profile.css">
   <link rel="stylesheet" href="../css/sidebar.css">
   <link rel="stylesheet" href="../css/application_membership.css">
@@ -17,26 +17,30 @@
     <div id="sidebar"></div> 
 
     <div class="background"></div>
-    <div class="title-container"><h2>Solicitud de Membresía</h2></div>
+    <div class="title-container">
+        <h2 data-translate="membership_application_title">Solicitud de Membresía</h2>
+    </div>
 
     <div class="form-container">
       <div class="form-box" style="width: 700px;">
-        <label>Tipo de Membresía</label>
+        <label data-translate="membership_application_type">Tipo de Membresía</label>
         <select id="tipo-membresia" class="custom-select" required>
-          <option value="" disabled selected>Selecciona una membresía</option>
+          <option value="" disabled selected data-translate="membership_select">Selecciona una membresía</option>
         </select>
 
-        <label>Teléfono</label>
+        <label data-translate="membership_application_phone">Teléfono</label>
         <input type="tel" id="telefono" class="custom-input" required>
 
-        <label>Comentarios</label>
+        <label data-translate="membership_application_comments">Comentarios</label>
         <textarea id="comentarios" class="custom-textarea" rows="4"></textarea>
 
 
-        <label>CV (PDF)</label>
+        <label data-translate="membership_application_cv">CV (PDF)</label>
         <input type="file" id="cv-file" accept=".pdf" required>
 
-        <button id="submit-membership" class="custom-button" type="button">Solicitar membresía</button>
+        <button id="submit-membership" class="custom-button" type="button">
+            <span data-translate="membership_application_submit">Enviar Solicitud</span>
+        </button>
       </div>
     </div>
 
