@@ -110,7 +110,7 @@ async function generateMembershipPDF(membresia) {
         // Cargar logo REDMIS para usar en varias secciones
         let logoREDMIS;
         try {
-            logoREDMIS = await loadImageToDataURL('../img/logo_REDMIS.png');
+            logoREDMIS = await loadImageToDataURL('../assets/img/logo_REDMIS.png');
         } catch (e) {
             console.log('No se pudo cargar el logo:', e);
         }
@@ -334,7 +334,7 @@ async function generateMembershipPDF(membresia) {
         // Imágenes de la parte inferior: Firma
         let firmaImg;
         try {
-            firmaImg = await loadImageToDataURL('../img/firma.png');
+            firmaImg = await loadImageToDataURL('../assets/img/firma.png');
         } catch(e) {
             console.log('No se pudo cargar firma:', e);
         }
