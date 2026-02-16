@@ -6,8 +6,8 @@ const statesService = {
     get: () => {
         return apiClient.get(ENDPOINT);
     },
-    create: (nombre) => {
-        return apiClient.post(ENDPOINT, { nombre });
+    add: (nombre, pais_id) => {
+        return apiClient.post(ENDPOINT, { nombre, pais_id });
     }
 }
 

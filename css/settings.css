@@ -225,7 +225,7 @@ body {
     margin-bottom: 5px;
 }
 
-.form-box input {
+.form-box input, select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;

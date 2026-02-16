@@ -1,3 +1,9 @@
+import countryService from "../api/services/country.js";
+import stateService from "../api/services/states.js";
+import universityService from "../api/services/universities.js";
+
+const countriesList = await countryService.get();
+
 const loadCountryModal = () => {
     let countryModalPath = '../partials/addCountry.html';
     const modalContainer = document.getElementById('addCountryModal');
@@ -6,20 +12,38 @@ const loadCountryModal = () => {
         .then(response => response.text())
         .then(html => {
             modalContainer.innerHTML = html;
-            const acceptBtn = document.getElementById('acceptBtn');
-            acceptBtn.addEventListener('click', () => {
+            const acceptCountryBtn = document.getElementById('acceptCountryBtn');
+            acceptCountryBtn.addEventListener('click', async () => {
                 const paisInput = document.getElementById('pais');
                 const pais = paisInput.value.trim();
-                if (pais) {
-                    console.log('País ingresado:', pais);
-                    closeCountryModal();
-                } else {
+
+                // Consumo de API para agregar el país
+
+                if (!pais && pais === '') {
                     alert('Por favor, ingresa un país válido.');
+                    return;
+                } 
+
+                try {
+                    const response = await countryService.add(pais);
+                    if (response) {
+                        alert('País agregado exitosamente');
+                        paisInput.value = '';
+                    } else {
+                        alert('Error al agregar el país');
+                    }
+                } catch (error) {
+                    console.error('Error al agregar el país:', error);
+                    alert('Error al agregar el país');
+                } finally {
+                    closeCountryModal();
                 }
+                    
             });
 
             const closeCountryBtn = document.getElementById('close-country-btn');
             closeCountryBtn.addEventListener('click', closeCountryModal);
+
         })
         .catch(error => {
             console.error('Error al cargar el modal:', error);
@@ -48,16 +72,44 @@ const loadStateModal = () => {
         .then(response => response.text())
         .then(html => {
             modalContainer.innerHTML = html;
-            const acceptBtn = document.getElementById('acceptBtn');
-            acceptBtn.addEventListener('click', () => {
+            const acceptStateBtn = document.getElementById('acceptStateBtn');
+
+            const s_countrySelector = document.getElementById('s_countrySelector');
+            countriesList.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.id;
+                option.textContent = country.nombre;
+                s_countrySelector.appendChild(option);
+            });
+
+
+            acceptStateBtn.addEventListener('click', async () => {
                 const estadoInput = document.getElementById('estado');
                 const estado = estadoInput.value.trim();
-                if (estado) {
-                    console.log('Estado ingresado:', estado);
-                    closeStateModal();
-                } else {
+                const selectedCountryId = s_countrySelector.value;
+
+                // Consumo de API para agregar el estado
+                
+                if (!estado && estado === '') {
                     alert('Por favor, ingresa un estado válido.');
+                    return;
                 }
+
+                try {
+                    const response = await stateService.add(estado, selectedCountryId);
+                    if (response) {
+                        alert('Estado agregado exitosamente');
+                        estadoInput.value = '';
+                    } else {
+                        alert('Error al agregar el estado');
+                    }
+                } catch (error) {
+                    console.error('Error al agregar el estado:', error);
+                    alert('Error al agregar el estado');
+                } finally {
+                    closeStateModal();
+                }   
+
             });
 
             const closeStateBtn = document.getElementById('close-state-btn');
@@ -89,16 +141,43 @@ const loadUniversityModal = () => {
         .then(response => response.text())
         .then(html => {
             modalContainer.innerHTML = html;
-            const acceptBtn = document.getElementById('acceptBtn');
-            acceptBtn.addEventListener('click', () => {
+            const acceptUniversityBtn = document.getElementById('acceptUniversityBtn');
+            const u_countrySelector = document.getElementById('u_countrySelector');
+            countriesList.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.id;
+                option.textContent = country.nombre;
+                u_countrySelector.appendChild(option);
+            });
+
+            acceptUniversityBtn.addEventListener('click', async () => {
                 const universidadInput = document.getElementById('universidad');
                 const universidad = universidadInput.value.trim();
-                if (universidad) {
-                    console.log('Universidad ingresada:', universidad);
-                    closeUniversityModal();
-                } else {
+                const selectedCountryId = u_countrySelector.value;
+
+
+                // Consumo de API para agregar la universidad
+                
+                if (!universidad && universidad === '') {
                     alert('Por favor, ingresa una universidad válida.');
+                    return;
                 }
+
+                try {
+                    const response = await universityService.add(universidad, selectedCountryId);
+                    if (response) {
+                        alert('Universidad agregada exitosamente');
+                        universidadInput.value = '';
+                    } else {
+                        alert('Error al agregar la universidad');
+                    }
+                } catch (error) {
+                    console.error('Error al agregar la universidad:', error);
+                    alert('Error al agregar la universidad');
+                } finally {
+                    closeUniversityModal();
+                }
+
             });
 
             const closeUniversityBtn = document.getElementById('close-university-btn');
@@ -133,6 +212,12 @@ openAddStateBtn.addEventListener('click', openStateModal);
 
 const openAddUniversityBtn = document.getElementById('add-university-btn');
 openAddUniversityBtn.addEventListener('click', openUniversityModal);
+
+
+
+
+
+
 
 
 
