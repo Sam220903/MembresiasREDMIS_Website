@@ -68,7 +68,13 @@
               <div class="countries-panel">
                 <h3>Países</h3>
                 <div id="search-country">
-                  <input type="text" placeholder="Buscar país...">
+                  <div id="found-countries" class="found-items-container">
+                    <input type="text" id="searchCountry" placeholder="Buscar país...">
+                    <ul id="countries-list" class="container-suggestions">
+                      <!-- Aquí se mostrarán los países sugeridos -->
+                    </ul>
+                  </div>
+
                   <button id="add-country-btn"><i class="fa-solid fa-plus"></i></button>
                 </div>
               </div>
@@ -76,7 +82,12 @@
               <div class="states-panel">
                 <h3>Estados</h3>
                 <div id="search-state">
-                  <input type="text" placeholder="Buscar estado...">
+                  <div id="found-states" class="found-items-container">
+                    <input type="text" id="searchState" placeholder="Buscar estado...">
+                    <ul id="states-list" class="container-suggestions">
+                      <!-- Aquí se mostrarán los estados sugeridos -->
+                    </ul>
+                  </div>
                   <button id="add-state-btn"><i class="fa-solid fa-plus"></i></button>
                 </div>
               </div>
@@ -84,7 +95,12 @@
               <div class="universities-panel">
                 <h3>Universidades</h3>
                 <div id="search-university">
-                  <input type="text" placeholder="Buscar universidad...">
+                  <div id="found-universities" class="found-items-container">
+                    <input type="text" id="searchUniversity" placeholder="Buscar universidad...">
+                    <ul id="universities-list" class="container-suggestions">
+                      <!-- Aquí se mostrarán las universidades sugeridas -->
+                    </ul>
+                  </div>
                   <button id="add-university-btn"><i class="fa-solid fa-plus"></i></button>
                 </div>
               </div>

@@ -3,6 +3,67 @@ import stateService from "../api/services/states.js";
 import universityService from "../api/services/universities.js";
 
 const countriesList = await countryService.get();
+const statesList = await stateService.get();
+const universitiesList = await universityService.get();
+
+// Selección dinámica de países, estados y universidades
+const countrySearchInput = document.getElementById('searchCountry');
+const stateSearchInput = document.getElementById('searchState');
+const universitySearchInput = document.getElementById('searchUniversity');
+
+countrySearchInput.onkeyup = (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    let suggestions = [];
+
+    if (searchTerm) {
+        suggestions = countriesList.filter(country => country.nombre.toLowerCase().includes(searchTerm));
+    }
+
+    displaySuggestions(suggestions, 'countries-list');
+
+    
+}
+
+stateSearchInput.onkeyup = (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    let suggestions = [];
+
+    if (searchTerm) {
+        suggestions = statesList.filter(state => state.nombre.toLowerCase().includes(searchTerm));
+    }
+
+    displaySuggestions(suggestions, 'states-list');
+}
+
+universitySearchInput.onkeyup = (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    let suggestions = [];
+
+    if (searchTerm) {
+        suggestions = universitiesList.filter(university => university.nombre.toLowerCase().includes(searchTerm));
+    }
+
+    displaySuggestions(suggestions, 'universities-list');
+}
+
+const displaySuggestions = (suggestions, listId) => {
+    const suggestionsContainer = document.getElementById(listId);
+    suggestionsContainer.innerHTML = '';
+
+    if (suggestions.length > 0) {
+        suggestions.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item.nombre;
+            suggestionsContainer.appendChild(li);
+        });
+        suggestionsContainer.classList.add('active');
+    } else {
+        suggestionsContainer.classList.remove('active');
+    }
+}
+
+
+// Carga de modales para agregar país, estado y universidad, con sus respectivos eventos de aceptación y cierre.
 
 const loadCountryModal = () => {
     let countryModalPath = '../partials/addCountry.html';

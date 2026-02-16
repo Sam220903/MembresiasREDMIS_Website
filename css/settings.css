@@ -102,7 +102,6 @@ body {
     justify-content: center;
     width: 80%;
     max-width: 900px;
-    margin-top: 20px;
   }
 
   .entities-settings h2, .entities-settings h3{
@@ -157,6 +156,34 @@ body {
     background-color: #131e3a;
     transform: scale(1.05);
     transition: transform 0.2s;
+  }
+
+  .container-suggestions {
+    position: absolute;
+    background-color: #F1F5F9;
+    border: 1px solid #E2E8F0;
+    width: 100%;
+    max-width: 170px;
+    margin: 10px 0;
+    display: none;
+    z-index: 10;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 100px; /* Limitar la altura para mostrar solo 3 sugerencias */
+    overflow-y: auto; /* Agregar scroll si hay más de 3 sugerencias */
+  }
+
+  .container-suggestions.active {
+    display: block;
+  }
+  
+  .container-suggestions li {
+    color: #1E293B;
+    font-size: small;
+    list-style: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
   }
 
 
