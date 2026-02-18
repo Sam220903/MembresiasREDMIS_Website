@@ -12,7 +12,8 @@
     "sidebar-admin-registration" : "Admin Registration",
     "sidebar-statistics" : "Statistics",
     "sidebar-members" : "Members",
-    "sidebar-settings" : "Settings",    
+    "sidebar-settings" : "Settings",   
+    "sidebar-applications" : "Applications",
 
 
     "--- PAGE: Profile (profile_) ---": "",

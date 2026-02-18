@@ -1,0 +1,139 @@
+html, body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #E2E8F0;  /* Pon el color directo en el body */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+  .title-container {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1D4ED8;
+    position: absolute;
+    top: 40px;
+    left: 300px;
+  }
+
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 110px 0px 50px 300px;
+    width: 100%;
+  }
+
+  .panel-selector {
+    margin: 25px 0;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: left;
+  }
+
+  .panel-selector select{
+    width: 400px;
+    padding: 10px 15px;
+    margin-left: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #F1F5F9;
+    color: #475569;
+    box-sizing: border-box;
+    font-size: large;
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+  }
+
+
+  .subtitle-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    width: 80%;
+  }
+
+  .statistics-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #475569;
+    width: 90%;
+  }
+
+  .statistics-panel#members-panel{
+    
+  }
+
+  .statistics-panel#applications-panel{
+    display: none;
+
+    flex-direction: column;
+  }
+
+  .statistics-panel .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+  }
+
+  hr{
+    width: 80%;
+    border: none;
+    border-top: 1px solid #A0AEC0;
+  }
+
+  .statistic-card {
+    background-color: #F1F5F9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+  } 
+
+  .statistic-card h4 {
+    color: #838e9c;
+  }
+
+  .statistics-panel#applications-panel .statistic-card{ 
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 30px 10px 30px;
+    margin: 10px;
+  }
+
+  .statistics-panel#applications-panel .statistic-card span{ 
+    font-size: xx-large;
+    font-weight: bold;
+    color: #1D4ED8;
+  }
+
+  #total-memberships, #total-applications {
+    margin-top: 30px !important;
+    flex-direction: row !important;
+    gap: 20px !important;
+    align-items: center !important;
+  }
+
+  #total-memberships h4, #total-applications h4 {
+    font-size: larger;
+    max-width: 70%;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+    #total-memberships span, #total-applications span {
+        font-size: 4em !important;
+        font-weight: bolder;
+        color: #1D4ED8;
+    }
+

@@ -281,11 +281,15 @@ const spanishBtn = document.getElementById('spanish-btn');
 const englishBtn = document.getElementById('english-btn');
 
 spanishBtn.addEventListener('click', () => {
-    setLanguage('es');
+    if (localStorage.getItem('language') !== 'es') {
+        confirm('¿Deseas cambiar el idioma a español?') && setLanguage('es');
+    } 
 });
 
 englishBtn.addEventListener('click', () => {
-    setLanguage('en');
+    if (localStorage.getItem('language') !== 'en') {
+        confirm('Do you want to change the language to English?') && setLanguage('en');
+    }
 });
 
 

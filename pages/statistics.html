@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate="statistics_title">Estadísticas</title>
-    <link rel="stylesheet" href="../css/estadisticas.css">
+    <link rel="stylesheet" href="../css/statistics.css">
     <link rel="stylesheet" href="../css/sidebar.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/general.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="display-sidebar-container">
@@ -18,86 +14,95 @@
     </div>
 
     <div id="sidebar"></div> 
-
-    <div class="background"></div>
     
     <div class="title-container">
         <p data-translate="statistics_title">Estadísticas</p>
-        <div class="filtro-estadisticas">
-            <select id="selector-estadisticas" class="selector-estadisticas">
-                <option value="geograficas" data-translate="statistics_geographic">Estadísticas Geográficas</option>
-                <option value="solicitudes" data-translate="statistics_requests">Recuento de Solicitudes</option>
-                <option value="membresias" data-translate="statistics_memberships">Recuento por Membresías</option>
+    </div>
+
+
+    <div class="main-container">
+        <div class="panel-selector">
+            <select name="statistics-selector" id="statistics-selector">
+                <option value="members-panel">Conteo de miembros</option>
+                <option value="applications-panel">Conteo de membresías / solicitudes</option>
             </select>
         </div>
-        
-    </div>
-    
-        <!-- Main content -->
-        <div class="contenedor-main">
-            
-            <div class="contenedor-header">
-                <div class="tarjeta-estadistica">
-                    <h3 data-translate="statistics_total_members">Total de miembros</h3>
-                    <p class="valor-estadistica" id="total-miembros">Cargando...</p>
+
+        <div class="statistics-panel" id="members-panel">
+            <div class="column">
+                <div class="statistic-card" id="members-per-country">
+                    <canvas id="members-per-country-chart"></canvas>
                 </div>
-                
-                <div class="tarjeta-estadistica">
-                    <h3 data-translate="statistics_pending_requests">Solicitudes Pendientes</h3>
-                    <p class="valor-estadistica" id="solicitudes-pendientes">Cargando...</p>
-                </div>
-                <div class="tarjeta-estadistica">
-                    <h3 data-translate="statistics_accepted_requests">Solicitudes Aceptadas</h3>
-                    <p class="valor-estadistica" id="solicitudes-aceptadas">Cargando...</p>
-                </div>
-                <div class="tarjeta-estadistica">
-                    <h3 data-translate="statistics_rejected_requests">Solicitudes Rechazadas</h3>
-                    <p class="valor-estadistica" id="solicitudes-rechazadas">Cargando...</p>
-                </div>
-                <div class="tarjeta-estadistica">
-                    <h3 data-translate="statistics_active_memberships">Membresías Activas</h3>
-                    <p class="valor-estadistica" id="membresias-activas">Cargando...</p>
-                </div>
-                <div class="tarjeta-estadistica">
-                    <h3 data-translate="statistics_expired_memberships">Membresías Vencidas</h3>
-                    <p class="valor-estadistica" id="membresias-vencidas">Cargando...</p>
-                </div>
-               
             </div>
-            <div class="contenedor-graficos"> 
-                <div class="grafico-pais">
-                    <h2 data-translate="statistics_country_distribution">Distribución de Miembros por País</h2>
-                    <div class="contenedor-canvas">
-                        <canvas id="grafica-pais"></canvas>
-                    </div>
-                </div>
-                <div class="grafico-estado">
-                    <h2 data-translate="statistics_state_distribution">Distribución de Miembros por Estado de Mexico</h2>
-                    <div class="contenedor-canvas">
-                        <canvas id="grafica-estado"></canvas>
-                    </div>
-                </div>
+            <div class="column">
+                <div class="statistic-card" id="total-members">
                 
-                <div class="grafico-universidad">
-                    <h2 data-translate="statistics_university_distribution">Miembros por Universidad</h2>
-                    <div class="tabla-universidad">
-                        <div class="cabecera-tabla">
-                            <div class="columna-universidad">
-                                <span data-translate="statistics_university">Universidad</span>
-                            </div>
-                            <div class="columna-numero">
-                                <span data-translate="statistics_number_of_members">Número de miembros</span>
-                            </div>
-                        </div>
-                        <div class="cuerpo-tabla" id="tabla-universidades">
-                            <!-- Los datos de la tabla se cargarán con JS -->
-                        </div>
-                    </div>
+                </div>
+                <div class="statistic-card" id="members-per-university">
+                    
                 </div>
             </div>
         </div>
-    <script defer type="module" src="/js/api/services/statistics.js"></script>   
+
+        <div class="statistics-panel" id="applications-panel">
+            <div class="subtitle-container">
+                <h3>Conteo de solicitudes de membresía</h3>
+            </div>
+            <div class="row">
+                <div class="statistic-card" id="approved-applications">
+                    <h4>Aprobadas</h4>
+                    <span id="total-approved"></span>
+                </div>
+                <div class="statistic-card" id="rejected-applications">
+                    <h4>Rechazadas</h4>
+                    <span id="total-rejected"></span>
+                </div>
+                <div class="statistic-card" id="pending-applications">
+                    <h4>Pendientes</h4>
+                    <span id="total-pending"></span>
+                </div>
+            </div>
+
+            <hr> 
+
+            <div class="subtitle-container">
+                <h3>Conteo de membresías</h3>
+            </div>
+            <div class="row">
+                <div class="statistic-card" id="active-memberships">
+                    <h4>Activas</h4>
+                    <span id="total-active"></span>
+                </div>
+                <div class="statistic-card" id="inactive-memberships">
+                    <h4>Inactivas</h4>
+                    <span id="total-inactive"></span>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="statistic-card" id="total-applications">
+                    <h4>TOTAL DE SOLICITUDES</h4>
+                    <span id="total-applications-value"></span>
+                </div>
+                <div class="statistic-card" id="total-memberships">
+                    <h4>TOTAL DE MEMBRESÍAS</h4>
+                    <span id="total-memberships-value"></span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    
+         
 </body>
-<script type="module" src="/js/modules/verification.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script type="module" src="/js/modules/sidebar.js"></script>
+<script type="module" src="/js/modules/statistics.js"></script>
+<script type="module" src="/js/modules/verification.js"></script>
+
+
 </html>
