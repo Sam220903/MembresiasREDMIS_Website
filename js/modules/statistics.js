@@ -1,4 +1,4 @@
-import statisticsService from '/js/api/services/statistics.js'
+import statisticsService from '../api/services/statistics.js'
 
 
 document.addEventListener('DOMContentLoaded', async() => {

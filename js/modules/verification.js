@@ -1,4 +1,4 @@
-import loginService from '/js/api/services/login.js';
+import loginService from '../api/services/login.js';
 import { translate } from './translate.js';
 
 
