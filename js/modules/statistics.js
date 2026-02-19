@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     console.log(statistics);
 
-    // Selección de páneles
+    // Selección de paneles
     const panelSelector = document.getElementById('statistics-selector');
 
     panelSelector.value = 'members-panel';
@@ -62,7 +62,16 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     // Contenido de panel de distribución de miembros
     await createCountryDistributionChart(statistics.members_per_country);
-    
+
+    createMembersPerUniversityTable(statistics.members_per_university);
+
+
+    const totalMembersData = document.getElementById('total-members-value');
+    let totalMembers = 0;
+    for (const country in statistics.members_per_country) {
+        totalMembers += statistics.members_per_country[country];
+    }
+    totalMembersData.textContent = totalMembers;
     
 })
 
@@ -77,7 +86,7 @@ const createCountryDistributionChart = async (data) => {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Miembros por país',
+                label: localStorage.getItem('language') === 'es' ? 'Miembros por país' : 'Members per country',
                 data: values,
                 backgroundColor: '#1D4ED8',
                 borderRadius: 5,
@@ -85,6 +94,7 @@ const createCountryDistributionChart = async (data) => {
         },
         options: {
             responsive: true,
+            mantainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,
@@ -96,4 +106,23 @@ const createCountryDistributionChart = async (data) => {
         }
     });
 
+}
+
+const createMembersPerUniversityTable = (data) => {
+    const tableBody = document.getElementById('members-per-university-table-body');
+
+    for (const university in data) {
+        const count = data[university];
+
+        const row = document.createElement('tr');
+        const universityCell = document.createElement('td');
+        const countCell = document.createElement('td');
+
+        universityCell.textContent = university;
+        countCell.textContent = count;
+
+        row.appendChild(universityCell);
+        row.appendChild(countCell);
+        tableBody.appendChild(row);
+    }
 }

@@ -4,8 +4,8 @@ import loginService from '../api/services/login.js';
 document.addEventListener("DOMContentLoaded", function() {
 
     const userRole = loginService.getUserRole(); // Obtener el rol del usuario desde el servicio de autenticación
-    const sidebarUser = '/partials/sidebar.html';
-    const sidebarAdmin = '/partials/sidebarAdmin.html';
+    const sidebarUser = '../partials/sidebar.html';
+    const sidebarAdmin = '../partials/sidebarAdmin.html';
 
     if (userRole === 1) { 
         loadSidebar(sidebarAdmin);
