@@ -8,6 +8,9 @@ const statesService = {
     },
     add: (nombre, pais_id) => {
         return apiClient.post(ENDPOINT, { nombre, pais_id });
+    },
+    getByCountry: (country_id) => {
+        return apiClient.get(ENDPOINT, {country_id});
     }
 }
 
