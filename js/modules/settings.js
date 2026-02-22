@@ -91,6 +91,7 @@ const loadCountryModal = () => {
                     if (response) {
                         alert('País agregado exitosamente');
                         paisInput.value = '';
+                        location.reload();
                     } else {
                         alert('Error al agregar el país');
                     }
@@ -99,6 +100,7 @@ const loadCountryModal = () => {
                     alert('Error al agregar el país');
                 } finally {
                     closeCountryModal();
+                    // 
                 }
                     
             });
@@ -162,6 +164,7 @@ const loadStateModal = () => {
                     if (response) {
                         alert('Estado agregado exitosamente');
                         estadoInput.value = '';
+                        location.reload();
                     } else {
                         alert('Error al agregar el estado');
                     }
@@ -230,6 +233,7 @@ const loadUniversityModal = () => {
                     if (response) {
                         alert('Universidad agregada exitosamente');
                         universidadInput.value = '';
+                        location.reload();
                     } else {
                         alert('Error al agregar la universidad');
                     }

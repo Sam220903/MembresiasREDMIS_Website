@@ -144,7 +144,7 @@
 
 
     "--- PAGE: Settings (settings_) ---": "",
-    "settings_title" : "Settings",
+    "settings-title" : "Settings",
     "settings-theme" : "Theme",
     "settings-theme-description" : "System appearance, including colors, typography, and other visual elements.",
     "settings-theme-system" : "System",

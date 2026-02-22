@@ -62,7 +62,7 @@
       </button>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
   <script type="module" src="../js/modules/sidebar.js"></script>
   
   
@@ -201,10 +201,10 @@
       paisesData = await convertToSelect('pais-container', 'pais', countriesService, document.getElementById('pais').value, paisesData);
     });
 
-    document.getElementById('acceptBtn').addEventListener('click', () => {
-      let passwordInput = document.getElementById('password').value;
-      let hashedPassword = passwordInput ? CryptoJS.MD5(passwordInput).toString() : "";
-      
+    document.getElementById('acceptBtn').addEventListener('click', () => {     
+      let passwordInput = document.getElementById('password');
+
+
       // Convertir selects de vuelta a inputs antes de guardar
       convertBackToInput('universidad-container', 'universidad', 'universidad-select', currentUniversidadId);
       convertBackToInput('estado-container', 'estado', 'estado-select', currentEstadoId);
@@ -218,7 +218,7 @@
         estado: currentEstadoId, // Usar el ID numérico
         pais: currentPaisId, // Usar el ID numérico
         email: document.getElementById('email').value,
-        password: hashedPassword
+        password: passwordInput.value,
       };
 
       // Only include password if it was changed

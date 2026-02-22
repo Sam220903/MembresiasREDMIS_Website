@@ -137,6 +137,20 @@ select {
     font-weight: bold;
 }
 
+.input-container{
+    position: relative;
+    width: 100%;
+}
+
+#toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 60%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #1D4ED8;
+    }
+
 @media only screen and (max-width: 600px){
 
     .form-grid{
