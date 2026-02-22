@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title data-translate="membership_title">Membresías</title>
+  <link rel="stylesheet" href="../css/membresias.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <!-- Asegurarnos de que jsPDF está cargado correctamente -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="../css/general.css">
+</head>
+<body>
+  <div class="display-sidebar-container">
+    <button id="display-sidebar">☰</button>
+  </div>
+
+  <div id="sidebar"></div> 
+
+  <div class="background"></div>
+
+  <main class="content">
+    <header>
+      <!-- Espacio para header si es necesario -->
+    </header>
+
+    <section class="membership-table">
+      <h1 data-translate="membership_title">Membresías</h1>
+      <table>
+        <thead>
+            <tr>
+                <th data-translate="membership_code">Código de membresía</th>
+                <th data-translate="membership_member_since">Miembro desde</th>
+                <th data-translate="membership_valid_until">Válido hasta</th>
+                <th data-translate="membership_type">Tipo</th>
+                <th data-translate="membership_status">Estado</th>
+                <th data-translate="membership_action">Acción</th> <!-- Cambiado a "Acción" para ser más genérico -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Las filas se generarán dinámicamente con JavaScript -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+
+  
+</body>
+<script type="module" src="../js/modules/sidebar.js"></script>
+<script type="module" src="../js/modules/membresias.js"></script>
+<script type="module" src="../js/modules/verification.js"></script>
+
+
+</html>

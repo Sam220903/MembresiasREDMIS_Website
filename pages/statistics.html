@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="statistics_title">Estadísticas</title>
+    <link rel="stylesheet" href="../css/statistics.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/general.css">
+</head>
+<body>
+    <div class="display-sidebar-container">
+        <button id="display-sidebar">☰</button>
+    </div>
+
+    <div id="sidebar"></div> 
+    
+    <div class="title-container">
+        <p data-translate="statistics_title">Estadísticas</p>
+    </div>
+
+
+    <div class="main-container">
+        <div class="panel-selector">
+            <select name="statistics-selector" id="statistics-selector">
+                <option data-translate="statistics-members-count" value="members-panel">Conteo de miembros</option>
+                <option data-translate="statistics-applications-count" value="applications-panel">Conteo de membresías / solicitudes</option>
+            </select>
+        </div>
+
+        <div class="statistics-panel" id="members-panel">
+            <div class="column">
+                <div class="statistic-card" id="members-per-university">
+                    <h4 data-translate="statistics-members-per-university">Miembros por universidad</h4>
+                    <table id="members-per-university-table">
+                        <thead>
+                            <tr>
+                                <th data-translate="statistics-university">Universidad</th>
+                                <th data-translate="statistics-number-of-members">Número de miembros</th>
+                            </tr>
+                        </thead>
+                        <tbody id="members-per-university-table-body">
+                            <!-- Las filas se llenarán dinámicamente con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="column">
+                <div class="statistic-card" id="total-members">
+                <div id="total-members-title">
+                    <h4 data-translate="statistics-total-members">TOTAL DE MIEMBROS</h4>
+                </div>
+                <span id="total-members-value"></span>
+                </div>
+
+                <div class="statistic-card" id="members-per-country">
+                    <canvas id="members-per-country-chart"></canvas>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="statistics-panel" id="applications-panel">
+            <div class="subtitle-container">
+                <h3 data-translate="statistics-applications-count">Conteo de solicitudes de membresía</h3>
+            </div>
+            <div class="row">
+                <div class="statistic-card" id="approved-applications">
+                    <h4 data-translate="statistics-approved">Aprobadas</h4>
+                    <span id="total-approved"></span>
+                </div>
+                <div class="statistic-card" id="rejected-applications">
+                    <h4 data-translate="statistics-rejected">Rechazadas</h4>
+                    <span id="total-rejected"></span>
+                </div>
+                <div class="statistic-card" id="pending-applications">
+                    <h4 data-translate="statistics-pending">Pendientes</h4>
+                    <span id="total-pending"></span>
+                </div>
+            </div>
+
+            <hr> 
+
+            <div class="subtitle-container">
+                <h3 data-translate="statistics-memberships-count">Conteo de membresías</h3>
+            </div>
+            <div class="row">
+                <div class="statistic-card" id="active-memberships">
+                    <h4 data-translate="statistics-active">Activas</h4>
+                    <span id="total-active"></span>
+                </div>
+                <div class="statistic-card" id="inactive-memberships">
+                    <h4 data-translate="statistics-inactive">Inactivas</h4>
+                    <span id="total-inactive"></span>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="statistic-card" id="total-applications">
+                    <h4 data-translate="statistics-total-applications">TOTAL DE SOLICITUDES</h4>
+                    <span id="total-applications-value"></span>
+                </div>
+                <div class="statistic-card" id="total-memberships">
+                    <h4 data-translate="statistics-total-memberships">TOTAL DE MEMBRESÍAS</h4>
+                    <span id="total-memberships-value"></span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    
+         
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script type="module" src="../js/modules/sidebar.js"></script>
+<script type="module" src="../js/modules/statistics.js"></script>
+<script type="module" src="../js/modules/verification.js"></script>
+
+
+</html>

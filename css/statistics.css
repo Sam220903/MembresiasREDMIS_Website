@@ -1,0 +1,198 @@
+  body{
+      padding-left: 300px; /* Deja espacio para el menú lateral */
+  }
+
+  .title-container {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1D4ED8;
+    position: absolute;
+    top: 40px;
+    left: 300px;
+  }
+
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 110px 0;
+    width: 100%;
+  }
+
+  .panel-selector {
+    margin: 25px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: left;
+  }
+
+  .panel-selector select{
+    width: 400px;
+    padding: 10px 15px;
+    margin-left: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #F1F5F9;
+    color: #475569;
+    box-sizing: border-box;
+    font-size: large;
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+  }
+
+
+  .subtitle-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    width: 80%;
+  }
+
+  .statistics-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #475569;
+    width: 100%;
+  }
+
+  .statistics-panel#members-panel{
+    flex-direction: row;
+  }
+
+  
+
+  .statistics-panel#members-panel .column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+  }
+
+  .statistics-panel#members-panel .column .statistic-card{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+
+
+  .statistic-card#total-members{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+    width: 70% !important;
+  }
+
+
+
+  canvas#members-per-country-chart{
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  #members-per-university-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #members-per-university-table thead {
+    background-color: #475569;
+    color: #F1F5F9;
+  }
+
+  #members-per-university h4 {
+    padding-left: 20px;
+  } 
+
+  #members-per-university-table tbody {
+    border-radius: 0 0 8px 8px;
+    max-height: fit-content;
+    overflow-y: auto;
+  }
+
+  #members-per-university-table tbody tr:nth-child(odd) {
+    background-color: #F1F5F9;
+  }
+
+  #members-per-university-table tbody tr:nth-child(even) {
+    background-color: #E2E8F0;
+  }
+
+  #members-per-university-table th, #members-per-university-table td {
+    padding: 10px 20px;
+    text-align: left;
+  }
+
+  .statistics-panel#applications-panel{
+    display: none;  
+  }
+
+  .statistics-panel .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+  }
+
+  hr{
+    width: 80%;
+    border: none;
+    border-top: 1px solid #A0AEC0;
+  }
+
+  .statistic-card {
+    background-color: #F1F5F9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+  } 
+
+  .statistic-card h4 {
+    color: #838e9c;
+  }
+
+  .statistics-panel#applications-panel .statistic-card{ 
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 30px 10px 30px;
+    margin: 10px;
+  }
+
+  .statistics-panel#applications-panel .statistic-card span{ 
+    font-size: xx-large;
+    font-weight: bold;
+    color: #1D4ED8;
+  }
+
+  
+
+  #total-members, #total-memberships, #total-applications {
+    margin-top: 30px !important;
+    flex-direction: row !important;
+    gap: 20px !important;
+    align-items: center !important;
+  }
+
+  #total-members h4, #total-memberships h4, #total-applications h4 {
+    font-size: larger;
+    max-width: 70%;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+    #total-members span, #total-memberships span, #total-applications span {
+        font-size: 4em !important;
+        font-weight: bolder;
+        color: #1D4ED8;
+    }
+

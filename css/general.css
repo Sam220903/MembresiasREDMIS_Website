@@ -1,3 +1,30 @@
+@font-face {
+    font-family: "Instrument Sans";
+    src: url("../assets/fonts/InstrumentSans-VariableFont_wdth\,wght.ttf") format("truetype");
+    font-weight: 100 700;
+    font-style: normal;
+}
+
+
+* {
+  font-family: "Instrument Sans", sans-serif;
+}
+
+
+html, body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #E2E8F0;  /* Pon el color directo en el body */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
 .display-sidebar-container {
     display: none;
 }
