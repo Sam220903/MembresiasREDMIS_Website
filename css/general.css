@@ -25,6 +25,11 @@ body {
     box-sizing: border-box;
 }
 
+i {
+    color: #1D4ED8;
+    font-size: x-large;
+}
+
 .display-sidebar-container {
     display: none;
 }

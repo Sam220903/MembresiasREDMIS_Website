@@ -4,8 +4,18 @@ let currentLanguage = defaultLanguage;
 
 const translations = {}
 
+// Calcula el prefijo según la profundidad de la ruta actual
+const getBasePath = () => {
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    const rootIndex = parts.indexOf('pages');
+    const endsWithSlash = window.location.pathname.endsWith('/');
+    const depth = parts.length - rootIndex - 1 + (endsWithSlash ? 1 : 0);
+    return '../'.repeat(depth);
+}
 
 export async function setLanguage(lang) {
+
+    const basePath = getBasePath();
     if (!supportedLanguages.includes(lang)) {
         console.warn(`Idioma no soportado: ${lang}. Se usará el idioma por defecto: ${defaultLanguage}`);
         lang = defaultLanguage;
@@ -13,7 +23,7 @@ export async function setLanguage(lang) {
 
     if (!translations[lang]) {
         try {
-            const response = await fetch(`../assets/lang/${lang}.json`);
+            const response = await fetch(`${basePath}/assets/lang/${lang}.json`);
             translations[lang]  = await response.json();
         } catch (error) {
             console.error(`Error al cargar las traducciones para el idioma ${lang}:`, error);

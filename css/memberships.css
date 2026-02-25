@@ -236,9 +236,10 @@ h1
   transition: 0.1s;
 }
 
-.download-btn i
-{
+.download-btn i {
   margin-left: 5px;
+  font-size: large;
+  color: #fff;
 }
 
 .download-btn:hover

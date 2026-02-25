@@ -159,7 +159,8 @@ select {
       transform: translateY(-50%);
       cursor: pointer;
       color: #1D4ED8;
-    }
+      font-size: large;
+}
 
 @media only screen and (max-width: 600px){
 

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="management-title">Gestión</title>
+  <link rel="stylesheet" href="../../css/management.css">
+  <link rel="stylesheet" href="../../css/sidebar.css">
+  <link rel="stylesheet" href="../../assets/icons/css/all.min.css"> <!-- Estilos de font-awesome -->
+  <link rel="stylesheet" href="../../css/general.css">
+</head>
+<body>
+    <div class="display-sidebar-container">
+      <button id="display-sidebar">☰</button>
+    </div>
+    <div id="sidebar"></div> 
+
+    <div class="main-container">
+      
+
+      <div class="title-container">
+        <span data-translate="management-title">Gestión</span>
+      </div>
+
+      <div class="feature" id="admin-register">
+        <div class="feature-icon">
+          <i class="fa-solid fa-user-tie"></i>
+        </div>
+         <div class="feature-description">
+            <h3>Control de administradores</h3>
+            <p>Controla los permisos de los usuarios. Da de alta un nuevo admistrador o retorna sus permisos a usuario.</p>
+          </div>
+          <i class="fa-solid fa-caret-right"></i>
+      </div>
+
+      <div class="feature" id="add-membership">
+        <div class="feature-icon">
+          <i class="fa-solid fa-credit-card"></i>
+        </div>
+         <div class="feature-description">
+            <h3>Gestionar tipo de membresia</h3>
+            <p>Añadir un nuevo tipo de membresía, o actualizar / eliminar uno existente.</p>
+          </div>
+          <i class="fa-solid fa-caret-right"></i>
+      </div>
+
+      <div class="feature" id="add-entities">
+        <div class="feature-icon">
+            <i class="fa-solid fa-table"></i>
+          </div>
+         <div class="feature-description">
+            <h3>Añadir entidad</h3>
+            <p>Añadir un nuevo país, estado o universidad, para los registros de los miembros.</p>
+          </div>
+        <i class="fa-solid fa-caret-right"></i>
+      </div>
+
+    </div>
+    
+</body>
+
+<script type="module" src="../../js/modules/sidebar.js"></script>
+<script type="module" src="../../js/modules/management.js"></script>
+<script type="module" src="../../js/modules/verification.js"></script>
+
+</html>

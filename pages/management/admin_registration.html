@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="admin_registration_title">Alta de administrador</title>
+  <link rel="stylesheet" href="../../css/admin_registration.css">
+  <link rel="stylesheet" href="../../css/sidebar.css">
+  <link rel="stylesheet" href="../../assets/icons/css/all.min.css"> <!-- Estilos de font-awesome -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="../../css/general.css">
+</head>
+<body>
+    <div class="display-sidebar-container">
+      <button id="display-sidebar">☰</button>
+    </div>
+    <div id="sidebar"></div> 
+
+    <div class="title-container">
+      <i id="go-back-btn" class="fa-solid fa-angle-left"></i>
+        <a href="../management/">Gestión</a>
+        /
+      <span data-translate="admin_registration_title">Alta de administrador</span>
+    </div>
+
+    <div class="table-container">
+      <div class="table-box">
+        <h3 data-translate="admin_registration_table_title">Lista de miembros según rol</h3>
+        <table id="members-per-role" class="display">
+          <thead>
+            <tr>
+              <th data-translate="admin_registration_id">ID</th>
+              <th data-translate="admin_registration_member">MIEMBRO</th>
+              <th data-translate="admin_registration_membership">MEMBRESIA</th>
+              <th data-translate="admin_registration_role">ROL</th>
+              <th data-translate="admin_registration_actions">ACCIONES</th>
+            </tr>
+          </thead>
+          <tbody id="members-per-role-body">
+            
+          </tbody> 
+        </table>
+      </div>
+    </div>
+
+    <!-- jQuery y DataTables -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/../js/jquery.dataTables.min.js"></script>
+
+    <script type="module" src="../../js/modules/admin_registration.js"></script>
+
+
+    
+</body>
+
+<script type="module" src="../../js/modules/sidebar.js"></script>
+<script type="module" src="../../js/modules/verification.js"></script>
+
+</html>
