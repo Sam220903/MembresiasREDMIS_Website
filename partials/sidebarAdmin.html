@@ -11,43 +11,55 @@
         </div>
         <hr class="sidebar-separator">
         <div class="sidebar-menu">
-            <a class="sidebar-menu-item" href="profile.html">
-                <div class="sidebar-icon-bg"><img src="../assets/img/AltaDeAdministrador_Azul.svg" alt="Perfil"></div>
+            <a class="sidebar-menu-item" href="{{base}}pages/profile.html">
+                <div class="sidebar-icon-bg">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
                 <span data-translate="sidebar-profile">Perfil</span>
             </a>
-            <a class="sidebar-menu-item" href="memberships.html">
-                <div class="sidebar-icon-bg"><img src="../assets/img/membresia.png" alt="Membresía"></div>
+            <a class="sidebar-menu-item" href="{{base}}pages/memberships.html">
+                <div class="sidebar-icon-bg">
+                    <i class="fa-solid fa-address-card"></i>
+                </div>
                 <span data-translate="sidebar-memberships">Membresía</span>
             </a>
-            <a class="sidebar-menu-item" href="applications.html">
-                <div class="sidebar-icon-bg"><img src="../assets/img/SolicitudesDeMembresias_Azul.svg" alt="Solicitudes de Membresías"></div>
+            <a class="sidebar-menu-item" href="{{base}}pages/applications.html">
+                <div class="sidebar-icon-bg">
+                    <i class="fa-solid fa-bell"></i>
+                </div>
                 <span data-translate="sidebar-applications">Solicitudes de membresías</span>
-            </a>
-
-            <a class="sidebar-menu-item" href="admin_registration.html">
-                <div class="sidebar-icon-bg"><img src="../assets/img/AltaDeAdministrador_Azul.svg" alt="Alta de Administrador"></div>
-                <span data-translate="sidebar-admin-registration">Alta de Administrador</span>
-            </a>
-            
-            
-            
-            <a class="sidebar-menu-item" href="statistics.html">
-                <div class="sidebar-icon-bg"><img src="../assets/img/Estadisticas_Azul.svg" alt="Estadísticas"></div>
+            </a>         
+            <a class="sidebar-menu-item" href="{{base}}pages/statistics.html">
+                <div class="sidebar-icon-bg">
+                    <i class="fa-solid fa-chart-simple"></i>
+                </div>
                 <span data-translate="sidebar-statistics">Estadísticas</span>
             </a>
-            <a class="sidebar-menu-item" href="members.html">
-                <div class="sidebar-icon-bg"><img src="../assets/img/Miembros_Azul.svg" alt="Miembros"></div>
+            <a class="sidebar-menu-item" href="{{base}}pages/members.html">
+                <div class="sidebar-icon-bg">
+                    <i class="fa-solid fa-users-rectangle"></i>
+                </div>
                 <span data-translate="sidebar-members">Miembros</span>
             </a>
+            <a class="sidebar-menu-item" href="{{base}}pages/management/">
+                <div class="sidebar-icon-bg">
+                    <i class="fa-solid fa-users-gear"></i>
+                </div>
+                <span>Gestión</span>
+            </a>
 
-            <a class="sidebar-menu-item" href="settings.html">
-                <div class="sidebar-icon-bg"><img src="../assets/img/settings-icon.svg" alt="Agregar"></div>
+            <a class="sidebar-menu-item" href="{{base}}pages/settings.html">
+                <div class="sidebar-icon-bg">
+                    <i class="fa-solid fa-gear"></i>
+                </div>
                 <span data-translate="sidebar-settings">Ajustes</span>
             </a>
         </div>
     </div>
     <button id="logout-button" class="sidebar-logout-button" type="button">
-        <div class="sidebar-icon-bg"><img src="../assets/img/CerrarSesion_Azul.svg" alt="Cerrar sesión"></div>
+        <div class="sidebar-icon-bg">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </div>
         <span data-translate="sidebar-logout">Cerrar sesión</span>
     </button>
 </div>

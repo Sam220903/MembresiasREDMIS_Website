@@ -141,6 +141,8 @@ body {
 
   .table-box table button.evaluate i{
     padding: 2px 8px 2px 0;
+    font-size: large;
+    color: #fff;
   }
 
   .table-box table button.evaluate a:visited{

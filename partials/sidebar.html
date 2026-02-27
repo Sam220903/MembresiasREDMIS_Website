@@ -6,23 +6,37 @@
     </div>
     <hr class="sidebar-separator">
     <div class="sidebar-menu">
-      <a class="sidebar-menu-item" href="profile.html">
-        <div class="sidebar-icon-bg"><img src="../assets/img/usuario.png" alt="Perfil"></div>
+      <a class="sidebar-menu-item" href="{{base}}pages/profile.html">
+        <div class="sidebar-icon-bg">
+          <i class="fa-solid fa-circle-user"></i>
+        </div>
         <span data-translate="sidebar-profile">Perfil</span>
       </a>
-      <a class="sidebar-menu-item" href="memberships.html">
-        <div class="sidebar-icon-bg"><img src="../assets/img/membresia.png" alt="Membresía"></div>
+      <a class="sidebar-menu-item" href="{{base}}pages/memberships.html">
+        <div class="sidebar-icon-bg">
+          <i class="fa-solid fa-address-card"></i>
+        </div>
         <span data-translate="sidebar-memberships">Membresía</span>
       </a>
-      <a class="sidebar-menu-item" href="membership_application.html">
-        <div class="sidebar-icon-bg"><img src="../assets/img/solicitud.png" alt="Solicitud Membresía"></div>
+      <a class="sidebar-menu-item" href="{{base}}pages/membership_application.html">
+        <div class="sidebar-icon-bg">
+          <i class="fa-solid fa-file-lines"></i>
+        </div>
         <span data-translate="sidebar-membership-application">Solicitud Membresía</span>
+      </a>
+      <a class="sidebar-menu-item" href="{{base}}pages/settings.html">
+        <div class="sidebar-icon-bg">
+            <i class="fa-solid fa-gear"></i>
+        </div>
+        <span data-translate="sidebar-settings">Ajustes</span>
       </a>
     </div>
   </div>
 
   <button id="logout-button" class="sidebar-logout-button">
-    <div class="sidebar-icon-bg"><img src="../assets/img/salida.png" alt="Cerrar sesión"></div>
+    <div class="sidebar-icon-bg">
+      <i class="fa-solid fa-right-from-bracket"></i>
+    </div>
     <span data-translate="sidebar-logout">Cerrar sesión</span>
   </button>
 </div>

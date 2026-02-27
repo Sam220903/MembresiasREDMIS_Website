@@ -45,7 +45,7 @@ countries.forEach(pais => {
 // Carga dinámica de estado según el país seleccionado
 paisSelect.onchange = async(e) =>{
     const country = e.target.value;        
-    estadoSelect.innerHTML = '';
+    estadoSelect.innerHTML = '<option value="" selected disabled>Selecciona tu estado</option>';
     const relatedStates = states.filter(state => state.pais_id == country);
     // Colocar los estados en el select
     relatedStates.forEach(state => {

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="settings-title">Añadir entidad</title>
+  <link rel="stylesheet" href="../../css/addEntities.css">
+  <link rel="stylesheet" href="../../css/sidebar.css">
+  <link rel="stylesheet" href="../../assets/icons/css/all.min.css"> <!-- Estilos de font-awesome -->
+  <link rel="stylesheet" href="../../css/general.css">
+</head>
+<body>
+    <div class="display-sidebar-container">
+      <button id="display-sidebar">☰</button>
+    </div>
+    <div id="sidebar"></div>     
+
+    <div class="main-container">
+
+      <div class="title-container">
+
+        <i id="go-back-btn" class="fa-solid fa-angle-left"></i>
+        <a href="../management/">Gestión</a>
+        /
+        <span data-translate="add-entity-title">Añadir entidad</span>
+      </div>
+
+      
+      <div class="entities-settings">
+          <div class="entities-options">
+
+              <div class="countries-panel">
+                <h3 data-translate="settings-countries">Países</h3>
+                <div id="search-country">
+                  <div id="found-countries" class="found-items-container">
+                    <input type="text" id="searchCountry" placeholder="Buscar país...">
+                    <ul id="countries-list" class="container-suggestions">
+                      <!-- Aquí se mostrarán los países sugeridos -->
+                    </ul>
+                  </div>
+
+                  <button id="add-country-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+
+              <div class="states-panel">
+                <h3 data-translate="settings-states">Estados</h3>
+                <div id="search-state">
+                  <div id="found-states" class="found-items-container">
+                    <input type="text" id="searchState" placeholder="Buscar estado...">
+                    <ul id="states-list" class="container-suggestions">
+                      <!-- Aquí se mostrarán los estados sugeridos -->
+                    </ul>
+                  </div>
+                  <button id="add-state-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+
+              <div class="universities-panel">
+                <h3 data-translate="settings-universities">Universidades</h3>
+                <div id="search-university">
+                  <div id="found-universities" class="found-items-container">
+                    <input type="text" id="searchUniversity" placeholder="Buscar universidad...">
+                    <ul id="universities-list" class="container-suggestions">
+                      <!-- Aquí se mostrarán las universidades sugeridas -->
+                    </ul>
+                  </div>
+                  <button id="add-university-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
+              </div>
+
+          </div>
+      </div>
+    </div>
+
+    <div id="addCountryModal"></div>
+    <div id="addStateModal"></div>
+    <div id="addUniversityModal"></div>
+
+    
+</body>
+
+<script type="module" src="../../js/modules/sidebar.js"></script>
+<script type="module" src="../../js/modules/verification.js"></script>
+<script type="module" src="../../js/modules/addEntities.js"></script>
+
+
+</html>

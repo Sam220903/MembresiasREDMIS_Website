@@ -1,0 +1,399 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 300px !important;
+}
+
+.title-container {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1D4ED8;
+    position: absolute;
+    top: 40px;
+    left: 300px;
+}
+
+.title-container i {
+    font-size: 30px;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: 0.1s ease-in-out;
+}
+
+.title-container i:hover {
+    background-color: #c7cbd1;
+    transition: 0.1s ease-in-out;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;  /* ← apila general-info arriba, applicant-info abajo */
+    align-items: stretch;    /* ← que ambos ocupen el ancho completo */
+    margin-top: 110px;
+    width: calc(100% - 50px);
+    min-height: calc(100vh - 110px); /* en vez de height */
+    gap: 16px;
+    padding-bottom: 40px; /* ← aquí */
+}
+
+.panel {
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#general-info {
+    width: 100%;
+    height: 15vh;
+    flex-shrink: 0; /* ← no se encoge aunque el contenedor tenga altura fija */
+}
+
+#general-info .panel {
+    height: 100%;
+}
+
+#applicant-profile {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#applicant-name {
+    color: #2D3748;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+#applicant-career {
+    color: #64748B;
+    font-size: large;
+    font-weight: 600;
+}
+
+#application-data {
+    background-color: #E2E8F0;
+    height: 100%;
+    width: 60%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#application-data > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border-right: 1px solid #64748B;
+    padding: 0 20px;
+}
+
+#application-data > div:last-child {
+    border-right: none;
+}
+
+#application-data > div h4 {
+    color: #64748B;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+}
+
+#application-data > div span {
+    color: #2D3748;
+    font-size: larger;
+    font-weight: 700;
+    margin: 5px;
+}
+
+#application-status.pending {
+    background-color: #F59E0B;
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: #F5F6F6 !important;
+}
+
+#application-status.rejected {
+    background-color: #EF4444;
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: #F5F6F6 !important;
+}
+
+#application-status.approved {
+    background-color: #10B981;
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: #F5F6F6 !important;
+}
+
+#applicant-info {
+    display: flex;
+    flex-direction: row;
+    width: 100%;  
+    min-height: 85; 
+    margin-top: 35px;
+    gap: 10px;
+}
+
+#applicant-info-panel {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.applicant-data-tag {
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.applicant-data-tag label, .applicant-data-tag i{
+    color: #64748B;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.applicant-data-tag span{
+    color: #2D3748;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+#applicant-info-panel hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #94a3b8;
+}
+
+#applicant-info-panel span#applicant-comments {
+   width: 95%;
+   padding: 10px 10px;
+   background-color: #e2e8f0;
+   border-radius: 5px;
+   color: #2D3748;
+   font-size: 14px;
+   font-weight: 500;
+   margin-bottom: 15px;
+}
+
+#buttons-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 25px 5px;
+}
+
+#buttons-container .application-btn{
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+#buttons-container .application-btn#open-reject-modal{
+  background-color: #ef4444;
+  color: #fff;
+}
+
+#buttons-container .application-btn#open-reject-modal:hover{
+  background-color: #c93939;
+  transform: scale(1.05);
+  transition: 0.1s ease-in-out;
+}
+
+#buttons-container .application-btn#open-approve-modal{
+  background-color: #10b981;
+  color: #fff;
+}
+
+#buttons-container .application-btn#open-approve-modal:hover{
+  background-color: #0d9165;
+  transform: scale(1.05);
+  transition: 0.1s ease-in-out;
+}
+
+#cv-panel {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#cv-panel-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* ← esto alinea h3 y botón al mismo nivel */
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+#cv-panel-header button {
+  padding: 6px 14px; /* ← menos padding vertical */
+  border: none;
+  border-radius: 15px;
+  background-color: #1D4ED8;
+  align-self: center; /* ← se centra verticalmente respecto al h3 */
+  transition: 0.5 ease-in-out;
+}
+
+#cv-panel-header button a{
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#cv-panel-header button a:visited{
+  color: #fff;
+  text-decoration: none;
+}
+
+#cv-panel-header button:hover{
+  background-color: #173eaa;
+  transition: 0.5 ease-in-out;
+}
+
+#cv-panel-header button i{
+  font-size: 14px;
+  color: #fff
+}
+
+#cv-panel iframe {
+  width: 100%;
+  height: 95%;
+}
+
+
+/* -------------  Modal Styles ------------- */
+
+  .modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 200px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.5); 
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    border: 1px solid #888;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #313D65;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+    line-height: 1;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: #161b2c;
+    text-decoration: none;
+}
+
+.form-box {
+    background-color: #F0F4F9;
+    padding: 20px;
+    border-radius: 10px;
+    color: #2D3748;
+    font-weight: 530;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #0202021c;
+}
+
+.form-box h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.form-box label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.form-box textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0px;
+    border: none;
+    border-radius: 5px;
+    background-color: #E2E8F0;
+    color: #475569;
+    resize: none;
+    box-sizing: border-box;
+}
+
+
+.modal-btn-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.modal-btn{
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    height: 36px;
+    width: 120px;
+    cursor: pointer;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.accept-btn {
+    background-color: #1D4ED8;
+    border: none;
+    color: #ffffff;
+}
+
+.accept-btn:hover {
+    background-color: #2563EB;
+    transition: all 0.3s ease;
+    transform: scale(1.05);
+}
+
+.cancel-btn {
+    background-color: #f8fafc;
+    border: 2px;
+    border-color: #1D4ED8;
+    color: #1D4ED8;
+}
+
+.cancel-btn:hover {
+    background-color: #f1f5f9;
+    transition: all 0.3s ease;
+    transform: scale(1.05);
+}
+

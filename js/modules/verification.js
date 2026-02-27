@@ -1,6 +1,15 @@
 import loginService from '../api/services/login.js';
 import { translate } from './translate.js';
 
+// Calcula el prefijo según la profundidad de la ruta actual
+const getBasePath = () => {
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    const rootIndex = parts.indexOf('pages');
+    const endsWithSlash = window.location.pathname.endsWith('/');
+    const depth = parts.length - rootIndex - 1 + (endsWithSlash ? 1 : 0);
+    return '../'.repeat(depth);
+}
+
 
 // Verificar el token y el rol del usuario al cargar la página
 
@@ -8,10 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const userRole = loginService.getUserRole(); 
 
     const tokenIsValid = loginService.validateToken();
+    const basePath = getBasePath();
 
     if (!tokenIsValid) {
         // Si el token no es válido, redirigir a la página de inicio de sesión
-        window.location.href = 'login.html';
+        window.location.href = `${basePath}pages/login.html`;
     }
 
     const adminRoutes = [

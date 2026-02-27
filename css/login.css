@@ -114,6 +114,7 @@
       transform: translateY(-50%);
       cursor: pointer;
       color: #1D4ED8;
+      font-size: large;
     }
 
     #redmis-logo{

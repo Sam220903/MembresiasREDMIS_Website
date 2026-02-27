@@ -1,5 +1,5 @@
   body{
-      padding-left: 300px; /* Deja espacio para el menú lateral */
+      padding-left: 300px !important; /* Deja espacio para el menú lateral */
   }
 
   .title-container {
