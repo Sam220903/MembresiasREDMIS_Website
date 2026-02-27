@@ -3,85 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="application_info_title">Información de la solicitud</title>
-    <link rel="stylesheet" href="../css/visualizaCV.css">
+    <title data-translate="application_info_title">Evaluación del candidato</title>
+    <link rel="stylesheet" href="../css/application_info.css">
     <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="stylesheet" href="../../assets/icons/css/all.min.css"> <!-- Estilos de font-awesome -->
     <link rel="stylesheet" href="../css/general.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Instrument Sans', sans-serif;
-            background-color: #F4F7FC;
-            display: flex;
-        }
-        .container {
-            margin-left: 270px;
-            padding: 20px;
-            width: calc(100% - 270px);
-        }
-
-        .header {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .cv-viewer iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-            border-radius: 5px;
-        }
-
-        /* BOTONES */
-        .buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .approve {
-            background-color: #10B981;
-            color: white;
-        }
-
-        .reject {
-            background-color: #EF4444;
-            color: white;
-        }
-
-        #comment-box {
-            display: none;
-            margin-top: 10px;
-        }
-
-        #back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 15px;
-            background-color: #1D4ED8;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
     <div class="display-sidebar-container">
@@ -89,179 +15,164 @@
     </div>
    
     <div id="sidebar"></div>
-    <div class="background"></div>
 
-    <div class="container">
-        <button id="back-button">&#8592; 
-            <span data-translate="back_button_text">Regresar</span>
-        </button>
-        <div class="header">
-            <span data-translate="application_info_header">Información de la solicitud de membresía</span>
+    <div class="main-container">
+
+        <div class="title-container">
+            <i id="go-back-btn" class="fa-solid fa-angle-left"></i>
+            <span>Evaluación del candidato</span>
         </div>
 
-        <div class="card">
-            <h2 data-translate="application_info_candidate">Información del candidato</h2>
-            <p><strong data-translate="application_info_name">Nombre:</strong> <span id="applicator_name"></span> </p>
-            <p><strong data-translate="application_info_email">Email:</strong> <span id="applicator_email"></span> </p>
-            <p><strong data-translate="application_info_status">Estatus de la solicitud:</strong> <span id="application_status"> </span></p>
-            <p><strong data-translate="application_info_comments">Comentarios:</strong> <span id="applicant-comments"> </span></p>
-        </div>
-
-        <div class="card cv-viewer">
-            <h2 data-translate="application_info_cv">Curriculum Vitae</h2>
-            <iframe src=""></iframe>
-            <button class="btn btn-primary"> <i class="fas fa-download"></i><a id="download-cv" href="" download>
-                <span data-translate="application_info_download_cv">Descargar CV</span>
-            </a></button>
-        </div>
-
-        <div class="card">
-            <h2 data-translate="application_info_application">Solicitud</h2>
-            <div class="buttons">
-                <button id="show-accept-modal" type="button" class="button approve">
-                    <span data-translate="application_info_approve_button">Aprobar</span>
-                </button>
-                <button id="show-reject-modal" type="button" class="button reject">
-                    <span data-translate="application_info_reject_button">Rechazar</span>
-                </button>
-            </div>
-        </div>
-
-        <div id="modal-reject" class="modal">
-            <div id="modal-reject-content" class="modal-content">
-                <span id="close-reject-modal" class="close-modal">&times;</span>
-                <h3 data-translate="application_info_reject_modal_header">Rechazar solicitud de membresía:</h3>
-                <label for="name" data-translate="application_info_rejection_reason_label">Escriba el motivo del rechazo:</label>
-                <textarea id="rejection-reason" rows="5" placeholder="Motivo de rechazo..."></textarea>
-                <div class="modal-action-btn">
-                    <button id="reject-application" type="button" class="button reject">
-                        <span data-translate="application_info_confirm_reject">Confirmar Rechazo</span></button>
+        <div id="general-info">
+            <div class="panel" id="general-info-panel">
+                <div id="applicant-profile">
+                    <span id="applicant-name"></span>
+                    <span id="applicant-career">Ingeniería de Software</span>
+                </div>
+                <div id="application-data">
+                    <div>
+                        <h4>Fecha de la solicitud</h4>
+                        <span id="application-date"></span>
+                    </div>
+                    <div>
+                        <h4>Membresía solicitada</h4>
+                        <span id="requested-membership"></span>
+                    </div>
+                    <div>
+                        <h4>Estado de la solicitud</h4>
+                        <span id="application-status"></span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div id="modal-accept" class="modal">
-            <div id="modal-accept-content" class="modal-content">
-                <span id="close-accept-modal" class="close-modal">&times;</span>
-                <h3 data-translate="application_info_accept_modal_header">Aceptar solicitud de membresía:</h3>
-                <label for="name" data-translate="application_info_accept_modal_comments_label">Escriba comentarios para el solicitante (Opcional):</label>
-                <textarea id="acceptation-comments" rows="5" placeholder="Comentarios..."></textarea>
-                <div class="modal-action-btn">
-                    <button id="accept-application" type="button" class="button approve">
-                        <span data-translate="application_info_confirm_accept">Confirmar Aceptación</span></button>
+        <div id="applicant-info">
+            <div class="panel" id="applicant-info-panel">
+                <h3>Información del candidato</h3>
+                <div class="applicant-data-tag">
+                    <i class="fa-solid fa-envelope"></i>
+                    <label for="applicant-email">Email:</label>
+                    <span id="applicant-email"></span>
+                </div>
+                <div class="applicant-data-tag">
+                    <i class="fa-solid fa-flag"></i>
+                    <label for="applicant-country">País:</label>
+                    <span id="applicant-country"></span>
+                </div>
+                <div class="applicant-data-tag">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <label for="applicant-state">Estado:</label>
+                    <span id="applicant-state"></span>
+                </div>
+                <div class="applicant-data-tag">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <label for="applicant-university">Universidad:</label>
+                    <span id="applicant-university"></span>
+                </div>
+                <div class="applicant-data-tag">
+                    <i class="fa-solid fa-book"></i>
+                    <label for="applicant-investigation-area">Área de investigación:</label>
+                    <span id="applicant-investigation-area"></span>
+                </div>
+
+                <hr>
+
+                <h3>Comentarios:</h3>
+                <span id="applicant-comments"></span>
+
+                <hr>
+
+                <div id="buttons-container">
+                    <button class="application-btn" id="open-approve-modal">
+                        <span>Aprobar solicitud</span>
+                    </button>
+                    <button class="application-btn" id="open-reject-modal">
+                        <span>Rechazar solicitud</span>
+                    </button>
+                </div>
+            </div>
+            <div class="panel" id="cv-panel">
+                <div id="cv-panel-header">
+                    <h3>Curriculum Vitae</h3>
+
+                    <button id="download-cv">
+                        <i class="fa-solid fa-download"></i>
+                        <a href="" target="_blank">Descargar</a>
+                    </button>
+                </div>
+                <iframe id="iframe-cv" src="" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!--Modal de rechazo de solicitud-->
+        <div id="reject-application-modal" class="modal">
+            <div id="reject-modal-content" class="modal-content">
+                <span id="close-reject-btn" class="close-modal">
+                    &times;
+                </span>
+
+                <div class="form-wrapper">
+                    <div class="form-box">
+                        <h3>Rechazar solicitud de membresía</h3>
+                        <div id="form-container" class="form-container">
+                            <label for="rejection-reason" >Escriba el motivo del rechazo:</label>
+                            <textarea id="rejection-reason" rows="5" placeholder="Motivo de rechazo..."></textarea>
+                        </div>
+
+                        <div class="modal-btn-container">
+                            <button id="accept-rejection" type="button" class="modal-btn accept-btn">
+                                <span>Rechazar</span>
+                            </button>
+
+                            <button id="cancel-rejection" type="button" class="modal-btn cancel-btn">
+                                <span>Cancelar</span>
+                            </button>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
 
 
+        <!--Modal de aprobación de solicitud-->
+        <div id="accept-application-modal" class="modal">
+            <div id="accept-modal-content" class="modal-content">
+                <span id="close-approve-btn" class="close-modal">
+                    &times;
+                </span>
+
+                <div class="form-wrapper">
+                    <div class="form-box">
+                        <h3>Aprobar solicitud de membresía</h3>
+                        <div id="form-container">
+                            <label for="accept-comments" >Escriba comentarios para el solicitante (opcional):</label>
+                            <textarea id="accept-comments" rows="5" placeholder="Comentarios para el solicitante..."></textarea>
+                        </div>
+
+                    <div class="modal-btn-container">
+                            <button id="accept-approvement" type="button" class="modal-btn accept-btn">
+                                <span>Aprobar</span>
+                            </button>
+
+                            <button id="cancel-approvement" type="button" class="modal-btn cancel-btn">
+                                <span>Cancelar</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        
     </div>
 
-    <script type="module">
-        import membershipApplicationService from '../js/api/services/membershipApplication.js';
-        import loginService from '../js/api/services/login.js';
-        import { getPDF } from './../js/modules/pdfProcessor.js';
 
-
-        const getBackButton = document.getElementById('back-button');
-        getBackButton.addEventListener('click', () => {
-            window.location.href = 'applications.html';
-        });
-
-        // Obtener el ID de la solicitud de membresía desde la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const applicationId = urlParams.get('application_id');
-        if (!applicationId) {
-            alert('No se ha proporcionado un ID de solicitud de membresía.');
-            window.location.href = 'applications.html'; // Redirigir a la página de solicitudes si no hay ID
-        }
-
-        const application = await membershipApplicationService.obtenerPorID(applicationId);
-        
-
-        const applicatorName = document.getElementById('applicator_name');
-        const applicatorEmail = document.getElementById('applicator_email');
-        const applicationStatus = document.getElementById('application_status');
-        const applicantComments = document.getElementById('applicant-comments');
-
-        const cvIframe = document.querySelector('.cv-viewer iframe');
-        const downloadLink = document.getElementById('download-cv');
-
-        applicatorName.innerHTML = `${application.nombre}`;
-        applicatorEmail.innerHTML = `${application.email}`;
-        applicationStatus.innerHTML = `${application.estado}`;
-        applicantComments.innerHTML = `${application.comentarios}`;
-
-        const pdfURL = getPDF(application.cv_base64); // Obtener la URL del PDF
-        
-        cvIframe.src = pdfURL; // Establecer la fuente del iframe al PDF del CV
-        
-        downloadLink.href = pdfURL; // Establecer el enlace de descarga al blob creado
-
-
-        const confirmAction = async (action) => {
-            let confirmation = confirm(`¿Estás seguro de que deseas ${action} esta solicitud?`);
-            if (!confirmation) return;
-        };
-
-        const acceptButton = document.getElementById('accept-application');
-        const rejectButton = document.getElementById('reject-application');
-
-        const showRejectModal = document.getElementById('show-reject-modal');
-        const rejectModal = document.getElementById('modal-reject');
-        const closeRejectModal = document.getElementById('close-reject-modal');
-
-        const showAcceptModal = document.getElementById('show-accept-modal');
-        const acceptModal = document.getElementById('modal-accept');
-        const closeAcceptModal = document.getElementById('close-accept-modal');
-
-
-        acceptButton.addEventListener('click', async() => {
-            try {
-                const reason = document.getElementById('acceptation-comments').value.trim();
-                console.log(reason);
-
-                const response = await membershipApplicationService.aceptar(applicationId, {reason});
-                if (response) {
-                    alert("Solicitud aceptada correctamente.");
-                    window.location.href = 'applications.html'; 
-                } else {
-                    alert("Error al aceptar la solicitud. Inténtalo de nuevo.");
-                }
-            } catch (error) {
-                console.error('Error al aprobar la solicitud:', error);
-                alert('Error al aprobar la solicitud. Inténtalo de nuevo.');
-                
-            }
-        });
-        rejectButton.addEventListener('click', async() => {
-            try {
-                const reason = document.getElementById('rejection-reason').value.trim();
-                    if (!reason) {
-                        alert('Debes escribir el motivo de rechazo de la solicitud.');
-                        return;
-                    }
-                    const response = await membershipApplicationService.rechazar(applicationId, {reason});
-                    if (response) {
-                        alert("Solicitud rechazada correctamente.");
-                        window.location.href = 'applications.html'; 
-                    } else {
-                        alert("Error al rechazar la solicitud. Inténtalo de nuevo.");
-                    }
-                
-            } catch (error) {
-                console.error('Error al rechazar la solicitud:', error);
-                alert('Error al rechazar la solicitud. Inténtalo de nuevo.');
-            }
-        });
-        showRejectModal.addEventListener('click', () => rejectModal.style.display = 'block');
-        closeRejectModal.addEventListener('click', () => rejectModal.style.display = 'none');
-
-        showAcceptModal.addEventListener('click', () => acceptModal.style.display = 'block');
-        closeAcceptModal.addEventListener('click', () => acceptModal.style.display = 'none');
-        
-    </script>
 
 </body>
+<script type="module" src="../js/modules/application_info.js"></script>
 <script type="module" src="../js/modules/verification.js"></script>
 <script type="module" src="../js/modules/sidebar.js"></script>
 </html>
