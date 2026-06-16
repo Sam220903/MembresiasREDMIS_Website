@@ -84,6 +84,7 @@ body {
   #membership_applications td {
       padding: 15px; 
       vertical-align: middle; 
+      white-space: nowrap;
   }
 
   #membership_applications td {
