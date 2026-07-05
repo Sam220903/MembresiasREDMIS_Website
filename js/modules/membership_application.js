@@ -1,0 +1,153 @@
+import membershipsService from '../api/services/memberships.js';
+import membershipApplicationService from '../api/services/membershipApplication.js';
+
+// Cargar tipos de membresía
+async function loadMemberships() {
+    try {
+        const response = await membershipsService.get();
+        console.log('Respuesta del servicio:', response); // Para depuración
+        
+        // Manejar diferentes formatos de respuesta
+        const memberships = Array.isArray(response) ? response : 
+                            (response.data ? response.data : []);
+        
+        if (!memberships.length) {
+            console.warn('No se recibieron membresías');
+            return;
+        }
+
+        const select = document.getElementById('tipo-membresia');
+        
+        // Limpiar opciones excepto la primera
+        while(select.options.length > 1) {
+            select.remove(1);
+        }
+
+        // Agregar opciones de membresía
+        memberships.forEach(membership => {
+            const option = document.createElement('option');
+            option.value = membership.id;
+            option.textContent = membership.nombre;
+            select.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error('Error al cargar membresías:', error);
+        alert('No se pudieron cargar los tipos de membresía');
+    }
+}
+
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = error => reject(error);
+    });
+}
+
+function validateMembershipForm() {
+const membershipId = document.getElementById('tipo-membresia').value;
+const phone = document.getElementById('telefono').value.trim();
+const comments = document.getElementById('comentarios').value.trim();
+const cvFile = document.getElementById('cv-file').files[0];
+
+
+if (!membershipId) {
+    alert('Seleccione un tipo de membresía válido.');
+    return false;
+}
+
+
+const phoneRegex = /^[0-9]{10}$/; // ajusta según país
+if (!phoneRegex.test(phone)) {
+    alert('Ingrese un número de teléfono válido (solo números, 7-15 dígitos).');
+    return false;
+}
+
+
+if (comments.length > 500) {
+    alert('Los comentarios no deben exceder los 500 caracteres.');
+    return false;
+}
+
+
+if (!cvFile) {
+    alert('Debe seleccionar un archivo PDF.');
+    return false;
+}
+
+const allowedTypes = ['application/pdf'];
+const maxSizeMB = 2;
+
+if (!allowedTypes.includes(cvFile.type)) {
+    alert('El archivo debe ser un PDF.');
+    return false;
+}
+
+if (cvFile.size > maxSizeMB * 1024 * 1024) {
+    alert(`El archivo no debe superar los ${maxSizeMB} MB.`);
+    return false;
+}
+
+return true;
+}
+
+async function submitMembership() {
+if (!validateMembershipForm()) return;
+    try {
+        const membershipId = document.getElementById('tipo-membresia').value;
+        const phone = document.getElementById('telefono').value;
+        const comments = document.getElementById('comentarios').value;
+        const cvFile = document.getElementById('cv-file').files[0];
+
+        if (!membershipId || !phone || !cvFile) {
+            alert('Por favor complete todos los campos obligatorios');
+            return;
+        }
+
+        // Convertir el archivo a base64
+        const cvBase64 = await fileToBase64(cvFile);
+
+        // Generar un nombre único para el archivo
+        const timestamp = new Date().getTime();
+        const uniqueName = `${timestamp}_${cvFile.name}`;
+        const cvFileName = `CV_${uniqueName}`; // Cambia el nombre del archivo a lo que necesites
+
+        // Crear el objeto con la estructura requerida
+        const requestData = {
+            MR_Membresias_id: parseInt(membershipId),
+            telefono: phone,
+            comentarios: comments || '',
+            cv: cvFileName,
+            cv_base64: cvBase64 // Asumimos que el backend puede manejar base64
+        };
+
+        
+        // Enviar la solicitud
+        const response = await membershipApplicationService.solicitar(requestData);
+        
+        if (response.status === 'success') {
+        alert('Solicitud enviada exitosamente');
+
+        document.getElementById('tipo-membresia').value = '';
+        document.getElementById('telefono').value = '';
+        document.getElementById('comentarios').value = '';
+        document.getElementById('cv-file').value = '';
+
+        } else {
+            alert('Error al enviar la solicitud: ' + (response.message || 'Error desconocido'));
+        }
+
+    } catch (error) {
+        console.error('Error al enviar solicitud:', error);
+        const error_message = JSON.parse(error.rawResponse)
+        alert('Ocurrió un error al enviar la solicitud: ' + (error_message.message || 'Error desconocido'));
+    }
+}
+
+// Cargar membresías al iniciar la página
+document.addEventListener('DOMContentLoaded', () => {
+    loadMemberships();
+    document.getElementById('submit-membership').addEventListener('click', submitMembership);
+});

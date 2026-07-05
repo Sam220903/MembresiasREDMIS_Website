@@ -1,6 +1,6 @@
 import apiClient from '../apiClient.js';
 
-const ENDPOINT = 'api/universidades';
+const ENDPOINT = 'api/universities';
 
 const universitiesService = {
     get: () => {

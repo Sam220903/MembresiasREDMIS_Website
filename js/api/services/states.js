@@ -1,6 +1,6 @@
 import apiClient from "../apiClient.js";
 
-const ENDPOINT = "api/estados";
+const ENDPOINT = "api/states";
 
 const statesService = {
     get: () => {

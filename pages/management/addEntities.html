@@ -13,7 +13,7 @@
     <div class="display-sidebar-container">
       <button id="display-sidebar">☰</button>
     </div>
-    <div id="sidebar"></div>     
+    <div id="sidebar"></div>
 
     <div class="main-container">
 
@@ -25,59 +25,108 @@
         <span data-translate="add-entity-title">Añadir entidad</span>
       </div>
 
-      
+
       <div class="entities-settings">
+
+          <!-- Panel de países: selecciona el país activo para filtrar estados y universidades -->
+          <div class="countries-panel panel-full">
+            <div class="panel-header">
+              <h3 data-translate="settings-countries">Países</h3>
+              <span class="entity-count" id="countries-count">0</span>
+            </div>
+
+            <div class="panel-toolbar">
+              <input type="text" id="searchCountry" placeholder="Buscar país...">
+              <button id="add-country-btn" title="Añadir país"><i class="fa-solid fa-plus"></i></button>
+            </div>
+
+            <ul id="countries-list" class="entities-list selectable">
+              <!-- Aquí se muestran los países -->
+            </ul>
+            <p id="countries-empty" class="empty-state" data-default-text="No hay países registrados.">No hay países registrados.</p>
+          </div>
+
           <div class="entities-options">
 
-              <div class="countries-panel">
-                <h3 data-translate="settings-countries">Países</h3>
-                <div id="search-country">
-                  <div id="found-countries" class="found-items-container">
-                    <input type="text" id="searchCountry" placeholder="Buscar país...">
-                    <ul id="countries-list" class="container-suggestions">
-                      <!-- Aquí se mostrarán los países sugeridos -->
-                    </ul>
-                  </div>
-
-                  <button id="add-country-btn"><i class="fa-solid fa-plus"></i></button>
-                </div>
-              </div>
-
               <div class="states-panel">
-                <h3 data-translate="settings-states">Estados</h3>
-                <div id="search-state">
-                  <div id="found-states" class="found-items-container">
-                    <input type="text" id="searchState" placeholder="Buscar estado...">
-                    <ul id="states-list" class="container-suggestions">
-                      <!-- Aquí se mostrarán los estados sugeridos -->
-                    </ul>
-                  </div>
-                  <button id="add-state-btn"><i class="fa-solid fa-plus"></i></button>
+                <div class="panel-header">
+                  <h3 data-translate="settings-states">Estados</h3>
+                  <span class="entity-count" id="states-count">0</span>
                 </div>
+                <p class="panel-context" id="states-context">Selecciona un país arriba para ver sus estados.</p>
+
+                <div class="panel-toolbar">
+                  <input type="text" id="searchState" placeholder="Buscar estado...">
+                  <button id="add-state-btn" title="Añadir estado"><i class="fa-solid fa-plus"></i></button>
+                </div>
+
+                <ul id="states-list" class="entities-list">
+                  <!-- Aquí se muestran los estados del país seleccionado -->
+                </ul>
+                <p id="states-empty" class="empty-state" data-default-text="Este país no tiene estados registrados.">Este país no tiene estados registrados.</p>
               </div>
 
               <div class="universities-panel">
-                <h3 data-translate="settings-universities">Universidades</h3>
-                <div id="search-university">
-                  <div id="found-universities" class="found-items-container">
-                    <input type="text" id="searchUniversity" placeholder="Buscar universidad...">
-                    <ul id="universities-list" class="container-suggestions">
-                      <!-- Aquí se mostrarán las universidades sugeridas -->
-                    </ul>
-                  </div>
-                  <button id="add-university-btn"><i class="fa-solid fa-plus"></i></button>
+                <div class="panel-header">
+                  <h3 data-translate="settings-universities">Universidades</h3>
+                  <span class="entity-count" id="universities-count">0</span>
                 </div>
+                <p class="panel-context" id="universities-context">Selecciona un país arriba para ver sus universidades.</p>
+
+                <div class="panel-toolbar">
+                  <input type="text" id="searchUniversity" placeholder="Buscar universidad...">
+                  <button id="add-university-btn" title="Añadir universidad"><i class="fa-solid fa-plus"></i></button>
+                </div>
+
+                <ul id="universities-list" class="entities-list">
+                  <!-- Aquí se muestran las universidades del país seleccionado -->
+                </ul>
+                <p id="universities-empty" class="empty-state" data-default-text="Este país no tiene universidades registradas.">Este país no tiene universidades registradas.</p>
               </div>
 
           </div>
       </div>
     </div>
 
-    <div id="addCountryModal"></div>
-    <div id="addStateModal"></div>
-    <div id="addUniversityModal"></div>
+    <!-- Modal único de agregar / editar, reutilizado por país, estado y universidad -->
+    <div id="entityFormModal" class="modal">
+      <div class="modal-content">
+        <div class="form-box">
+          <span class="close-modal" id="close-entity-form-btn">&times;</span>
+          <h3 id="entityFormTitle">Añadir país</h3>
 
-    
+          <label id="entityNameLabel" for="entityNameInput">Nombre</label>
+          <input type="text" id="entityNameInput" placeholder="Nombre">
+
+          <div id="entityCountryField" style="display: none;">
+            <label for="entityCountrySelect">País</label>
+            <select id="entityCountrySelect"></select>
+          </div>
+
+          <div class="accept-button-container">
+            <button id="entityFormAcceptBtn" class="acceptBtn">Agregar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de confirmación de eliminación, compartido por las 3 entidades -->
+    <div id="deleteConfirmModal" class="modal">
+      <div class="modal-content">
+        <div class="form-box delete-box">
+          <span class="close-modal" id="close-delete-btn">&times;</span>
+          <h3 data-translate="confirm-delete-title">Confirmar eliminación</h3>
+          <p data-translate="confirm-delete-text">
+            ¿Seguro que deseas eliminar <strong id="delete-entity-name"></strong>? Esta acción no se puede deshacer.
+          </p>
+          <div class="delete-actions">
+            <button id="cancelDeleteBtn" class="cancelBtn" data-translate="cancel-btn">Cancelar</button>
+            <button id="confirmDeleteBtn" class="deleteBtn" data-translate="delete-btn">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </body>
 
 <script type="module" src="../../js/modules/sidebar.js"></script>

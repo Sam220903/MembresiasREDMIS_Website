@@ -1,6 +1,6 @@
 import apiClient from "../apiClient.js";
 
-const ENDPOINT = "api/paises";
+const ENDPOINT = "api/countries";
 
 const countryService = {
     get: () => {

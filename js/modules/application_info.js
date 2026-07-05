@@ -28,8 +28,6 @@ if (!applicationId) {
 
 document.addEventListener('DOMContentLoaded', async() => {
 
-
-
     const application = await membershipApplicationService.obtenerPorID(applicationId);
     console.log(application);
 
@@ -63,6 +61,9 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     const applicantUniversity = document.getElementById('applicant-university');
     applicantUniversity.textContent = application.universidad;
+
+    const applicantLine = document.getElementById('applicant-investigation-line');
+    applicantLine.textContent = application.linea_investigacion;
 
     const applicantComments = document.getElementById('applicant-comments');
     applicantComments.textContent = application.comentarios;

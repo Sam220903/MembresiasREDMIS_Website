@@ -46,12 +46,12 @@ countries.forEach(pais => {
 paisSelect.onchange = async(e) =>{
     const country = e.target.value;        
     estadoSelect.innerHTML = '<option value="" selected disabled>Selecciona tu estado</option>';
-    const relatedStates = states.filter(state => state.pais_id == country);
+    const relatedStates = states.filter(state => state.countryId == country);
     // Colocar los estados en el select
     relatedStates.forEach(state => {
         const option = document.createElement("option");
         option.value = state.id;
-        option.textContent = state.nombre;
+        option.textContent = state.name;
         estadoSelect.appendChild(option);
     });
 }

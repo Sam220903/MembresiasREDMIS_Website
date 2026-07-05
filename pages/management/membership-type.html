@@ -3,30 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-translate="membership-type-title">Tipo de membresía</title>
+  <title data-translate="membresias-title">Membresías</title>
   <link rel="stylesheet" href="../../css/membership-type.css">
   <link rel="stylesheet" href="../../css/sidebar.css">
-  <link rel="stylesheet" href="../../assets/icons/css/all.min.css"> <!-- Estilos de font-awesome -->
+  <link rel="stylesheet" href="../../assets/icons/css/all.min.css">
   <link rel="stylesheet" href="../../css/general.css">
 </head>
 <body>
     <div class="display-sidebar-container">
       <button id="display-sidebar">☰</button>
     </div>
-    <div id="sidebar"></div>     
+    <div id="sidebar"></div>
 
     <div class="main-container">
 
       <div class="title-container">
-
         <i id="go-back-btn" class="fa-solid fa-angle-left"></i>
         <a href="../management/">Gestión</a>
         /
-        <span data-translate="membership-type-title">Tipo de membresía</span>
-      </div>  
+        <span data-translate="membresias-title">Membresías</span>
+      </div>
 
+      <div class="entities-settings">
+
+          <div class="memberships-panel panel-full">
+            <div class="panel-header">
+              <h3 data-translate="settings-membresias">Membresías</h3>
+              <span class="entity-count" id="memberships-count">0</span>
+            </div>
+
+            <div class="panel-toolbar">
+              <input type="text" id="searchMembership" placeholder="Buscar membresía...">
+              <button id="add-membership-btn" title="Añadir membresía"><i class="fa-solid fa-plus"></i></button>
+            </div>
+
+            <ul id="memberships-list" class="entities-list">
+              <!-- Aquí se muestran las membresías -->
+            </ul>
+            <p id="memberships-empty" class="empty-state" data-default-text="No hay membresías registradas.">No hay membresías registradas.</p>
+          </div>
+
+      </div>
     </div>
-       
+
+    <!-- Modal de agregar membresía: los campos se generan dinámicamente desde membershipFields en el JS -->
+    <div id="addMembershipModal" class="modal">
+      <div class="modal-content">
+        <div class="form-box">
+          <span class="close-modal" id="close-add-membership-btn">&times;</span>
+          <h3>Añadir membresía</h3>
+
+          <div id="membershipFormFields">
+            <!-- Campos generados dinámicamente -->
+          </div>
+
+          <div class="accept-button-container">
+            <button id="acceptAddMembershipBtn" class="acceptBtn">Agregar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de confirmación de eliminación -->
+    <div id="deleteConfirmModal" class="modal">
+      <div class="modal-content">
+        <div class="form-box delete-box">
+          <span class="close-modal" id="close-delete-btn">&times;</span>
+          <h3>Confirmar eliminación</h3>
+          <p>
+            ¿Seguro que deseas eliminar <strong id="delete-entity-name"></strong>? Esta acción no se puede deshacer.
+          </p>
+          <div class="delete-actions">
+            <button id="cancelDeleteBtn" class="cancelBtn">Cancelar</button>
+            <button id="confirmDeleteBtn" class="deleteBtn">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </body>
 
 <script type="module" src="../../js/modules/sidebar.js"></script>

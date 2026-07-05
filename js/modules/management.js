@@ -23,3 +23,8 @@ const addMembership = document.getElementById('add-membership');
 addMembership.addEventListener('click', () => {
     window.location.href = `${basePath}pages/management/membership-type.html`;
 })
+
+const addInvestigationLine = document.getElementById('add-investigation-line');
+addInvestigationLine.addEventListener('click', () => {
+    window.location.href = `${basePath}pages/management/investigation-lines.html`;  
+})

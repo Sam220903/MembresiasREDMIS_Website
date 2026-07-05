@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="investigation-lines-title">Líneas de investigación</title>
+  <link rel="stylesheet" href="../../css/investigationLines.css">
+  <link rel="stylesheet" href="../../css/sidebar.css">
+  <link rel="stylesheet" href="../../assets/icons/css/all.min.css">
+  <link rel="stylesheet" href="../../css/general.css">
+</head>
+<body>
+    <div class="display-sidebar-container">
+      <button id="display-sidebar">☰</button>
+    </div>
+    <div id="sidebar"></div>
+
+    <div class="main-container">
+
+      <div class="title-container">
+        <i id="go-back-btn" class="fa-solid fa-angle-left"></i>
+        <a href="../management/">Gestión</a>
+        /
+        <span data-translate="investigation-lines-title">Líneas de investigación</span>
+      </div>
+
+      <div class="entities-settings">
+
+          <div class="lines-panel panel-full">
+            <div class="panel-header">
+              <h3 data-translate="settings-investigation-lines">Líneas de investigación</h3>
+              <span class="entity-count" id="lines-count">0</span>
+            </div>
+
+            <div class="panel-toolbar">
+              <input type="text" id="searchLine" placeholder="Buscar línea de investigación...">
+              <button id="add-line-btn" title="Añadir línea de investigación"><i class="fa-solid fa-plus"></i></button>
+            </div>
+
+            <ul id="lines-list" class="entities-list">
+              <!-- Aquí se muestran las líneas de investigación -->
+            </ul>
+            <p id="lines-empty" class="empty-state" data-default-text="No hay líneas de investigación registradas.">No hay líneas de investigación registradas.</p>
+          </div>
+
+      </div>
+    </div>
+
+    <!-- Modal de agregar línea de investigación -->
+    <div id="addLineModal" class="modal">
+      <div class="modal-content">
+        <div class="form-box">
+          <span class="close-modal" id="close-add-line-btn">&times;</span>
+          <h3>Añadir línea de investigación</h3>
+
+          <label for="lineNameInput">Nombre de la línea</label>
+          <input type="text" id="lineNameInput" placeholder="Nombre">
+
+          <div class="accept-button-container">
+            <button id="acceptAddLineBtn" class="acceptBtn">Agregar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+<script type="module" src="../../js/modules/sidebar.js"></script>
+<script type="module" src="../../js/modules/verification.js"></script>
+<script type="module" src="../../js/modules/investigationLines.js"></script>
+
+</html>

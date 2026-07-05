@@ -2,9 +2,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 300px !important; /* Deja espacio para el menú lateral */
+    padding-left: 300px !important;
   }
-
 
   .title-container {
     font-size: 36px;
@@ -54,23 +53,15 @@ body {
     align-items: center;
     justify-content: center;
     width: 92%;
-    max-width: none;
     box-sizing: border-box;
   }
 
-  .entities-settings h2, .entities-settings h3{
+  .entities-settings h3{
     color: #243870;
     margin-bottom: 0;
   }
 
-  .entities-options{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    width: 100%;
-  }
-
-  .countries-panel, .states-panel, .universities-panel {
+  .lines-panel {
     background-color: #F1F5F9;
     border-radius: 8px;
     padding: 20px;
@@ -80,12 +71,6 @@ body {
     width: 100%;
     box-sizing: border-box;
   }
-
-  .panel-full {
-    width: 100%;
-  }
-
-  /* -------------  Encabezado de panel + contador ------------- */
 
   .panel-header {
     display: flex;
@@ -107,14 +92,6 @@ body {
     align-items: center;
     justify-content: center;
   }
-
-  .panel-context {
-    margin: -6px 0 12px 0;
-    font-size: 13px;
-    color: #475569;
-  }
-
-  /* -------------  Barra de búsqueda + botón añadir ------------- */
 
   .panel-toolbar {
     display: flex;
@@ -155,13 +132,11 @@ body {
     color: #fff;
   }
 
-  /* -------------  Lista de entidades ------------- */
-
   .entities-list {
     list-style: none;
     margin: 15px 0 0 0;
     padding: 0;
-    height: 260px;
+    height: 320px;
     overflow-y: auto;
     border-radius: 8px;
     background-color: #ffffff;
@@ -175,8 +150,6 @@ body {
     justify-content: space-between;
     padding: 10px 12px;
     border-bottom: 1px solid #E2E8F0;
-    border-left: 3px solid transparent;
-    transition: background-color 0.2s, border-color 0.2s;
   }
 
   .entity-item:last-child {
@@ -187,54 +160,12 @@ body {
     background-color: #F1F5F9;
   }
 
-  /* Los países son seleccionables: al elegir uno se filtran sus estados y universidades */
-  .entities-list.selectable .entity-item {
-    cursor: pointer;
-  }
-
-  .entities-list.selectable .entity-item.active {
-    background-color: #EAF1FD;
-    border-left-color: #1D4ED8;
-  }
-
-  .entities-list.selectable .entity-item.active .entity-name {
-    color: #1D4ED8;
-    font-weight: bold;
-  }
-
   .entity-name {
     color: #1E293B;
     font-size: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-
-  .entity-actions {
-    display: flex;
-    gap: 2px;
-    flex-shrink: 0;
-  }
-
-  .edit-entity-btn, .delete-entity-btn {
-    background: none;
-    border: none;
-    color: #94A3B8;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 13px;
-    transition: color 0.2s, background-color 0.2s;
-  }
-
-  .edit-entity-btn:hover {
-    color: #1D4ED8;
-    background-color: #E6F1FB;
-  }
-
-  .delete-entity-btn:hover {
-    color: #DC2626;
-    background-color: #FEE2E2;
   }
 
   .empty-state {
@@ -249,7 +180,6 @@ body {
     visibility: hidden;
   }
 
-  /* Scrollbar discreta para la lista de entidades */
   .entities-list::-webkit-scrollbar {
     width: 6px;
   }
@@ -258,9 +188,6 @@ body {
     background-color: #CBD5E1;
     border-radius: 999px;
   }
-
-
-  /* -------------  Modal Styles ------------- */
 
   .modal {
     display: none;
@@ -273,9 +200,9 @@ body {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.5);
-}
+  }
 
-.modal-content {
+  .modal-content {
     position: relative;
     margin: auto;
     border: 1px solid #888;
@@ -283,9 +210,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+  }
 
-.close-modal {
+  .close-modal {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -295,15 +222,14 @@ body {
     cursor: pointer;
     transition: color 0.3s;
     line-height: 1;
-}
+  }
 
-.close-modal:hover,
-.close-modal:focus {
+  .close-modal:hover,
+  .close-modal:focus {
     color: #161b2c;
-    text-decoration: none;
-}
+  }
 
-.form-box {
+  .form-box {
     background-color: #F0F4F9;
     padding: 20px;
     border-radius: 10px;
@@ -311,20 +237,20 @@ body {
     font-weight: 530;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
     border: 2px solid #0202021c;
-}
+  }
 
-.form-box h3 {
+  .form-box h3 {
     margin-top: 0;
     margin-bottom: 15px;
-}
+  }
 
-.form-box label {
+  .form-box label {
     display: block;
     font-size: 14px;
     margin-bottom: 5px;
-}
+  }
 
-.form-box input, .form-box select {
+  .form-box input {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -333,15 +259,15 @@ body {
     background-color: #E2E8F0;
     color: #475569;
     box-sizing: border-box;
-}
+  }
 
-.accept-button-container {
+  .accept-button-container {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-}
+  }
 
-.acceptBtn {
+  .acceptBtn {
     background-color: #1D4ED8;
     border: none;
     border-radius: 8px;
@@ -354,69 +280,11 @@ body {
     cursor: pointer;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-}
+  }
 
-.acceptBtn:hover {
+  .acceptBtn:hover {
     background-color: #2563EB;
     transform: scale(1.05);
-}
-
-/* -------------  Modal de eliminación ------------- */
-
-.delete-box p {
-    font-size: 14px;
-    line-height: 1.5;
-    color: #475569;
-}
-
-.delete-box strong {
-    color: #1E293B;
-}
-
-.delete-actions {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-}
-
-.cancelBtn, .deleteBtn {
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: bold;
-    height: 36px;
-    padding: 0 18px;
-    cursor: pointer;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-.cancelBtn {
-    background-color: #E2E8F0;
-    color: #334155;
-}
-
-.cancelBtn:hover {
-    background-color: #CBD5E1;
-    transform: scale(1.05);
-}
-
-.deleteBtn {
-    background-color: #DC2626;
-    color: #ffffff;
-}
-
-.deleteBtn:hover {
-    background-color: #B91C1C;
-    transform: scale(1.05);
-}
-
-  /* Responsive design */
-  @media (max-width: 900px) {
-    .entities-options {
-      grid-template-columns: 1fr;
-    }
   }
 
   @media (max-width: 600px) {
