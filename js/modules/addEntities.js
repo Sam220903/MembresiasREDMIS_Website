@@ -11,6 +11,9 @@ let countriesList = await countryService.get();
 let statesList = await stateService.get();
 let universitiesList = await universityService.get();
 
+
+
+
 // País actualmente seleccionado; filtra qué estados y universidades se muestran.
 let activeCountryId = countriesList.length ? countriesList[0].id : null;
 
@@ -43,8 +46,8 @@ const createEntityRow = (item, { type, active }) => {
 
     const nameSpan = document.createElement('span');
     nameSpan.className = 'entity-name';
-    nameSpan.textContent = item.nombre;
-    nameSpan.title = item.nombre;
+    nameSpan.textContent = item.name;
+    nameSpan.title = item.name;
 
     const actions = document.createElement('div');
     actions.className = 'entity-actions';
@@ -55,20 +58,10 @@ const createEntityRow = (item, { type, active }) => {
     editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
     editBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        openEntityForm(type, 'edit', item);
-    });
-
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'delete-entity-btn';
-    deleteBtn.title = 'Eliminar';
-    deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
-    deleteBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openDeleteModal(type, item.id, item.nombre);
+        openEditForm(type, item);
     });
 
     actions.appendChild(editBtn);
-    actions.appendChild(deleteBtn);
     li.appendChild(nameSpan);
     li.appendChild(actions);
 
@@ -81,7 +74,7 @@ const createEntityRow = (item, { type, active }) => {
 const renderCountries = () => {
     const term = countrySearchInput.value.toLowerCase();
     const filtered = term
-        ? countriesList.filter(c => c.nombre.toLowerCase().includes(term))
+        ? countriesList.filter(c => c.name.toLowerCase().includes(term))
         : countriesList;
 
     countriesListEl.innerHTML = '';
@@ -118,7 +111,7 @@ const renderFilteredList = ({ data, type, searchInput, listEl, countEl, emptyEl,
 
     if (contextEl) {
         contextEl.textContent = activeCountry
-            ? `${entityLabelPlural} de ${activeCountry.nombre}`
+            ? `${entityLabelPlural} de ${activeCountry.name}`
             : noCountryText;
     }
 
@@ -128,7 +121,7 @@ const renderFilteredList = ({ data, type, searchInput, listEl, countEl, emptyEl,
 
     const term = searchInput.value.toLowerCase();
     const filtered = term
-        ? byCountry.filter(item => item.nombre.toLowerCase().includes(term))
+        ? byCountry.filter(item => item.name.toLowerCase().includes(term))
         : byCountry;
 
     listEl.innerHTML = '';
@@ -181,7 +174,7 @@ renderStates();
 renderUniversities();
 
 
-// ------------- Modal genérico de agregar / editar ------------- //
+// ------------- Modal de agregar / editar ------------- //
 
 const entityFormModal = document.getElementById('entityFormModal');
 const entityFormTitle = document.getElementById('entityFormTitle');
@@ -225,16 +218,17 @@ const entityTypeInfo = {
     }
 };
 
-let formContext = { type: null, mode: null, id: null };
+// Guarda solo lo que cada consumo necesita para saber qué entidad está abierta en el modal.
+let formContext = { type: null, id: null };
 
-const openEntityForm = (type, mode, entity = null) => {
+const openAddForm = (type) => {
     const info = entityTypeInfo[type];
-    formContext = { type, mode, id: entity ? entity.id : null };
+    formContext = { type, id: null };
 
-    entityFormTitle.textContent = (mode === 'add' ? 'Añadir ' : 'Editar ') + info.label;
+    entityFormTitle.textContent = 'Añadir ' + info.label;
     entityNameLabel.textContent = 'Nombre del ' + info.label;
-    entityNameInput.value = entity ? entity.nombre : '';
-    entityFormAcceptBtn.textContent = mode === 'add' ? 'Agregar' : 'Guardar cambios';
+    entityNameInput.value = '';
+    entityFormAcceptBtn.textContent = 'Agregar';
 
     entityCountryField.style.display = info.needsCountry ? 'block' : 'none';
     if (info.needsCountry) {
@@ -242,12 +236,42 @@ const openEntityForm = (type, mode, entity = null) => {
         countriesList.forEach(country => {
             const option = document.createElement('option');
             option.value = country.id;
-            option.textContent = country.nombre;
+            option.textContent = country.name;
             entityCountrySelect.appendChild(option);
         });
-        const preselectId = entity ? entity.countryId : activeCountryId;
-        if (preselectId) entityCountrySelect.value = preselectId;
+        if (activeCountryId) entityCountrySelect.value = activeCountryId;
     }
+
+    // El botón de aceptar queda apuntando SOLO a la función de agregar.
+    entityFormAcceptBtn.onclick = handleAddSubmit;
+
+    entityFormModal.style.display = 'block';
+    entityNameInput.focus();
+};
+
+const openEditForm = (type, entity) => {
+    const info = entityTypeInfo[type];
+    formContext = { type, id: entity.id };
+
+    entityFormTitle.textContent = 'Editar ' + info.label;
+    entityNameLabel.textContent = 'Nombre del ' + info.label;
+    entityNameInput.value = entity.name;
+    entityFormAcceptBtn.textContent = 'Guardar cambios';
+
+    entityCountryField.style.display = info.needsCountry ? 'block' : 'none';
+    if (info.needsCountry) {
+        entityCountrySelect.innerHTML = '';
+        countriesList.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country.id;
+            option.textContent = country.name;
+            entityCountrySelect.appendChild(option);
+        });
+        if (entity.countryId) entityCountrySelect.value = entity.countryId;
+    }
+
+    // El botón de aceptar queda apuntando SOLO a la función de editar.
+    entityFormAcceptBtn.onclick = handleEditSubmit;
 
     entityFormModal.style.display = 'block';
     entityNameInput.focus();
@@ -255,7 +279,7 @@ const openEntityForm = (type, mode, entity = null) => {
 
 const closeEntityForm = () => {
     entityFormModal.style.display = 'none';
-    formContext = { type: null, mode: null, id: null };
+    formContext = { type: null, id: null };
 };
 
 closeEntityFormBtn.addEventListener('click', closeEntityForm);
@@ -263,10 +287,10 @@ entityFormModal.addEventListener('click', (e) => {
     if (e.target === entityFormModal) closeEntityForm();
 });
 
-entityFormAcceptBtn.addEventListener('click', async () => {
-    const { type, mode, id } = formContext;
-    if (!type) return;
+// ------------- Consumo de API: agregar (independiente de editar) ------------- //
 
+const handleAddSubmit = async () => {
+    const { type } = formContext;
     const info = entityTypeInfo[type];
     const nombre = entityNameInput.value.trim();
 
@@ -282,85 +306,64 @@ entityFormAcceptBtn.addEventListener('click', async () => {
     }
 
     try {
-        let response;
-        if (mode === 'add') {
-            // Consumo de API para agregar la entidad
-            response = info.needsCountry
-                ? await info.service.add(nombre, countryId)
-                : await info.service.add(nombre);
-        } else {
-            // Consumo de API para actualizar la entidad.
-            // Se asume un método update(id, nombre[, countryId]) simétrico a add().
-            response = info.needsCountry
-                ? await info.service.update(id, nombre, countryId)
-                : await info.service.update(id, nombre);
-        }
+        const response = info.needsCountry
+            ? await info.service.add(nombre, countryId)
+            : await info.service.add(nombre);
 
         if (response) {
-            alert(info.messages[mode === 'add' ? 'addOk' : 'editOk']);
+            alert(info.messages.addOk);
             location.reload();
         } else {
-            alert(info.messages[mode === 'add' ? 'addErr' : 'editErr']);
+            alert(info.messages.addErr);
         }
     } catch (error) {
-        console.error(info.messages[mode === 'add' ? 'addErr' : 'editErr'], error);
-        alert(info.messages[mode === 'add' ? 'addErr' : 'editErr']);
+        console.error(info.messages.addErr, error);
+        alert(info.messages.addErr);
     } finally {
         closeEntityForm();
     }
-});
-
-document.getElementById('add-country-btn').addEventListener('click', () => openEntityForm('country', 'add'));
-document.getElementById('add-state-btn').addEventListener('click', () => openEntityForm('state', 'add'));
-document.getElementById('add-university-btn').addEventListener('click', () => openEntityForm('university', 'add'));
-
-
-// ------------- Modal de eliminación ------------- //
-
-let entityToDelete = { type: null, id: null };
-
-const deleteModal = document.getElementById('deleteConfirmModal');
-const deleteEntityNameEl = document.getElementById('delete-entity-name');
-const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-const closeDeleteBtn = document.getElementById('close-delete-btn');
-
-const openDeleteModal = (type, id, nombre) => {
-    entityToDelete = { type, id };
-    deleteEntityNameEl.textContent = nombre;
-    deleteModal.style.display = 'block';
 };
 
-const closeDeleteModal = () => {
-    deleteModal.style.display = 'none';
-    entityToDelete = { type: null, id: null };
-};
+// ------------- Consumo de API: editar (independiente de agregar) ------------- //
 
-cancelDeleteBtn.addEventListener('click', closeDeleteModal);
-closeDeleteBtn.addEventListener('click', closeDeleteModal);
-deleteModal.addEventListener('click', (e) => {
-    if (e.target === deleteModal) closeDeleteModal();
-});
-
-confirmDeleteBtn.addEventListener('click', async () => {
-    const { type, id } = entityToDelete;
-    if (!type || !id) return;
-
+const handleEditSubmit = async () => {
+    const { type, id } = formContext;
     const info = entityTypeInfo[type];
+    const nombre = entityNameInput.value.trim();
+
+    if (!nombre) {
+        alert(`Por favor, ingresa un nombre de ${info.label} válido.`);
+        return;
+    }
+
+    const countryId = info.needsCountry ? entityCountrySelect.value : null;
+    if (info.needsCountry && !countryId) {
+        alert('Por favor, selecciona un país.');
+        return;
+    }
 
     try {
-        // Se asume que cada servicio expone un método remove(id), igual que add().
-        const response = await info.service.remove(id);
+        // Se asume un método update(id, nombre[, countryId]) simétrico a add().
+        const response = info.needsCountry
+            ? await info.service.update(id, nombre, countryId)
+            : await info.service.update(id, nombre);
+
         if (response) {
-            alert(info.messages.deleteOk);
+            alert(info.messages.editOk);
             location.reload();
         } else {
-            alert(info.messages.deleteErr);
+            alert(info.messages.editErr);
         }
     } catch (error) {
-        console.error(info.messages.deleteErr, error);
-        alert(info.messages.deleteErr);
+        console.error(info.messages.editErr, error);
+        alert(info.messages.editErr);
     } finally {
-        closeDeleteModal();
+        closeEntityForm();
     }
-});
+};
+
+document.getElementById('add-country-btn').addEventListener('click', () => openAddForm('country'));
+document.getElementById('add-state-btn').addEventListener('click', () => openAddForm('state'));
+document.getElementById('add-university-btn').addEventListener('click', () => openAddForm('university'));
+
+
