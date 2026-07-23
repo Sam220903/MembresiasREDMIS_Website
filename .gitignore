@@ -1,2 +1,27 @@
 .qodo
 *.zip
+
+# Docusaurus temporales y dependencias
+docs-src/node_modules/
+docs-src/.docusaurus/
+docs-src/.cache-loader/
+
+# ==========================================
+# Archivos temporales y librerías (NO subir a Git)
+# ==========================================
+
+# Dependencias pesadas de Node.js
+docs-src/node_modules/
+
+# Basura temporal que genera Docusaurus al compilar
+docs-src/.docusaurus/
+docs-src/.cache-loader/
+docs-src/build/
+
+# Archivos del sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -2,3 +2,5 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
+# Si el usuario accede a /docs sin la diagonal final, redirigir a /docs/
+RewriteRule ^docs$ /docs/ [L,R=301]
