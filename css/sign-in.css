@@ -5,24 +5,24 @@ p {
 /* Contenedor del formulario */
 .form-container {
     margin: 20px 0;
-    background: #1D4ED8;
+    background: var(--color-auth-card-bg);
     padding: 20px 40px;
     border-radius: 15px;
     width: 500px;
     text-align: center;
-    box-shadow: 0px 0px 10px rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px var(--color-shadow-strong);
 }
 
 /* Título y subtítulo */
 .title {
-    color: white;
+    color: var(--color-auth-card-text);
     margin-bottom: 5px;
     text-align: center;
     font-size: 32px;
 }
 
 .subtitle {
-    color: white;
+    color: var(--color-auth-card-text);
     font-size: 16px;
     margin-bottom: 20px;
     text-align: center;
@@ -46,7 +46,7 @@ p {
 
 /* Estilos de las etiquetas */
 #register-form label {
-    color: white;
+    color: var(--color-auth-card-text);
     font-size: 13px;
     font-weight: bold;
     margin-bottom: 5px;
@@ -62,15 +62,15 @@ select {
     margin-bottom: 10px;
     border: none;
     border-radius: 8px;
-    background: white;
-    color: black;
+    background-color: var(--color-bg-body);
+    color: var(--color-text-secondary);
     font-size: 14px;
     box-sizing: border-box;
 }
 
 /* Mensajes de error */
 .error-message {
-    color: rgb(249, 108, 108);
+    color: var(--color-error-light);
     font-size: 12px;
     display: none;
     margin-bottom: 10px;
@@ -86,10 +86,10 @@ select {
 .button {
     width: 50%;
     padding: 10px;
-    background: white;
+    background-color: var(--color-auth-button-bg);
     border: none;
     border-radius: 8px;
-    color: black;
+    color: var(--color-auth-button-text);
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
@@ -99,7 +99,6 @@ select {
 .button:hover {
     transition: 0.1s ease;
     transform: scale(1.05);
-    background: #E2E8F0;
   }
 
 
@@ -107,18 +106,18 @@ select {
 /* Enlace para iniciar sesión */
 .login-link {
     margin-top: 20px;
-    color: white;
+    color: var(--color-auth-card-text);
     font-size: 16px;
     text-align: center;
 }
 
 .login-link a:visited {
-    color: white;
+    color: var(--color-auth-card-text);
 }
 
 
 #register-form label{
-    color: white;
+    color: var(--color-auth-card-text);
     font-size: 14px;
     display: block;
     margin-bottom: 5px;
@@ -138,18 +137,18 @@ select {
 #confirm-password-info{
     text-align: left;
     font-size: 14px;
-    color: #fff;
+    color: var(--color-on-primary);
     font-weight: 600;
     padding: 5px 10px;
     border-radius: 8px;
 }
 
 #confirm-password-info.incorrect-password{
-    background-color: brown;
+    background-color: var(--color-error);
 }
 
 #confirm-password-info.correct-password{
-    background-color: #16A34A;
+    background-color: var(--color-success-dark);
 }
 
 #toggle-password {
@@ -158,7 +157,7 @@ select {
       top: 60%;
       transform: translateY(-50%);
       cursor: pointer;
-      color: #1D4ED8;
+      color: var(--color-primary);
       font-size: large;
 }
 
@@ -172,12 +171,12 @@ select {
     }
 
     .form-container {
-        background: #1D4ED8;
+        background: var(--color-auth-card-bg);
         padding: 10px;
         border-radius: 15px;
         width: 450;
         text-align: center;
-        box-shadow: 0px 0px 10px rgb(255, 255, 255);   
+        box-shadow: 0px 0px 10px var(--color-shadow-strong);   
         margin: 20px;
         margin-top: 100px;
     }

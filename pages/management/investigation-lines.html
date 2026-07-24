@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script>
+    (function () {
+      try {
+        var pref = localStorage.getItem('theme') || 'system';
+        var isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-translate="investigation-lines-title">Líneas de investigación</title>
@@ -33,7 +42,7 @@
             </div>
 
             <div class="panel-toolbar">
-              <input type="text" id="searchLine" placeholder="Buscar línea de investigación...">
+              <input type="text" id="searchLine" placeholder="Buscar línea de investigación..." data-translate-placeholder="investigation_lines_search">
               <button id="add-line-btn" title="Añadir línea de investigación"><i class="fa-solid fa-plus"></i></button>
             </div>
 
@@ -54,7 +63,7 @@
           <h3>Añadir línea de investigación</h3>
 
           <label for="lineNameInput">Nombre de la línea</label>
-          <input type="text" id="lineNameInput" placeholder="Nombre">
+          <input type="text" id="lineNameInput" placeholder="Nombre" data-translate-placeholder="investigation_lines_name_placeholder">
 
           <div class="accept-button-container">
             <button id="acceptAddLineBtn" class="acceptBtn">Agregar</button>
@@ -65,6 +74,7 @@
 
 </body>
 
+<script type="module" src="../../js/modules/theme.js"></script>
 <script type="module" src="../../js/modules/sidebar.js"></script>
 <script type="module" src="../../js/modules/verification.js"></script>
 <script type="module" src="../../js/modules/investigationLines.js"></script>

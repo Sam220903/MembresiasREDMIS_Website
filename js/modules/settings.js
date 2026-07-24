@@ -1,4 +1,5 @@
 import { setLanguage } from "./translate.js";
+import { setTheme, getTheme } from "./theme.js";
 
 
 // Traducción de la página
@@ -18,13 +19,31 @@ englishBtn.addEventListener('click', () => {
 });
 
 
+// Selección de tema
+const systemThemeBtn = document.getElementById('system-theme-btn');
+const lightThemeBtn = document.getElementById('light-theme-btn');
+const darkThemeBtn = document.getElementById('dark-theme-btn');
 
+const themeButtons = {
+    system: systemThemeBtn,
+    light: lightThemeBtn,
+    dark: darkThemeBtn,
+};
 
+const highlightActiveThemeButton = () => {
+    const currentTheme = getTheme();
+    Object.entries(themeButtons).forEach(([theme, button]) => {
+        button.classList.toggle('active', theme === currentTheme);
+    });
+};
 
+const selectTheme = (theme) => {
+    setTheme(theme);
+    highlightActiveThemeButton();
+};
 
+systemThemeBtn.addEventListener('click', () => selectTheme('system'));
+lightThemeBtn.addEventListener('click', () => selectTheme('light'));
+darkThemeBtn.addEventListener('click', () => selectTheme('dark'));
 
-
-
-
-
-
+highlightActiveThemeButton();

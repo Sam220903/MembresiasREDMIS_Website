@@ -40,6 +40,13 @@ export async function setLanguage(lang) {
         } 
     });
 
+    document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-translate-placeholder');
+        if (translations[lang][key]) {
+            element.placeholder = translations[lang][key];
+        }
+    });
+
     document.documentElement.lang = lang;
     localStorage.setItem('language', lang);
     
@@ -47,12 +54,13 @@ export async function setLanguage(lang) {
 
 
 export function translate(lang) {
+    setLanguage(getCurrentLanguage(lang));
+}
+
+// Devuelve el idioma que debe usarse: el explícito, el guardado, o el del navegador/por defecto
+export function getCurrentLanguage(lang) {
     const savedLanguage = localStorage.getItem('language');
     const browserLanguage = navigator.language.slice(0, 2);
 
-    const currentLanguage = savedLanguage || (supportedLanguages.includes(browserLanguage) ? browserLanguage : defaultLanguage);
-
-    setLanguage(currentLanguage);
+    return lang || savedLanguage || (supportedLanguages.includes(browserLanguage) ? browserLanguage : defaultLanguage);
 }
-
-

@@ -10,7 +10,7 @@ body {
   .title-container {
     font-size: 36px;
     font-weight: bold;
-    color: #1D4ED8;
+    color: var(--color-primary);
     position: absolute;
     top: 40px;
     left: 300px;
@@ -27,7 +27,7 @@ body {
   .feature {
     display: flex;
     align-items: center;
-    background-color: #F1F5F9;
+    background-color: var(--color-bg-page-alt);
     border-radius: 8px;
     padding: 15px 20px;
     margin-top: 10px;
@@ -35,7 +35,7 @@ body {
     width: 80%;
     max-width: 900px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color:  #5e6c80;
+    color:  var(--color-text-muted);
     justify-content: left;
     min-height: 60px;
     transition: 0.3s;
@@ -45,7 +45,7 @@ body {
 
   .feature-icon i{
     font-size: xx-large;
-    color:#5e6c80;
+    color:var(--color-text-muted);
   }
 
   .feature-description {
@@ -67,12 +67,12 @@ body {
 
   .feature .fa-caret-right {
     font-size: larger;
-    color: #5e6c80;
+    color: var(--color-text-muted);
     margin-left: auto;
   }
 
   .feature:hover{
-    background-color: #E2E8F0;
+    background-color: var(--color-bg-body);
     transition: 0.3s;
   }
 

@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script>
+    (function () {
+      try {
+        var pref = localStorage.getItem('theme') || 'system';
+        var isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate="application_info_title">Evaluación del candidato</title>
@@ -116,7 +125,7 @@
                         <h3>Rechazar solicitud de membresía</h3>
                         <div id="form-container" class="form-container">
                             <label for="rejection-reason" >Escriba el motivo del rechazo:</label>
-                            <textarea id="rejection-reason" rows="5" placeholder="Motivo de rechazo..."></textarea>
+                            <textarea id="rejection-reason" rows="5" placeholder="Motivo de rechazo..." data-translate-placeholder="application_info_rejection_reason_placeholder"></textarea>
                         </div>
 
                         <div class="modal-btn-container">
@@ -147,7 +156,7 @@
                         <h3>Aprobar solicitud de membresía</h3>
                         <div id="form-container">
                             <label for="accept-comments" >Escriba comentarios para el solicitante (opcional):</label>
-                            <textarea id="accept-comments" rows="5" placeholder="Comentarios para el solicitante..."></textarea>
+                            <textarea id="accept-comments" rows="5" placeholder="Comentarios para el solicitante..." data-translate-placeholder="application_info_accept_comments_placeholder"></textarea>
                         </div>
 
                     <div class="modal-btn-container">
@@ -172,6 +181,7 @@
 
 
 </body>
+<script type="module" src="../js/modules/theme.js"></script>
 <script type="module" src="../js/modules/application_info.js"></script>
 <script type="module" src="../js/modules/verification.js"></script>
 <script type="module" src="../js/modules/sidebar.js"></script>

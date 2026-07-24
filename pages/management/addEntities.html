@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script>
+    (function () {
+      try {
+        var pref = localStorage.getItem('theme') || 'system';
+        var isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-translate="settings-title">Añadir entidad</title>
@@ -36,7 +45,7 @@
             </div>
 
             <div class="panel-toolbar">
-              <input type="text" id="searchCountry" placeholder="Buscar país...">
+              <input type="text" id="searchCountry" placeholder="Buscar país..." data-translate-placeholder="entities_search_country">
               <button id="add-country-btn" title="Añadir país"><i class="fa-solid fa-plus"></i></button>
             </div>
 
@@ -56,7 +65,7 @@
                 <p class="panel-context" id="states-context">Selecciona un país arriba para ver sus estados.</p>
 
                 <div class="panel-toolbar">
-                  <input type="text" id="searchState" placeholder="Buscar estado...">
+                  <input type="text" id="searchState" placeholder="Buscar estado..." data-translate-placeholder="entities_search_state">
                   <button id="add-state-btn" title="Añadir estado"><i class="fa-solid fa-plus"></i></button>
                 </div>
 
@@ -74,7 +83,7 @@
                 <p class="panel-context" id="universities-context">Selecciona un país arriba para ver sus universidades.</p>
 
                 <div class="panel-toolbar">
-                  <input type="text" id="searchUniversity" placeholder="Buscar universidad...">
+                  <input type="text" id="searchUniversity" placeholder="Buscar universidad..." data-translate-placeholder="entities_search_university">
                   <button id="add-university-btn" title="Añadir universidad"><i class="fa-solid fa-plus"></i></button>
                 </div>
 
@@ -96,7 +105,7 @@
           <h3 id="entityFormTitle">Añadir país</h3>
 
           <label id="entityNameLabel" for="entityNameInput">Nombre</label>
-          <input type="text" id="entityNameInput" placeholder="Nombre">
+          <input type="text" id="entityNameInput" placeholder="Nombre" data-translate-placeholder="entities_name_placeholder">
 
           <div id="entityCountryField" style="display: none;">
             <label for="entityCountrySelect">País</label>
@@ -129,6 +138,7 @@
 
 </body>
 
+<script type="module" src="../../js/modules/theme.js"></script>
 <script type="module" src="../../js/modules/sidebar.js"></script>
 <script type="module" src="../../js/modules/verification.js"></script>
 <script type="module" src="../../js/modules/addEntities.js"></script>

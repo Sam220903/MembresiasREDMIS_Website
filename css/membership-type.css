@@ -8,7 +8,7 @@ body {
   .title-container {
     font-size: 36px;
     font-weight: bold;
-    color: #1D4ED8;
+    color: var(--color-primary);
     position: absolute;
     top: 40px;
     left: 300px;
@@ -22,7 +22,7 @@ body {
   }
 
   .title-container i:hover{
-    background-color: #c7cbd1;
+    background-color: var(--color-bg-hover);
     transition: 0.1s ease-in-out;
   }
 
@@ -31,7 +31,7 @@ body {
   }
 
   .title-container a:visited{
-    color: #1D4ED8;
+    color: var(--color-primary);
   }
 
   .title-container a:hover{
@@ -57,12 +57,12 @@ body {
   }
 
   .entities-settings h3{
-    color: #243870;
+    color: var(--color-accent-text);
     margin-bottom: 0;
   }
 
   .memberships-panel {
-    background-color: #F1F5F9;
+    background-color: var(--color-bg-page-alt);
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -80,8 +80,8 @@ body {
   }
 
   .entity-count {
-    background-color: #243870;
-    color: #ffffff;
+    background-color: var(--color-accent-bg);
+    color: var(--color-on-primary);
     font-size: 12px;
     font-weight: bold;
     min-width: 22px;
@@ -101,7 +101,7 @@ body {
 
   .panel-toolbar input {
     padding: 10px;
-    border: 1px solid #E2E8F0;
+    border: 1px solid var(--color-bg-body);
     border-radius: 8px;
     width: 100%;
     box-sizing: border-box;
@@ -109,7 +109,7 @@ body {
   }
 
   .panel-toolbar button {
-    background-color: #243870;
+    background-color: var(--color-accent-bg);
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -122,14 +122,14 @@ body {
   }
 
   .panel-toolbar button:hover {
-    background-color: #131e3a;
+    background-color: var(--color-accent-bg-hover);
     transform: scale(1.05);
     transition: transform 0.2s;
   }
 
   button i.fa-plus{
     font-size: small;
-    color: #fff;
+    color: var(--color-on-primary);
   }
 
   .entities-list {
@@ -139,8 +139,8 @@ body {
     height: 340px;
     overflow-y: auto;
     border-radius: 8px;
-    background-color: #ffffff;
-    border: 1px solid #E2E8F0;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-bg-body);
     box-sizing: border-box;
   }
 
@@ -149,7 +149,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 10px 12px;
-    border-bottom: 1px solid #E2E8F0;
+    border-bottom: 1px solid var(--color-bg-body);
     gap: 12px;
   }
 
@@ -158,7 +158,7 @@ body {
   }
 
   .entity-item:hover {
-    background-color: #F1F5F9;
+    background-color: var(--color-bg-page-alt);
   }
 
   .entity-info {
@@ -167,7 +167,7 @@ body {
 
   .entity-name {
     display: block;
-    color: #1E293B;
+    color: var(--color-text-primary);
     font-size: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -176,7 +176,7 @@ body {
 
   .entity-sub {
     display: block;
-    color: #64748B;
+    color: var(--color-text-muted);
     font-size: 12px;
     margin-top: 2px;
     overflow: hidden;
@@ -187,7 +187,7 @@ body {
   .delete-entity-btn {
     background: none;
     border: none;
-    color: #94A3B8;
+    color: var(--color-text-faint);
     cursor: pointer;
     padding: 4px 8px;
     border-radius: 6px;
@@ -197,12 +197,12 @@ body {
   }
 
   .delete-entity-btn:hover {
-    color: #DC2626;
-    background-color: #FEE2E2;
+    color: var(--color-error);
+    background-color: var(--color-error-tint);
   }
 
   .empty-state {
-    color: #94A3B8;
+    color: var(--color-text-faint);
     font-size: 13px;
     font-style: italic;
     text-align: center;
@@ -218,7 +218,7 @@ body {
   }
 
   .entities-list::-webkit-scrollbar-thumb {
-    background-color: #CBD5E1;
+    background-color: var(--color-border-strong);
     border-radius: 999px;
   }
 
@@ -238,7 +238,7 @@ body {
   .modal-content {
     position: relative;
     margin: auto;
-    border: 1px solid #888;
+    border: 1px solid var(--color-border-strong);
     width: 40%;
     display: flex;
     flex-direction: column;
@@ -249,7 +249,7 @@ body {
     position: absolute;
     top: 10px;
     right: 15px;
-    color: #313D65;
+    color: var(--color-accent-text);
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
@@ -259,17 +259,17 @@ body {
 
   .close-modal:hover,
   .close-modal:focus {
-    color: #161b2c;
+    color: var(--color-accent-bg-hover);
   }
 
   .form-box {
-    background-color: #F0F4F9;
+    background-color: var(--color-bg-elevated);
     padding: 20px;
     border-radius: 10px;
-    color: #2D3748;
+    color: var(--color-text-heading);
     font-weight: 530;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-    border: 2px solid #0202021c;
+    border: 2px solid var(--color-border);
   }
 
   .form-box h3 {
@@ -291,8 +291,8 @@ body {
     margin-bottom: 15px;
     border: none;
     border-radius: 5px;
-    background-color: #E2E8F0;
-    color: #475569;
+    background-color: var(--color-bg-body);
+    color: var(--color-text-secondary);
     box-sizing: border-box;
     font-family: inherit;
     font-size: 14px;
@@ -310,12 +310,12 @@ body {
   }
 
   .acceptBtn {
-    background-color: #1D4ED8;
+    background-color: var(--color-primary);
     border: none;
     border-radius: 8px;
     font-size: 15px;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--color-on-primary);
     height: 36px;
     min-width: 102px;
     padding: 0 16px;
@@ -325,18 +325,18 @@ body {
   }
 
   .acceptBtn:hover {
-    background-color: #2563EB;
+    background-color: var(--color-primary-hover);
     transform: scale(1.05);
   }
 
   .delete-box p {
     font-size: 14px;
     line-height: 1.5;
-    color: #475569;
+    color: var(--color-text-secondary);
   }
 
   .delete-box strong {
-    color: #1E293B;
+    color: var(--color-text-primary);
   }
 
   .delete-actions {
@@ -359,22 +359,22 @@ body {
   }
 
   .cancelBtn {
-    background-color: #E2E8F0;
-    color: #334155;
+    background-color: var(--color-bg-body);
+    color: var(--color-text-body);
   }
 
   .cancelBtn:hover {
-    background-color: #CBD5E1;
+    background-color: var(--color-border-strong);
     transform: scale(1.05);
   }
 
   .deleteBtn {
-    background-color: #DC2626;
-    color: #ffffff;
+    background-color: var(--color-error);
+    color: var(--color-on-primary);
   }
 
   .deleteBtn:hover {
-    background-color: #B91C1C;
+    background-color: var(--color-error);
     transform: scale(1.05);
   }
 

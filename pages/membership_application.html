@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script>
+    (function () {
+      try {
+        var pref = localStorage.getItem('theme') || 'system';
+        var isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-translate="membership_application_title">Solicitud de Membresía</title>
@@ -45,6 +54,7 @@
       </div>
     </div>
 
+    <script type="module" src="../js/modules/theme.js"></script>
     <script type="module" src="../js/modules/membership_application.js"></script>
     <script type="module" src="../js/modules/verification.js"></script>
     <script type="module" src="../js/modules/sidebar.js"></script>

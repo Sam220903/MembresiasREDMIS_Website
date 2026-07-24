@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script>
+    (function () {
+      try {
+        var pref = localStorage.getItem('theme') || 'system';
+        var isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <title data-translate="membership_title">Membresías</title>
   <link rel="stylesheet" href="../css/memberships.css">
@@ -49,6 +58,7 @@
 
   
 </body>
+<script type="module" src="../js/modules/theme.js"></script>
 <script type="module" src="../js/modules/sidebar.js"></script>
 <script type="module" src="../js/modules/membresias.js"></script>
 <script type="module" src="../js/modules/verification.js"></script>

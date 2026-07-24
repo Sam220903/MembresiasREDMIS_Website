@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script>
+    (function () {
+      try {
+        var pref = localStorage.getItem('theme') || 'system';
+        var isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-translate="membresias-title">Membresías</title>
@@ -33,7 +42,7 @@
             </div>
 
             <div class="panel-toolbar">
-              <input type="text" id="searchMembership" placeholder="Buscar membresía...">
+              <input type="text" id="searchMembership" placeholder="Buscar membresía..." data-translate-placeholder="membership_type_search">
               <button id="add-membership-btn" title="Añadir membresía"><i class="fa-solid fa-plus"></i></button>
             </div>
 
@@ -83,6 +92,7 @@
 
 </body>
 
+<script type="module" src="../../js/modules/theme.js"></script>
 <script type="module" src="../../js/modules/sidebar.js"></script>
 <script type="module" src="../../js/modules/verification.js"></script>
 <script type="module" src="../../js/modules/membership-type.js"></script>

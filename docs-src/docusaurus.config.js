@@ -10,8 +10,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'REDMIS',
+  tagline: 'Manual de usuario y documentación de la plataforma REDMIS',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -19,25 +19,22 @@ const config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  // Ajusta esta URL a la del despliegue final del sitio.
+  url: 'https://sam220903.github.io',
+  // El sitio se construye dentro de la carpeta docs/ del propio repo del
+  // frontend (ver package.json -> "build": "docusaurus build --out-dir ../docs")
   baseUrl: '/docs/',
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'Sam220903',
+  projectName: 'MembresiasREDMIS_Website',
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  // El proyecto y su interfaz están en español.
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'es',
+    locales: ['es'],
   },
 
   presets: [
@@ -47,27 +44,12 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          routeBasePath : '/',
+            'https://github.com/Sam220903/MembresiasREDMIS_Website/tree/main/docs-src/',
+          routeBasePath: '/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        // El sitio es un manual de usuario, no se usa el blog de Docusaurus.
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -78,27 +60,42 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/logo-redmis.png',
       colorMode: {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'My Site',
+        title: 'REDMIS',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Logo REDMIS',
+          src: 'img/logo-redmis.png',
         },
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            sidebarId: 'manualSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Manual de Usuario',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            type: 'docSidebar',
+            sidebarId: 'administracionSidebar',
+            position: 'left',
+            label: 'Administración',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'desarrolladoresSidebar',
+            position: 'left',
+            label: 'Desarrolladores',
+          },
+          {
+            href: '/',
+            label: 'Ir a la aplicación',
+            position: 'right',
+          },
+          {
+            href: 'https://github.com/Sam220903/MembresiasREDMIS_Website',
             label: 'GitHub',
             position: 'right',
           },
@@ -108,46 +105,33 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Documentación',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Manual de Usuario',
+                to: '/manual-usuario/intro',
+              },
+              {
+                label: 'Administración',
+                to: '/administracion/panel-administracion',
+              },
+              {
+                label: 'Desarrolladores',
+                to: '/desarrolladores/arquitectura',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Más',
             items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/Sam220903/MembresiasREDMIS_Website',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} REDMIS. Construido con Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,

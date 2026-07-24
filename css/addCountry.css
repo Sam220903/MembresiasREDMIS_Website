@@ -1,6 +1,6 @@
    
     body {
-      background-color: #F8FAFC;
+      background-color: var(--color-bg-elevated);
       margin: 0;
       padding: 0;
       display: flex;
@@ -13,7 +13,7 @@
     .title-container {
       font-size: 36px;
       font-weight: bold;
-      color: #1D4ED8;
+      color: var(--color-primary);
       position: absolute;
       top: 60px;
       left: 350px;
@@ -26,14 +26,14 @@
     }
     
     .form-box {
-      background-color: #F0F4F9;
+      background-color: var(--color-bg-elevated);
       padding: 20px;
       border-radius: 10px;
       width: 500px;
-      color: #2D3748;
+      color: var(--color-text-heading);
       font-weight: 530;
       box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-      border: 2px solid #0202021c;
+      border: 2px solid var(--color-border);
     }
     
     .form-box label {
@@ -48,8 +48,8 @@
       margin-bottom: 15px;
       border: none;
       border-radius: 5px;
-      background-color: #E2E8F0;
-      color: #475569;
+      background-color: var(--color-bg-body);
+      color: var(--color-text-secondary);
     }
     
     .accept-button-container {
@@ -60,12 +60,12 @@
     }
     
     .acceptBtn {
-      background-color: #1D4ED8;
+      background-color: var(--color-primary);
       border: none;
       border-radius: 8px;
       font-size: 15px;
       font-weight: bold;
-      color: #ffffff;
+      color: var(--color-on-primary);
       height: 36px;
       width: 102px;
       cursor: pointer;
@@ -73,7 +73,7 @@
     }
     
     .acceptBtn:hover {
-      background-color: #2563EB;
+      background-color: var(--color-primary-hover);
     transition: background-color 0.3s ease;
     transform: scale(1.05);
     }

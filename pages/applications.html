@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script>
+    (function () {
+      try {
+        var pref = localStorage.getItem('theme') || 'system';
+        var isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-translate="applications_title">Solicitudes de membresía</title>
@@ -43,6 +52,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/../js/jquery.dataTables.min.js"></script>
 
+    <script type="module" src="../js/modules/theme.js"></script>
     <script type="module">
       import membershipApplicationService from '../js/api/services/membershipApplication.js';
       import loginService from '../js/api/services/login.js';

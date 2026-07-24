@@ -5,6 +5,132 @@
     font-style: normal;
 }
 
+/* ============================================
+   Sistema de temas (claro / oscuro / sistema)
+   Estas variables son la única fuente de color
+   para el resto de las hojas de estilo.
+   El atributo data-theme="dark" lo controla js/modules/theme.js
+   ============================================ */
+:root {
+  /* Superficies */
+  --color-bg-body: #E2E8F0;
+  --color-bg-page-alt: #F1F5F9;
+  --color-bg-elevated: #F8FAFC;
+  --color-surface: #ffffff;
+  --color-bg-hover: #CBD5E1;
+
+  /* Bordes y sombras */
+  --color-border: #ddd;
+  --color-border-strong: #CBD5E1;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-strong: rgba(0, 0, 0, 0.2);
+
+  /* Texto */
+  --color-text-primary: #1E293B;
+  --color-text-heading: #2D3748;
+  --color-text-secondary: #475569;
+  --color-text-body: #334155;
+  --color-text-muted: #64748B;
+  --color-text-faint: #94A3B8;
+
+  /* Marca */
+  --color-primary: #1D4ED8;
+  --color-primary-hover: #2563EB;
+  --color-primary-active: #13348f;
+  --color-on-primary: #ffffff;
+
+  /* Estados */
+  --color-success: #3aaf82;
+  --color-success-dark: #196044;
+  --color-success-mid: #238c62;
+  --color-error: #DC2626;
+  --color-error-light: #EF4444;
+  --color-error-tint: #FEE2E2;
+  --color-warning: #F59E0B;
+
+  /* Acento oscuro (encabezados, contadores, botones de paneles admin) */
+  --color-accent-text: #243870;
+  --color-accent-bg: #243870;
+  --color-accent-bg-hover: #131e3a;
+  --color-primary-tint: #EAF1FD;
+
+  /* Sidebar (en claro conserva el look de marca actual) */
+  --color-sidebar-bg: var(--color-primary);
+  --color-sidebar-hover: var(--color-primary-active);
+  --color-sidebar-active: var(--color-primary-active);
+  --color-sidebar-text: var(--color-on-primary);
+  --color-sidebar-border: transparent;
+
+  /* Formularios de login / registro (en claro conservan el look de marca actual) */
+  --color-auth-card-bg: var(--color-primary);
+  --color-auth-card-text: var(--color-bg-elevated);
+  --color-auth-footer-bg: var(--color-text-primary);
+  --color-auth-footer-text: var(--color-on-primary);
+  --color-auth-button-bg: var(--color-surface);
+  --color-auth-button-text: var(--color-text-primary);
+}
+
+[data-theme="dark"] {
+  /* Superficies */
+  --color-bg-body: #0F172A;
+  --color-bg-page-alt: #1E293B;
+  --color-bg-elevated: #1E293B;
+  --color-surface: #1E293B;
+  --color-bg-hover: #334155;
+
+  /* Bordes y sombras */
+  --color-border: #334155;
+  --color-border-strong: #475569;
+  --color-shadow: rgba(0, 0, 0, 0.4);
+  --color-shadow-strong: rgba(0, 0, 0, 0.55);
+
+  /* Texto */
+  --color-text-primary: #F1F5F9;
+  --color-text-heading: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-body: #E2E8F0;
+  --color-text-muted: #94A3B8;
+  --color-text-faint: #64748B;
+
+  /* Marca */
+  --color-primary: #3B82F6;
+  --color-primary-hover: #60A5FA;
+  --color-primary-active: #1D4ED8;
+  --color-on-primary: #ffffff;
+
+  /* Estados */
+  --color-success: #34D399;
+  --color-success-dark: #10B981;
+  --color-success-mid: #22C55E;
+  --color-error: #F87171;
+  --color-error-light: #FCA5A5;
+  --color-error-tint: rgba(248, 113, 113, 0.16);
+  --color-warning: #FBBF24;
+
+  /* Acento oscuro (encabezados, contadores, botones de paneles admin) */
+  --color-accent-text: #93B4FF;
+  --color-accent-bg: #3B5998;
+  --color-accent-bg-hover: #4C6FC7;
+  --color-primary-tint: rgba(59, 130, 246, 0.16);
+
+  /* Sidebar: mismo tono de fondo que la página pero ligeramente más clara,
+     con borde para marcar la separación en vez del azul de marca */
+  --color-sidebar-bg: #17233B;
+  --color-sidebar-hover: var(--color-bg-hover);
+  --color-sidebar-active: var(--color-primary);
+  --color-sidebar-text: var(--color-text-primary);
+  --color-sidebar-border: var(--color-border);
+
+  /* Formularios de login / registro: misma superficie oscura que el resto
+     de formularios del sistema (ej. edición de perfil), botón de marca en
+     vez del botón claro que se perdía sobre una tarjeta ya oscura */
+  --color-auth-card-bg: var(--color-bg-elevated);
+  --color-auth-card-text: var(--color-text-heading);
+  --color-auth-footer-bg: var(--color-bg-elevated);
+  --color-auth-footer-text: var(--color-text-primary);
+  --color-auth-button-bg: var(--color-primary);
+  --color-auth-button-text: var(--color-on-primary);
+}
 
 * {
   font-family: "Instrument Sans", sans-serif;
@@ -18,15 +144,16 @@ html, body {
 }
 
 body {
-    background-color: #E2E8F0;  /* Pon el color directo en el body */
+    background-color: var(--color-bg-body);
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 i {
-    color: #1D4ED8;
+    color: var(--color-primary);
     font-size: x-large;
 }
 
@@ -49,12 +176,12 @@ i {
     #display-sidebar {
         margin-left: 25px;
         margin-top: 25px;
-        background-color: #1D4ED8;
+        background-color: var(--color-primary);
         border: none;
         border-radius: 10px;
         width: 40px;
         height: 40px;
-        color: #fff;
+        color: var(--color-on-primary);
         font-weight: bold;
         font-size: x-large;
         transition: 0.1s;
@@ -63,7 +190,7 @@ i {
     #display-sidebar:hover,
     #display-sidebar:active {
         transition: 0.1s;
-        background-color: #13348f;
+        background-color: var(--color-primary-active);
     }
 
     #display-sidebar:active {

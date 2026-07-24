@@ -8,7 +8,7 @@ body {
 .title-container {
     font-size: 36px;
     font-weight: bold;
-    color: #1D4ED8;
+    color: var(--color-primary);
     position: absolute;
     top: 40px;
     left: 300px;
@@ -22,7 +22,7 @@ body {
 }
 
 .title-container i:hover {
-    background-color: #c7cbd1;
+    background-color: var(--color-bg-hover);
     transition: 0.1s ease-in-out;
 }
 
@@ -38,7 +38,7 @@ body {
 }
 
 .panel {
-    background-color: #fff;
+    background-color: var(--color-surface);
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -63,19 +63,19 @@ body {
 }
 
 #applicant-name {
-    color: #2D3748;
+    color: var(--color-text-heading);
     font-size: x-large;
     font-weight: bold;
 }
 
 #applicant-career {
-    color: #64748B;
+    color: var(--color-text-muted);
     font-size: large;
     font-weight: 600;
 }
 
 #application-data {
-    background-color: #E2E8F0;
+    background-color: var(--color-bg-body);
     height: 100%;
     width: 60%;
     border-radius: 10px;
@@ -90,7 +90,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 4px;
-    border-right: 1px solid #64748B;
+    border-right: 1px solid var(--color-text-muted);
     padding: 0 20px;
 }
 
@@ -99,7 +99,7 @@ body {
 }
 
 #application-data > div h4 {
-    color: #64748B;
+    color: var(--color-text-muted);
     font-size: 12px;
     font-weight: 700;
     margin: 0;
@@ -108,31 +108,31 @@ body {
 }
 
 #application-data > div span {
-    color: #2D3748;
+    color: var(--color-text-heading);
     font-size: larger;
     font-weight: 700;
     margin: 5px;
 }
 
 #application-status.pending {
-    background-color: #F59E0B;
+    background-color: var(--color-warning);
     padding: 5px 15px;
     border-radius: 20px;
-    color: #F5F6F6 !important;
+    color: var(--color-bg-page-alt) !important;
 }
 
 #application-status.rejected {
-    background-color: #EF4444;
+    background-color: var(--color-error-light);
     padding: 5px 15px;
     border-radius: 20px;
-    color: #F5F6F6 !important;
+    color: var(--color-bg-page-alt) !important;
 }
 
 #application-status.approved {
-    background-color: #10B981;
+    background-color: var(--color-success-dark);
     padding: 5px 15px;
     border-radius: 20px;
-    color: #F5F6F6 !important;
+    color: var(--color-bg-page-alt) !important;
 }
 
 #applicant-info {
@@ -157,13 +157,13 @@ body {
 }
 
 .applicant-data-tag label, .applicant-data-tag i{
-    color: #64748B;
+    color: var(--color-text-muted);
     font-size: 16px;
     font-weight: 600;
 }
 
 .applicant-data-tag span{
-    color: #2D3748;
+    color: var(--color-text-heading);
     font-size: 16px;
     font-weight: 600;
     margin-left: 5px;
@@ -172,15 +172,15 @@ body {
 #applicant-info-panel hr {
     width: 100%;
     border: none;
-    border-top: 1px solid #94a3b8;
+    border-top: 1px solid var(--color-text-faint);
 }
 
 #applicant-info-panel span#applicant-comments {
    width: 95%;
    padding: 10px 10px;
-   background-color: #e2e8f0;
+   background-color: var(--color-bg-body);
    border-radius: 5px;
-   color: #2D3748;
+   color: var(--color-text-heading);
    font-size: 14px;
    font-weight: 500;
    margin-bottom: 15px;
@@ -204,23 +204,23 @@ body {
 }
 
 #buttons-container .application-btn#open-reject-modal{
-  background-color: #ef4444;
-  color: #fff;
+  background-color: var(--color-error-light);
+  color: var(--color-on-primary);
 }
 
 #buttons-container .application-btn#open-reject-modal:hover{
-  background-color: #c93939;
+  background-color: var(--color-error);
   transform: scale(1.05);
   transition: 0.1s ease-in-out;
 }
 
 #buttons-container .application-btn#open-approve-modal{
-  background-color: #10b981;
-  color: #fff;
+  background-color: var(--color-success-dark);
+  color: var(--color-on-primary);
 }
 
 #buttons-container .application-btn#open-approve-modal:hover{
-  background-color: #0d9165;
+  background-color: var(--color-success-dark);
   transform: scale(1.05);
   transition: 0.1s ease-in-out;
 }
@@ -245,31 +245,31 @@ body {
   padding: 6px 14px; /* ← menos padding vertical */
   border: none;
   border-radius: 15px;
-  background-color: #1D4ED8;
+  background-color: var(--color-primary);
   align-self: center; /* ← se centra verticalmente respecto al h3 */
   transition: 0.5 ease-in-out;
 }
 
 #cv-panel-header button a{
-  color: #fff;
+  color: var(--color-on-primary);
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
 }
 
 #cv-panel-header button a:visited{
-  color: #fff;
+  color: var(--color-on-primary);
   text-decoration: none;
 }
 
 #cv-panel-header button:hover{
-  background-color: #173eaa;
+  background-color: var(--color-accent-bg-hover);
   transition: 0.5 ease-in-out;
 }
 
 #cv-panel-header button i{
   font-size: 14px;
-  color: #fff
+  color: var(--color-on-primary)
 }
 
 #cv-panel iframe {
@@ -296,7 +296,7 @@ body {
 .modal-content {
     position: relative;
     margin: auto;
-    border: 1px solid #888;
+    border: 1px solid var(--color-border-strong);
     width: 40%;
     display: flex;
     flex-direction: column;
@@ -307,7 +307,7 @@ body {
     position: absolute;
     top: 10px;
     right: 15px;
-    color: #313D65;
+    color: var(--color-accent-text);
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
@@ -317,18 +317,18 @@ body {
 
 .close-modal:hover,
 .close-modal:focus {
-    color: #161b2c;
+    color: var(--color-accent-bg-hover);
     text-decoration: none;
 }
 
 .form-box {
-    background-color: #F0F4F9;
+    background-color: var(--color-bg-elevated);
     padding: 20px;
     border-radius: 10px;
-    color: #2D3748;
+    color: var(--color-text-heading);
     font-weight: 530;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-    border: 2px solid #0202021c;
+    border: 2px solid var(--color-border);
 }
 
 .form-box h3 {
@@ -348,8 +348,8 @@ body {
     margin: 10px 0px;
     border: none;
     border-radius: 5px;
-    background-color: #E2E8F0;
-    color: #475569;
+    background-color: var(--color-bg-body);
+    color: var(--color-text-secondary);
     resize: none;
     box-sizing: border-box;
 }
@@ -373,26 +373,26 @@ body {
 }
 
 .accept-btn {
-    background-color: #1D4ED8;
+    background-color: var(--color-primary);
     border: none;
-    color: #ffffff;
+    color: var(--color-on-primary);
 }
 
 .accept-btn:hover {
-    background-color: #2563EB;
+    background-color: var(--color-primary-hover);
     transition: all 0.3s ease;
     transform: scale(1.05);
 }
 
 .cancel-btn {
-    background-color: #f8fafc;
+    background-color: var(--color-bg-elevated);
     border: 2px;
-    border-color: #1D4ED8;
-    color: #1D4ED8;
+    border-color: var(--color-primary);
+    color: var(--color-primary);
 }
 
 .cancel-btn:hover {
-    background-color: #f1f5f9;
+    background-color: var(--color-bg-page-alt);
     transition: all 0.3s ease;
     transform: scale(1.05);
 }

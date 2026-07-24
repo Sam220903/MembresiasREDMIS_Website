@@ -1,30 +1,53 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Paleta y tipografía alineadas con el frontend de REDMIS
+ * (ver /css/general.css, /css/sidebar.css, /css/login.css del proyecto).
  */
 
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/fonts/InstrumentSans-VariableFont.ttf') format('truetype');
+  font-weight: 100 700;
+  font-style: normal;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+:root {
+  /* Azul primario de REDMIS (#1D4ED8) y sus variaciones */
+  --ifm-color-primary: #1d4ed8;
+  --ifm-color-primary-dark: #1a46c2;
+  --ifm-color-primary-darker: #1842b7;
+  --ifm-color-primary-darkest: #143697;
+  --ifm-color-primary-light: #2b5cdb;
+  --ifm-color-primary-lighter: #3663dd;
+  --ifm-color-primary-lightest: #5a80e3;
+
+  --ifm-font-family-base: 'Instrument Sans', sans-serif;
+  --ifm-background-color: #f8fafc;
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-footer-background-color: #0f172a;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(29, 78, 216, 0.1);
+}
+
+/* Modo oscuro, usando los grises "slate" ya presentes en el frontend */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #5a80e3;
+  --ifm-color-primary-dark: #3663dd;
+  --ifm-color-primary-darker: #2b5cdb;
+  --ifm-color-primary-darkest: #1d4ed8;
+  --ifm-color-primary-light: #7b9be8;
+  --ifm-color-primary-lighter: #8fabec;
+  --ifm-color-primary-lightest: #c2d1f5;
+
+  --ifm-background-color: #0f172a;
+  --ifm-navbar-background-color: #1e293b;
+  --ifm-footer-background-color: #0f172a;
+  --docusaurus-highlighted-code-line-bg: rgba(29, 78, 216, 0.3);
+}
+
+.navbar__logo img {
+  height: 2rem;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: #0f172a;
 }

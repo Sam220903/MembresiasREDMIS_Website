@@ -1,0 +1,8 @@
+{
+  "label": "Desarrolladores",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Documentación técnica del proyecto: arquitectura, cliente API, servicios, módulos e i18n."
+  }
+}

@@ -5,7 +5,7 @@
   .title-container {
     font-size: 36px;
     font-weight: bold;
-    color: #1D4ED8;
+    color: var(--color-primary);
     position: absolute;
     top: 40px;
     left: 300px;
@@ -34,8 +34,8 @@
     margin-left: 15px;
     border: none;
     border-radius: 5px;
-    background-color: #F1F5F9;
-    color: #475569;
+    background-color: var(--color-bg-page-alt);
+    color: var(--color-text-secondary);
     box-sizing: border-box;
     font-size: large;
     font-weight: 700;
@@ -55,7 +55,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #475569;
+    color: var(--color-text-secondary);
     width: 100%;
   }
 
@@ -104,8 +104,8 @@
   }
 
   #members-per-university-table thead {
-    background-color: #475569;
-    color: #F1F5F9;
+    background-color: var(--color-text-secondary);
+    color: var(--color-bg-page-alt);
   }
 
   #members-per-university h4 {
@@ -119,11 +119,11 @@
   }
 
   #members-per-university-table tbody tr:nth-child(odd) {
-    background-color: #F1F5F9;
+    background-color: var(--color-bg-page-alt);
   }
 
   #members-per-university-table tbody tr:nth-child(even) {
-    background-color: #E2E8F0;
+    background-color: var(--color-bg-body);
   }
 
   #members-per-university-table th, #members-per-university-table td {
@@ -146,18 +146,18 @@
   hr{
     width: 80%;
     border: none;
-    border-top: 1px solid #A0AEC0;
+    border-top: 1px solid var(--color-text-faint);
   }
 
   .statistic-card {
-    background-color: #F1F5F9;
+    background-color: var(--color-bg-page-alt);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
   } 
 
   .statistic-card h4 {
-    color: #838e9c;
+    color: var(--color-text-muted);
   }
 
   .statistics-panel#applications-panel .statistic-card{ 
@@ -171,7 +171,7 @@
   .statistics-panel#applications-panel .statistic-card span{ 
     font-size: xx-large;
     font-weight: bold;
-    color: #1D4ED8;
+    color: var(--color-primary);
   }
 
   
@@ -193,6 +193,6 @@
     #total-members span, #total-memberships span, #total-applications span {
         font-size: 4em !important;
         font-weight: bolder;
-        color: #1D4ED8;
+        color: var(--color-primary);
     }
 

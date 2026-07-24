@@ -8,7 +8,7 @@ body {
 .title-container {
     font-size: 36px;
     font-weight: bold;
-    color: #1D4ED8;
+    color: var(--color-primary);
     position: absolute;
     top: 40px;
     left: 300px;
@@ -22,7 +22,7 @@ body {
   }
 
   .title-container i:hover{
-    background-color: #c7cbd1;
+    background-color: var(--color-bg-hover);
     transition: 0.1s ease-in-out;
   }
 
@@ -31,7 +31,7 @@ body {
   }
 
   .title-container a:visited{
-    color: #1D4ED8;
+    color: var(--color-primary);
   }
 
   .title-container a:hover{
@@ -50,16 +50,16 @@ body {
 }
 
 .table-box {
-    background-color: #F1F5F9;
+    background-color: var(--color-bg-page-alt);
     padding: 5px 20px;
     border-radius: 10px;
     width: 100%;
-    color: #0F172A;
+    color: var(--color-bg-body);
     letter-spacing: 1px;
 }
 
 .table-box h3 {
-    color: #1D4ED8;
+    color: var(--color-primary);
 }
 
 .table-box table {
@@ -76,7 +76,7 @@ th {
 
 .table-box th {
     font-weight: 600;
-    color: #0F172A;
+    color: var(--color-bg-body);
     font-size: 14px;
     text-align: left;
     white-space: normal;
@@ -86,7 +86,7 @@ th {
 }
 
 .table-box tbody {
-    color: #334155
+    color: var(--color-text-body)
 }
 
 #members-per-role tbody tr {
@@ -120,7 +120,7 @@ th {
 }
 
 .table-box table button.action-btn {
-    background-color: #1D4ED8;
+    background-color: var(--color-primary);
     color: white;
     padding: 5px 10px;
     border-radius: 15px;
@@ -134,14 +134,14 @@ th {
 }
 
 .table-box table button.action-btn:hover {
-    background-color: #334155;
+    background-color: var(--color-text-body);
     transform: scale(1.1);
     transition: 0.1s;
 }
 
 .table-box table button.action-btn a {
     text-decoration: none;
-    color: #fff;
+    color: var(--color-on-primary);
 }
 
 .table-box table button.action-btn i {
@@ -150,7 +150,7 @@ th {
 
 .table-box table button.action-btn a:visited {
     text-decoration: none;
-    color: #fff;
+    color: var(--color-on-primary);
 }
 
 .toggle-container {
@@ -193,7 +193,7 @@ th {
 }
 
 input:checked+.slider {
-    background-color: #1D4ED8;
+    background-color: var(--color-primary);
 }
 
 input:checked+.slider::before {

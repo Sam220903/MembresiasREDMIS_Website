@@ -11,7 +11,7 @@ body{
     align-items: center;
 }
 h2{
-    color: #1D4ED8;
+    color: var(--color-primary);
     font-size: 2.1rem;
 }
 p{
@@ -24,7 +24,7 @@ p{
     font-weight: bold;
 }
 form{
-    background-color: #F0F4F9;
+    background-color: var(--color-bg-elevated);
     width: 80%;
     padding: 20px;
     display:flex;
@@ -38,7 +38,7 @@ input{
     height: 50px;
     border: none;
     border-radius: 15px;
-    background-color: #E2E8F0;
+    background-color: var(--color-bg-body);
     color: black;
     text-align: center;
 }
@@ -47,7 +47,7 @@ button{
     width: 50%;
     height: 40px;
     margin: 20px 0px 20px 0px;
-    background-color: #2563EB;
+    background-color: var(--color-primary-hover);
     color: white;
     padding: 20px;
     border: none;
@@ -73,12 +73,12 @@ button{
 
 .error-animation {
     animation: shake 0.5s ease-in-out;
-    border: 2px solid #ff4444 !important;
+    border: 2px solid var(--color-error-light) !important;
 }
 
 .success-animation {
     animation: success 0.5s ease-in-out;
-    border: 2px solid #00C851 !important;
+    border: 2px solid var(--color-success) !important;
 }
 
 .message {
@@ -89,13 +89,13 @@ button{
 }
 
 .error-message {
-    background-color: #ffebee;
-    color: #ff4444;
-    border: 1px solid #ff4444;
+    background-color: var(--color-error-tint);
+    color: var(--color-error-light);
+    border: 1px solid var(--color-error-light);
 }
 
 .success-message {
-    background-color: #e8f5e9;
-    color: #00C851;
-    border: 1px solid #00C851;
+    background-color: var(--color-success-mid);
+    color: var(--color-success);
+    border: 1px solid var(--color-success);
 }

@@ -5,7 +5,24 @@
   width: 100%;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.featureCard {
+  display: block;
+  height: 100%;
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(29, 78, 216, 0.15);
+  text-decoration: none;
+  color: inherit;
+}
+
+.featureIcon {
+  font-size: 3rem;
+  line-height: 1;
 }

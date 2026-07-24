@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script>
+    (function () {
+      try {
+        var pref = localStorage.getItem('theme') || 'system';
+        var isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-translate="profile_title">Perfil</title>
@@ -26,29 +35,29 @@
     <div class="form-container">
       <div class="form-box">
         <label data-translate="profile_name">Nombre</label>
-        <input id="nombre" type="text" placeholder="Nombre" disabled>
+        <input id="nombre" type="text" placeholder="Nombre" disabled data-translate-placeholder="profile_name">
         <label data-translate="profile_lastname">Apellido(s)</label>
-        <input id="apellidos" type="text" placeholder="Apellido(s)" disabled>
+        <input id="apellidos" type="text" placeholder="Apellido(s)" disabled data-translate-placeholder="profile_lastname">
         <label data-translate="profile_gender">Género</label>
-        <input id="genero" type="text" placeholder="Género" disabled>
+        <input id="genero" type="text" placeholder="Género" disabled data-translate-placeholder="profile_gender">
         <label data-translate="profile_university">Universidad</label>
         <div id="universidad-container">
-          <input id="universidad" type="text" placeholder="Universidad" disabled>
+          <input id="universidad" type="text" placeholder="Universidad" disabled data-translate-placeholder="profile_university">
         </div>
       </div>
       <div class="form-box">
         <label data-translate="profile_state">Estado</label>
         <div id="estado-container">
-          <input id="estado" type="text" placeholder="Estado" disabled>
+          <input id="estado" type="text" placeholder="Estado" disabled data-translate-placeholder="profile_state">
         </div>
         <label data-translate="profile_country">País</label>
         <div id="pais-container">
-          <input id="pais" type="text" placeholder="País" disabled>
+          <input id="pais" type="text" placeholder="País" disabled data-translate-placeholder="profile_country">
         </div>
         <label data-translate="profile_email">Email</label>
-        <input id="email" type="email" placeholder="Email" disabled>
+        <input id="email" type="email" placeholder="Email" disabled data-translate-placeholder="profile_email">
         <label data-translate="profile_password">Contraseña</label>
-        <input id="password" type="password" placeholder="Contraseña" disabled>
+        <input id="password" type="password" placeholder="Contraseña" disabled data-translate-placeholder="profile_password">
       </div>
     </div>
     <div class="edit-button-container">
@@ -64,6 +73,7 @@
     </div>
   </div>
 
+  <script type="module" src="../js/modules/theme.js"></script>
   <script type="module" src="../js/modules/sidebar.js"></script>
   
   <script type="module" src="../js/modules/profile.js"></script>
