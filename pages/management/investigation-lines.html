@@ -72,6 +72,23 @@
       </div>
     </div>
 
+    <!-- Modal de confirmación de eliminación -->
+    <div id="deleteConfirmModal" class="modal">
+      <div class="modal-content">
+        <div class="form-box delete-box">
+          <span class="close-modal" id="close-delete-btn">&times;</span>
+          <h3>Confirmar eliminación</h3>
+          <p>
+            ¿Seguro que deseas eliminar <strong id="delete-entity-name"></strong>? Esta acción no se puede deshacer.
+          </p>
+          <div class="delete-actions">
+            <button id="cancelDeleteBtn" class="cancelBtn">Cancelar</button>
+            <button id="confirmDeleteBtn" class="deleteBtn">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </body>
 
 <script type="module" src="../../js/modules/theme.js"></script>

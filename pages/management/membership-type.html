@@ -55,16 +55,18 @@
       </div>
     </div>
 
-    <!-- Modal de agregar membresía: los campos se generan dinámicamente desde membershipFields en el JS -->
+    <!-- Modal de agregar membresía: campos fijos (nombre y tipo) -->
     <div id="addMembershipModal" class="modal">
       <div class="modal-content">
         <div class="form-box">
           <span class="close-modal" id="close-add-membership-btn">&times;</span>
           <h3>Añadir membresía</h3>
 
-          <div id="membershipFormFields">
-            <!-- Campos generados dinámicamente -->
-          </div>
+          <label for="membershipNameInput">Nombre de la membresía</label>
+          <input type="text" id="membershipNameInput">
+
+          <label for="membershipTypeInput">Tipo de membresía</label>
+          <input type="text" id="membershipTypeInput">
 
           <div class="accept-button-container">
             <button id="acceptAddMembershipBtn" class="acceptBtn">Agregar</button>

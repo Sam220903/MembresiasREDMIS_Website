@@ -1,37 +1,57 @@
-import membresiasService from "../api/services/membresias.js";
+import membershipsService from "../api/services/memberships.js";
 
 
 const goBackBtn = document.getElementById("go-back-btn");
 goBackBtn.addEventListener('click', () => window.history.back());
 
 
-// Ajusta esta lista a los campos reales que tu tabla/servicio de membresías espera.
-// Cada campo se renderiza automáticamente en el modal de agregar.
-const membershipFields = [
-    { key: 'nombre', label: 'Nombre de la membresía', type: 'text', required: true },
-    { key: 'descripcion', label: 'Descripción', type: 'textarea', required: false },
-    { key: 'precio', label: 'Precio (MXN)', type: 'number', required: true },
-    { key: 'duracion', label: 'Duración', type: 'select', options: ['Mensual', 'Anual'], required: true }
-];
-
-
-let membershipsList = await membresiasService.get();
+let membershipsList = await membershipsService.get();
 
 const searchInput = document.getElementById('searchMembership');
 const listEl = document.getElementById('memberships-list');
 const countEl = document.getElementById('memberships-count');
 const emptyEl = document.getElementById('memberships-empty');
 
-const formatSubtitle = (item) => {
-    const parts = [];
-    if (item.precio !== undefined && item.precio !== null && item.precio !== '') {
-        parts.push(`$${item.precio}`);
-    }
-    if (item.duracion) {
-        parts.push(item.duracion);
-    }
-    return parts.join(' · ');
+
+// ------------- Fila de entidad (nombre + tipo + eliminar) ------------- //
+
+const createMembershipRow = (item) => {
+    const li = document.createElement('li');
+    li.className = 'entity-item';
+    li.dataset.id = item.id;
+
+    const info = document.createElement('div');
+    info.className = 'entity-info';
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'entity-name';
+    nameSpan.textContent = item.nombre;
+    nameSpan.title = item.nombre;
+    info.appendChild(nameSpan);
+
+    const typeSpan = document.createElement('span');
+    typeSpan.className = 'entity-sub';
+    typeSpan.textContent = item.tipo;
+    info.appendChild(typeSpan);
+
+    const actions = document.createElement('div');
+    actions.className = 'entity-actions';
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete-entity-btn';
+    deleteBtn.title = 'Eliminar';
+    deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+    deleteBtn.addEventListener('click', () => openDeleteModal(item.id, item.nombre));
+
+    actions.appendChild(deleteBtn);
+    li.appendChild(info);
+    li.appendChild(actions);
+
+    return li;
 };
+
+
+// ------------- Renderizado de la lista (con búsqueda y contador) ------------- //
 
 const renderMemberships = () => {
     const term = searchInput.value.toLowerCase();
@@ -48,38 +68,7 @@ const renderMemberships = () => {
         emptyEl.style.visibility = 'visible';
     } else {
         emptyEl.style.visibility = 'hidden';
-        filtered.forEach(item => {
-            const li = document.createElement('li');
-            li.className = 'entity-item';
-            li.dataset.id = item.id;
-
-            const info = document.createElement('div');
-            info.className = 'entity-info';
-
-            const nameSpan = document.createElement('span');
-            nameSpan.className = 'entity-name';
-            nameSpan.textContent = item.nombre;
-            nameSpan.title = item.nombre;
-            info.appendChild(nameSpan);
-
-            const subtitle = formatSubtitle(item);
-            if (subtitle) {
-                const subSpan = document.createElement('span');
-                subSpan.className = 'entity-sub';
-                subSpan.textContent = subtitle;
-                info.appendChild(subSpan);
-            }
-
-            const deleteBtn = document.createElement('button');
-            deleteBtn.className = 'delete-entity-btn';
-            deleteBtn.title = 'Eliminar';
-            deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
-            deleteBtn.addEventListener('click', () => openDeleteModal(item.id, item.nombre));
-
-            li.appendChild(info);
-            li.appendChild(deleteBtn);
-            listEl.appendChild(li);
-        });
+        filtered.forEach(item => listEl.appendChild(createMembershipRow(item)));
     }
 
     countEl.textContent = membershipsList.length;
@@ -89,46 +78,19 @@ searchInput.addEventListener('keyup', renderMemberships);
 renderMemberships();
 
 
-// ------------- Modal de agregar (campos generados desde membershipFields) ------------- //
+// ------------- Modal de agregar ------------- //
 
 const addModal = document.getElementById('addMembershipModal');
-const formFieldsContainer = document.getElementById('membershipFormFields');
+const membershipNameInput = document.getElementById('membershipNameInput');
+const membershipTypeInput = document.getElementById('membershipTypeInput');
 const acceptAddBtn = document.getElementById('acceptAddMembershipBtn');
 const closeAddBtn = document.getElementById('close-add-membership-btn');
 
-const buildFormFields = () => {
-    formFieldsContainer.innerHTML = '';
-
-    membershipFields.forEach(field => {
-        const label = document.createElement('label');
-        label.setAttribute('for', `field-${field.key}`);
-        label.textContent = field.label;
-        formFieldsContainer.appendChild(label);
-
-        let input;
-        if (field.type === 'textarea') {
-            input = document.createElement('textarea');
-        } else if (field.type === 'select') {
-            input = document.createElement('select');
-            field.options.forEach(optionValue => {
-                const option = document.createElement('option');
-                option.value = optionValue;
-                option.textContent = optionValue;
-                input.appendChild(option);
-            });
-        } else {
-            input = document.createElement('input');
-            input.type = field.type;
-        }
-
-        input.id = `field-${field.key}`;
-        formFieldsContainer.appendChild(input);
-    });
-};
-
 const openAddModal = () => {
-    buildFormFields();
+    membershipNameInput.value = '';
+    membershipTypeInput.value = '';
     addModal.style.display = 'block';
+    membershipNameInput.focus();
 };
 
 const closeAddModal = () => {
@@ -141,25 +103,27 @@ addModal.addEventListener('click', (e) => {
     if (e.target === addModal) closeAddModal();
 });
 
-acceptAddBtn.addEventListener('click', async () => {
-    const data = {};
 
-    for (const field of membershipFields) {
-        const input = document.getElementById(`field-${field.key}`);
-        const value = input.value.trim();
+// ------------- Consumo de API: agregar ------------- //
 
-        if (field.required && !value) {
-            alert(`Por favor, completa el campo "${field.label}".`);
-            return;
-        }
+const handleAddSubmit = async () => {
+    const nombre = membershipNameInput.value.trim();
+    const tipo = membershipTypeInput.value.trim();
 
-        data[field.key] = value;
+    if (!nombre) {
+        alert('Por favor, ingresa un nombre de membresía válido.');
+        return;
+    }
+
+    if (!tipo) {
+        alert('Por favor, ingresa un tipo de membresía válido.');
+        return;
     }
 
     try {
-        // Consumo de API para agregar la membresía.
         // El endpoint no soporta editar, solo agregar, consultar y eliminar.
-        const response = await membresiasService.add(data);
+        const response = await membershipsService.add({ nombre, tipo });
+
         if (response) {
             alert('Membresía agregada exitosamente');
             location.reload();
@@ -172,7 +136,9 @@ acceptAddBtn.addEventListener('click', async () => {
     } finally {
         closeAddModal();
     }
-});
+};
+
+acceptAddBtn.addEventListener('click', handleAddSubmit);
 
 
 // ------------- Modal de eliminación ------------- //
@@ -202,11 +168,15 @@ deleteModal.addEventListener('click', (e) => {
     if (e.target === deleteModal) closeDeleteModal();
 });
 
-confirmDeleteBtn.addEventListener('click', async () => {
+
+// ------------- Consumo de API: eliminar ------------- //
+
+const handleDeleteSubmit = async () => {
     if (!membershipToDelete) return;
 
     try {
-        const response = await membresiasService.remove(membershipToDelete);
+        const response = await membershipsService.delete(membershipToDelete);
+
         if (response) {
             alert('Membresía eliminada exitosamente');
             location.reload();
@@ -219,4 +189,6 @@ confirmDeleteBtn.addEventListener('click', async () => {
     } finally {
         closeDeleteModal();
     }
-});
+};
+
+confirmDeleteBtn.addEventListener('click', handleDeleteSubmit);
