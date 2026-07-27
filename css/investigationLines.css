@@ -102,6 +102,8 @@ body {
   .panel-toolbar input {
     padding: 10px;
     border: 1px solid var(--color-bg-body);
+    background-color: var(--color-bg-body);
+    color: var(--color-text-primary);
     border-radius: 8px;
     width: 100%;
     box-sizing: border-box;

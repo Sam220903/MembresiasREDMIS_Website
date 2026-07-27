@@ -37,6 +37,7 @@ body {
     border-radius: 8px;
     box-shadow: 4px 4px 10px var(--color-shadow);
     border: 2px solid var(--color-border);
+    color: var(--color-text-primary)
 }
 
 .user-header {
@@ -48,12 +49,17 @@ body {
 
 .user-header span {
     padding-left: 10px;
+    font-weight: 700;
 }
 
 .user-details {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
+}
+
+.user-details label {
+    font-weight: 600;
 }
 
 .info-group {
@@ -96,6 +102,8 @@ body {
 
 .btn i {
     margin-right: 5px;
+    color: var(--color-on-primary);
+    font-size: 14px;
 }
 
 .btn a {

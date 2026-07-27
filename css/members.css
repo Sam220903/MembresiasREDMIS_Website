@@ -113,6 +113,7 @@ html, body {
   font-size: 16px;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .btn-editar:hover {
@@ -133,6 +134,6 @@ html, body {
 }
 
 .btn-editar i {
-  font-size: larger;
+  font-size: 14px;
   color: var(--color-on-primary);
 }

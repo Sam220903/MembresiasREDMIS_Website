@@ -76,8 +76,9 @@ th {
 
 .table-box th {
     font-weight: 600;
-    color: var(--color-bg-body);
+    color: var(--color-text-body);
     font-size: 14px;
+    font-weight: 700;
     text-align: left;
     white-space: normal;
     /* Permite saltos de línea */

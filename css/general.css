@@ -89,7 +89,7 @@
   --color-text-heading: #F8FAFC;
   --color-text-secondary: #CBD5E1;
   --color-text-body: #E2E8F0;
-  --color-text-muted: #94A3B8;
+  --color-text-muted: #F1F5F9;
   --color-text-faint: #64748B;
 
   /* Marca */
@@ -103,7 +103,7 @@
   --color-success-dark: #10B981;
   --color-success-mid: #22C55E;
   --color-error: #F87171;
-  --color-error-light: #FCA5A5;
+  --color-error-light: #F87171;
   --color-error-tint: rgba(248, 113, 113, 0.16);
   --color-warning: #FBBF24;
 
