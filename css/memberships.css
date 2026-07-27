@@ -1,4 +1,3 @@
-
 /* Estilos generales para el body */
 body
 {
@@ -8,9 +7,13 @@ body
   background-color: var(--color-bg-elevated);
 }
 
-h1
-{
+.title-container {
+  font-size: 36px;
+  font-weight: bold;
   color: var(--color-primary);
+  position: absolute;
+  top: 40px;
+  left: 300px;
 }
 
 /* Estilos para el contenido princip  al */
@@ -18,7 +21,7 @@ h1
 {
   flex: 1;
   padding: 20px;
-  margin-top: 100px;
+  margin-top: 150px;
   margin-left: 270px;
   margin-right: 10px;
   background-color: var(--color-bg-page-alt);
@@ -113,10 +116,9 @@ h1
 {
   padding: 5px 10px;
   border: none;
-  background-color:  var(--color-text-secondary);
+  background-color:  var(--color-bg-page-alt);
   color: var(--color-on-primary);
   cursor: pointer;
-  border-radius: 15px;
   font-size: 15px;
   font-weight: bold;
   transition: 0.1s;
@@ -125,13 +127,12 @@ h1
 .download-btn i {
   margin-left: 5px;
   font-size: large;
-  color: var(--color-on-primary);
+  color: var(--color-primary);
 }
 
 .download-btn:hover
 {
-  background-color: var(--color-accent-text);
-  transform: scale(1.1);
+  transform: scale(1.2);
   transition: 0.1s;
 }
 

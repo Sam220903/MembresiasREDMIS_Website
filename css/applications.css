@@ -117,6 +117,7 @@ body {
 
   .table-box table button.evaluate{
     background-color: var(--color-primary);
+    align-items: center;
     color: white;
     padding: 5px 10px;
     border-radius: 15px;
@@ -124,13 +125,12 @@ body {
     transition: 0.1s;
     border: none;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     flex-direction: row;
   }
 
   .table-box table button.evaluate:hover{
-    background-color: var(--color-text-body);
     transform: scale(1.1);
     transition: 0.1s;
   }
@@ -142,7 +142,7 @@ body {
 
   .table-box table button.evaluate i{
     padding: 2px 8px 2px 0;
-    font-size: large;
+    font-size: medium;
     color: var(--color-on-primary);
   }
 

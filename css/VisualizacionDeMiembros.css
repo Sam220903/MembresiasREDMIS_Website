@@ -1,7 +1,6 @@
-
 body {
     margin: 0;
-  background-color: var(--color-bg-page-alt);
+  background-color: var(--color-bg-elevated);
 }
 
 
@@ -15,18 +14,29 @@ body {
     z-index: -1;
   }
 
+.title-container {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--color-primary);
+    position: absolute;
+    top: 40px;
+    left: 300px;
+    margin: 0;
+}
 
 .content {
     flex: 1;
     padding: 20px;
+    margin-top: 150px;
     margin-left: 250px;
 }
 
 .user-card {
-    background: white;
+    background: var(--color-bg-elevated);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+    box-shadow: 4px 4px 10px var(--color-shadow);
+    border: 2px solid var(--color-border);
 }
 
 .user-header {
@@ -60,7 +70,8 @@ body {
     padding: 8px;
     border: 1px solid var(--color-border-strong);
     border-radius: 5px;
-    background: var(--color-bg-elevated);
+    background: var(--color-bg-body);
+    color: var(--color-text-secondary);
 }
 
 .actions {
@@ -97,13 +108,13 @@ body {
     color: var(--color-on-primary);
 }
 
-.btn-primary { background: var(--color-warning); color: white; }
-.btn-secondary { background: var(--color-success-dark); color: white; }
-.btn-warning { background: var(--color-error-light); color: white; }
-.btn-danger { background: var(--color-error-light); color: white; }
+.btn-primary { background: var(--color-warning); color: var(--color-on-primary); }
+.btn-secondary { background: var(--color-success-dark); color: var(--color-on-primary); }
+.btn-warning { background: var(--color-error-light); color: var(--color-on-primary); }
+.btn-danger { background: var(--color-error-light); color: var(--color-on-primary); }
 
 .btn:hover {
     opacity: 0.9;
-    color: white;
+    color: var(--color-on-primary);
     transform: scale(1.05);
 }

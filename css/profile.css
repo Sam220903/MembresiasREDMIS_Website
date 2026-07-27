@@ -21,6 +21,7 @@ body {
 
 .main-container{
     margin-bottom: 100px;
+    margin-left: 100px;
 }
   
 .title-container {
@@ -132,9 +133,8 @@ body {
 }
 
 .edit-button:hover {
-    background-color: var(--color-primary-hover);
-    transition: background-color 0.3s ease;
-    transform: scale(1.05);
+    transition: 0.3s ease;
+    transform: scale(1.1);
 }
 
 .cancel-Btn {
@@ -153,9 +153,8 @@ body {
 }
 
 .cancel-Btn:hover {
-    background-color: var(--color-error-light);
-    transition: background-color 0.3s ease;
-    transform: scale(1.05); 
+    transition: 0.3s ease;
+    transform: scale(1.1); 
 }
 
 @media only screen and (max-width: 600px){

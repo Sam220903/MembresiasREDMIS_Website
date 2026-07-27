@@ -1,5 +1,4 @@
-   
-    body {
+body {
       background-color: var(--color-bg-elevated);
       margin: 0;
       padding: 0;
@@ -15,8 +14,8 @@
       font-weight: bold;
       color: var(--color-primary);
       position: absolute;
-      top: 60px;
-      left: 350px;
+      top: 40px;
+      left: 300px;
     }
     
     .form-wrapper {

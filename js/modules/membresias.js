@@ -55,7 +55,7 @@ function renderMembresias(membresiasData) {
             <td>${formatDate(membresia.fecha_inicio)}</td>
             <td>${formatDate(membresia.fecha_fin)}</td>
             <td>${membresia.membresia_nombre || 'N/A'}</td>
-            <td><span data-translate="membership_status_${estado}" class="${getEstadoClass(estado)}"></span></td>
+            <td><span data-translate="membership_status_${estado}" class="${getEstadoClass(estado)}">${membresia.estado}</span></td>
             <td class="action-cell"></td>
         `;
 
