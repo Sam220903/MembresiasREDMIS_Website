@@ -1,5 +1,13 @@
 import membershipsService from '../api/services/memberships.js';
 import membershipApplicationService from '../api/services/membershipApplication.js';
+import cvService from '../api/services/cv.js';
+import { getPDF } from './pdfProcessor.js';
+
+// Estado del CV ya cargado por el usuario (si existe), para decidir si el
+// archivo del formulario es obligatorio (no tiene CV) u opcional (ya tiene uno).
+let hasExistingCv = false;
+let currentCvId = null;
+let currentCvPdfUrl = null;
 
 // Cargar tipos de membresía
 async function loadMemberships() {
@@ -46,6 +54,87 @@ function fileToBase64(file) {
     });
 }
 
+// Pinta el estado del CV actual del usuario (si tiene uno) y actualiza si el
+// campo de archivo del formulario es obligatorio u opcional.
+function renderCurrentCv(latestCv) {
+    const statusText = document.getElementById('cv-status-text');
+    const previewIframe = document.getElementById('cv-preview');
+    const cvFileInput = document.getElementById('cv-file');
+    const cvFileLabel = document.getElementById('cv-file-label');
+
+    if (!statusText || !previewIframe || !cvFileInput || !cvFileLabel) {
+        console.warn('renderCurrentCv: faltan elementos del CV en el HTML (cv-status-text, cv-preview, cv-file o cv-file-label). Verifica que membership_application.html esté actualizado.');
+        return;
+    }
+
+    if (currentCvPdfUrl) {
+        URL.revokeObjectURL(currentCvPdfUrl);
+        currentCvPdfUrl = null;
+    }
+
+    if (!latestCv) {
+        hasExistingCv = false;
+        currentCvId = null;
+        statusText.style.display = '';
+        statusText.textContent = 'Aún no has subido un CV.';
+        previewIframe.style.display = 'none';
+        previewIframe.src = '';
+        cvFileLabel.textContent = 'Sube tu CV (PDF)';
+        cvFileInput.required = true;
+        return;
+    }
+
+    hasExistingCv = true;
+    currentCvId = latestCv.id;
+    statusText.style.display = 'none';
+    cvFileLabel.textContent = 'Subir un CV nuevo (opcional si ya tienes uno cargado)';
+    cvFileInput.required = false;
+
+    if (latestCv.cv_base64) {
+        currentCvPdfUrl = getPDF(latestCv.cv_base64);
+        previewIframe.style.display = 'block';
+        previewIframe.src = currentCvPdfUrl;
+    } else {
+        previewIframe.style.display = 'none';
+        previewIframe.src = '';
+    }
+}
+
+async function loadCurrentCv() {
+    try {
+        const response = await cvService.get();
+        const latestCv = response?.data?.latest || null;
+        renderCurrentCv(latestCv);
+    } catch (error) {
+        console.error('Error al cargar el CV actual:', error);
+        renderCurrentCv(null);
+    }
+}
+
+// Previsualización exclusiva del front: muestra el archivo recién elegido en el
+// iframe al instante, sin subirlo todavía. Se sube de verdad hasta enviar la solicitud.
+function previewSelectedCvFile(file) {
+    const statusText = document.getElementById('cv-status-text');
+    const previewIframe = document.getElementById('cv-preview');
+
+    if (!statusText || !previewIframe) {
+        console.warn('previewSelectedCvFile: faltan elementos del CV en el HTML (cv-status-text o cv-preview).');
+        return;
+    }
+
+    if (currentCvPdfUrl) {
+        URL.revokeObjectURL(currentCvPdfUrl);
+        currentCvPdfUrl = null;
+    }
+
+    if (!file) return;
+
+    currentCvPdfUrl = URL.createObjectURL(file);
+    statusText.style.display = 'none';
+    previewIframe.style.display = 'block';
+    previewIframe.src = currentCvPdfUrl;
+}
+
 function validateMembershipForm() {
 const membershipId = document.getElementById('tipo-membresia').value;
 const phone = document.getElementById('telefono').value.trim();
@@ -72,22 +161,25 @@ if (comments.length > 500) {
 }
 
 
-if (!cvFile) {
+// El CV solo es obligatorio si el usuario no tiene uno cargado todavía
+if (!cvFile && !hasExistingCv) {
     alert('Debe seleccionar un archivo PDF.');
     return false;
 }
 
-const allowedTypes = ['application/pdf'];
-const maxSizeMB = 2;
+if (cvFile) {
+    const allowedTypes = ['application/pdf'];
+    const maxSizeMB = 2;
 
-if (!allowedTypes.includes(cvFile.type)) {
-    alert('El archivo debe ser un PDF.');
-    return false;
-}
+    if (!allowedTypes.includes(cvFile.type)) {
+        alert('El archivo debe ser un PDF.');
+        return false;
+    }
 
-if (cvFile.size > maxSizeMB * 1024 * 1024) {
-    alert(`El archivo no debe superar los ${maxSizeMB} MB.`);
-    return false;
+    if (cvFile.size > maxSizeMB * 1024 * 1024) {
+        alert(`El archivo no debe superar los ${maxSizeMB} MB.`);
+        return false;
+    }
 }
 
 return true;
@@ -101,26 +193,28 @@ if (!validateMembershipForm()) return;
         const comments = document.getElementById('comentarios').value;
         const cvFile = document.getElementById('cv-file').files[0];
 
-        if (!membershipId || !phone || !cvFile) {
+        if (!membershipId || !phone) {
             alert('Por favor complete todos los campos obligatorios');
             return;
         }
 
-        // Convertir el archivo a base64
-        const cvBase64 = await fileToBase64(cvFile);
+        // Si el usuario eligió un archivo nuevo, se sube/actualiza el CV primero;
+        // si no eligió ninguno, se conserva el CV que ya tiene cargado.
+        if (cvFile) {
+            const cvBase64 = await fileToBase64(cvFile);
 
-        // Generar un nombre único para el archivo
-        const timestamp = new Date().getTime();
-        const uniqueName = `${timestamp}_${cvFile.name}`;
-        const cvFileName = `CV_${uniqueName}`; // Cambia el nombre del archivo a lo que necesites
+            if (hasExistingCv) {
+                await cvService.update(currentCvId, cvBase64);
+            } else {
+                await cvService.upload(cvBase64);
+            }
+        }
 
-        // Crear el objeto con la estructura requerida
+        // Crear el objeto con la estructura requerida (el CV ya no viaja aquí)
         const requestData = {
             MR_Membresias_id: parseInt(membershipId),
             telefono: phone,
-            comentarios: comments || '',
-            cv: cvFileName,
-            cv_base64: cvBase64 // Asumimos que el backend puede manejar base64
+            comentarios: comments || ''
         };
 
         
@@ -134,6 +228,7 @@ if (!validateMembershipForm()) return;
         document.getElementById('telefono').value = '';
         document.getElementById('comentarios').value = '';
         document.getElementById('cv-file').value = '';
+        loadCurrentCv();
 
         } else {
             alert('Error al enviar la solicitud: ' + (response.message || 'Error desconocido'));
@@ -149,5 +244,9 @@ if (!validateMembershipForm()) return;
 // Cargar membresías al iniciar la página
 document.addEventListener('DOMContentLoaded', () => {
     loadMemberships();
+    loadCurrentCv();
     document.getElementById('submit-membership').addEventListener('click', submitMembership);
+    document.getElementById('cv-file').addEventListener('change', (event) => {
+        previewSelectedCvFile(event.target.files[0]);
+    });
 });

@@ -1,3 +1,14 @@
+/* application_membership.css */
+
+body {
+    background-color: var(--color-bg-elevated);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .background {
     width: 100%;
     height: 100%;
@@ -8,7 +19,91 @@
     z-index: -1;
   }
 
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
 
+.title-container h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--color-primary);
+    position: absolute;
+    top: 40px;
+    left: 300px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 150px;
+    margin-left: 150px;
+}
+
+.form-box {
+    background-color: var(--color-bg-elevated);
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    color: var(--color-text-heading);
+    font-weight: 600;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--color-border);
+}
+
+.form-box label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/* Nota: estas reglas de .form-box input/select vienen de profile.css.
+   Como comparten especificidad con .custom-input/.custom-select, van
+   declaradas ANTES para que las clases .custom-* sigan ganando. Revisa
+   visualmente por si hay que ajustar. */
+.form-box input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-bg-body);
+    color: var(--color-text-secondary);
+    margin-right: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.form-box select {
+    width: calc(100%);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-bg-body);
+    color: var(--color-text-secondary);
+    margin-right: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.form-box select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px;
+}
+
+.form-box select:disabled {
+    background-color: var(--color-bg-body);
+    color: var(--color-text-secondary);
+    opacity: 1;
+}
 
 .custom-select {
     width: 100%;
@@ -57,6 +152,28 @@
     margin-bottom: 15px;
   }
 
+  #cv-current-info {
+    margin-bottom: 15px;
+  }
+
+  #cv-status-text {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+  }
+
+  #cv-preview {
+    display: block;
+    width: 100%;
+    height: 400px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-bg-body);
+  }
+
+  #cv-file-label {
+    margin-top: 5px;
+  }
+
   #submit-membership {
     background-color: var(--color-primary);
     border: none;
@@ -77,3 +194,21 @@
     transition: background-color 0.3s ease;
     transform: scale(1.05);
   }
+
+@media only screen and (max-width: 600px){
+    .title-container h2 {
+        top: 0px;
+        left: 100px;
+    }
+
+    .form-container {
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 50px;
+        margin-left: 0px;
+    }
+
+    .form-box {
+        width: 270px;
+    }
+}

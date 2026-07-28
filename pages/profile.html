@@ -33,7 +33,7 @@
     </div>
 
     <div class="form-container">
-      <div class="form-box">
+      <div class="form-box" id="user-data-box">
         <label data-translate="profile_name">Nombre</label>
         <input id="nombre" type="text" placeholder="Nombre" disabled data-translate-placeholder="profile_name">
         <label data-translate="profile_lastname">Apellido(s)</label>
@@ -44,8 +44,6 @@
         <div id="universidad-container">
           <input id="universidad" type="text" placeholder="Universidad" disabled data-translate-placeholder="profile_university">
         </div>
-      </div>
-      <div class="form-box">
         <label data-translate="profile_state">Estado</label>
         <div id="estado-container">
           <input id="estado" type="text" placeholder="Estado" disabled data-translate-placeholder="profile_state">
@@ -58,6 +56,12 @@
         <input id="email" type="email" placeholder="Email" disabled data-translate-placeholder="profile_email">
         <label data-translate="profile_password">Contraseña</label>
         <input id="password" type="password" placeholder="Contraseña" disabled data-translate-placeholder="profile_password">
+      </div>
+      <div class="form-box" id="cv-box">
+        <label data-translate="profile_cv">Currículum (CV)</label>
+        <p id="cv-status-text" data-translate="profile_cv_none">Aún no has subido un CV.</p>
+        <iframe id="cv-preview" src="" frameborder="0" style="display: none;"></iframe>
+        <input type="file" id="cv-file" accept="application/pdf" style="display: none; margin-top: 10px;">
       </div>
     </div>
     <div class="edit-button-container">

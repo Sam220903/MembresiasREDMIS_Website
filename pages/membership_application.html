@@ -45,8 +45,13 @@
         <textarea id="comentarios" class="custom-textarea" rows="4"></textarea>
 
 
-        <label data-translate="membership_application_cv">CV (PDF)</label>
-        <input type="file" id="cv-file" accept=".pdf" required>
+        <label data-translate="membership_application_cv">CV Actual (PDF)</label>
+        <div id="cv-current-info">
+          <p id="cv-status-text" data-translate="profile_cv_none">Aún no has subido un CV.</p>
+          <iframe id="cv-preview" src="" frameborder="0" style="display: none;"></iframe>
+        </div>
+        <label for="cv-file" id="cv-file-label" data-translate="membership_application_cv_replace">Subir un CV nuevo (opcional si ya tienes uno cargado)</label>
+        <input type="file" id="cv-file" class="custom-input" accept=".pdf">
 
         <button id="submit-membership" class="custom-button" type="button">
             <span data-translate="membership_application_submit">Enviar Solicitud</span>

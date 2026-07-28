@@ -3,6 +3,8 @@ import loginService from '../api/services/login.js';
 import universitiesService from '../api/services/universities.js';
 import statesService from '../api/services/states.js';
 import countriesService from '../api/services/country.js';
+import cvService from '../api/services/cv.js';
+import { getPDF } from './pdfProcessor.js';
 
 // Get user data from loginService instead of localStorage directly
 const userData = loginService.getUserData();
@@ -23,6 +25,78 @@ const enableFields = (enabled) => {
     if (el) el.disabled = !enabled;
   });
 };
+
+const fileToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = error => reject(error);
+  });
+};
+
+// Pinta el estado actual del CV (si existe) usando la respuesta de GET /cv:
+// { cvs: [...], latest: {...} | null }
+let currentCvPdfUrl = null;
+
+const renderCurrentCv = (latestCv) => {
+  const statusText = document.getElementById('cv-status-text');
+  const previewIframe = document.getElementById('cv-preview');
+
+  if (currentCvPdfUrl) {
+    URL.revokeObjectURL(currentCvPdfUrl);
+    currentCvPdfUrl = null;
+  }
+
+  if (!latestCv || !latestCv.cv_base64) {
+    statusText.style.display = '';
+    statusText.textContent = 'Aún no has subido un CV.';
+    previewIframe.style.display = 'none';
+    previewIframe.src = '';
+    return;
+  }
+
+  currentCvPdfUrl = getPDF(latestCv.cv_base64);
+  statusText.style.display = 'none';
+  previewIframe.style.display = 'block';
+  previewIframe.src = currentCvPdfUrl;
+};
+
+const loadCurrentCv = async () => {
+  try {
+    const response = await cvService.get();
+    const latestCv = response?.data?.latest || null;
+    renderCurrentCv(latestCv);
+    return latestCv;
+  } catch (error) {
+    console.error('Error al cargar el CV actual:', error);
+    renderCurrentCv(null);
+    return null;
+  }
+};
+
+// Previsualización exclusiva del front: muestra el archivo recién elegido en el
+// iframe al instante, sin subirlo todavía. Se sube de verdad hasta guardar el perfil.
+const previewSelectedCvFile = (file) => {
+  const statusText = document.getElementById('cv-status-text');
+  const previewIframe = document.getElementById('cv-preview');
+
+  if (currentCvPdfUrl) {
+    URL.revokeObjectURL(currentCvPdfUrl);
+    currentCvPdfUrl = null;
+  }
+
+  if (!file) return;
+
+  currentCvPdfUrl = URL.createObjectURL(file);
+  statusText.style.display = 'none';
+  previewIframe.style.display = 'block';
+  previewIframe.src = currentCvPdfUrl;
+};
+
+document.getElementById('cv-file').addEventListener('change', (event) => {
+  previewSelectedCvFile(event.target.files[0]);
+});
 
 const toggleButtons = (editing) => {
   document.getElementById('editBtn').style.display = editing ? 'none' : 'inline-block';
@@ -141,6 +215,8 @@ if (userId && token) {
       console.error('Error al cargar el perfil:', error);
       alert('No se pudo cargar la información del usuario.');
     });
+
+  loadCurrentCv();
 } else {
   alert('Usuario no autenticado.');
   // Optional: redirect to login page
@@ -152,6 +228,9 @@ document.getElementById('editBtn').addEventListener('click', async () => {
   toggleButtons(true);
   // Clear password field when editing
   document.getElementById('password').value = '';
+
+  // Mostrar el campo para reemplazar el CV (subir uno nuevo es opcional)
+  document.getElementById('cv-file').style.display = 'block';
 
   // Universidad: select independiente
   universidadesData = await convertToSelect('universidad-container', 'universidad', universitiesService, true);
@@ -178,7 +257,7 @@ document.getElementById('editBtn').addEventListener('click', async () => {
   }
 });
 
-document.getElementById('acceptBtn').addEventListener('click', () => {     
+document.getElementById('acceptBtn').addEventListener('click', async () => {
   let passwordInput = document.getElementById('password');
 
   // Convertir selects de vuelta a inputs antes de guardar
@@ -202,6 +281,19 @@ document.getElementById('acceptBtn').addEventListener('click', () => {
     delete updatedUser.password;
   }
 
+  // El CV solo se envía si el usuario eligió un archivo nuevo; si no, se conserva el actual
+  const cvFileInput = document.getElementById('cv-file');
+  const selectedCvFile = cvFileInput.files[0];
+  if (selectedCvFile) {
+    try {
+      updatedUser.cv_base64 = await fileToBase64(selectedCvFile);
+    } catch (error) {
+      console.error('Error al leer el archivo del CV:', error);
+      alert('No se pudo leer el archivo del CV seleccionado.');
+      return;
+    }
+  }
+
   membersService.updateMember(userId, updatedUser)
     .then(() => {
       alert('Perfil actualizado correctamente.');
@@ -209,6 +301,9 @@ document.getElementById('acceptBtn').addEventListener('click', () => {
       toggleButtons(false);
       // Reset password display
       document.getElementById('password').value = '********';
+      cvFileInput.value = '';
+      cvFileInput.style.display = 'none';
+      loadCurrentCv();
     })
     .catch(error => {
       console.error('Error al actualizar el perfil:', error);
