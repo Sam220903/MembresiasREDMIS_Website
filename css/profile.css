@@ -22,6 +22,15 @@ body {
 
 .main-container{
     margin-bottom: 100px;
+    /* Reserva el espacio de la sidebar (ajusta este valor si sidebar.css
+       usa un ancho distinto) y evita que el body la re-centre encima de ella */
+    align-self: flex-start;
+    box-sizing: border-box;
+    margin-left: 300px;
+    max-width: calc(100% - 300px);
+    /* Ancla el .title-container h2 (position:absolute) a este contenedor
+       en lugar de a toda la página, donde quedaba tapado por la sidebar */
+    position: relative;
 }
   
 .title-container {
@@ -36,22 +45,23 @@ body {
     color: var(--color-primary);
     position: absolute;
     top: 40px;
-    left: 300px;
+    left: 40px;
 }
   
 .form-container {
     display: flex;
-    justify-content: center;
-    gap: 50px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
     margin-top: 150px;
-    margin-left: 150px;
+    margin-left: 40px;
 }
 
 .form-box {
     background-color: var(--color-bg-elevated);
     padding: 20px;
     border-radius: 10px;
-    width: 400px;
+    width: 360px;
     color: var(--color-text-heading);
     font-weight: 600;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
@@ -65,11 +75,11 @@ body {
 }
 
 #user-data-box {
-    width: 400px;
+    width: 360px;
 }
 
 #cv-box {
-    width: 500px;
+    width: 420px;
     display: flex;
     flex-direction: column;
 }
@@ -137,6 +147,7 @@ body {
 .edit-button-container {
     display: flex;
     justify-content: center;
+    gap: 15px;
     margin-top: 30px;
     width: 100%;
 }
@@ -151,7 +162,6 @@ body {
     height: 36px;
     width: 102px;
     cursor: pointer;
-    margin-left: 150px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     transition: 0.1s;
 }
@@ -172,7 +182,6 @@ body {
     width: 102px;
     font-weight: 700;
     cursor: pointer;
-    margin-left: 150px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     transition: 0.1s;
 }
@@ -184,6 +193,11 @@ body {
 }
 
 @media only screen and (max-width: 600px){
+    .main-container {
+        margin-left: 0;
+        max-width: 100%;
+    }
+
     .title-container {
         display: flex;
         align-items: center;
@@ -218,18 +232,10 @@ body {
         height: 300px;
     }
 
-    .edit-button {
-        margin-left: 0px;
-    }
-    
     .edit-button:active {
         background-color: var(--color-primary-hover);
         transition: background-color 0.3s ease;
         transform: scale(1.05);
-    }
-    
-    .cancel-Btn {
-        margin-left: 50px;
     }
     
     .cancel-Btn:active {

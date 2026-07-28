@@ -14,6 +14,11 @@ admin_registration.addEventListener('click', () => {
     window.location.href = `${basePath}pages/management/admin_registration.html`;
 });
 
+const manageMembers = document.getElementById('manage-members');
+manageMembers.addEventListener('click', () => {
+    window.location.href = `${basePath}pages/management/members.html`
+})
+
 const addEntities = document.getElementById('add-entities');
 addEntities.addEventListener('click', () => {
     window.location.href =  `${basePath}pages/management/addEntities.html`;

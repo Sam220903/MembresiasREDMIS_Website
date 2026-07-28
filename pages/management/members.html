@@ -13,10 +13,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-translate="members_title">Lista de Miembros</title>
-  <link rel="stylesheet" href="../css/sidebar.css">
-  <link rel="stylesheet" href="../css/members.css">
-  <link rel="stylesheet" href="../../assets/icons/css/all.min.css"> <!-- Estilos de font-awesome -->
-  <link rel="stylesheet" href="../css/general.css">
+  <link rel="stylesheet" href="../../css/sidebar.css">
+  <link rel="stylesheet" href="../../css/members.css">
+  <link rel="stylesheet" href="../../../assets/icons/css/all.min.css"> <!-- Estilos de font-awesome -->
+  <link rel="stylesheet" href="../../css/general.css">
 </head>
 <body>
   <div class="container">
@@ -88,11 +88,11 @@
 
 
 
-<script type="module" src="../js/modules/theme.js"></script>
+<script type="module" src="../../js/modules/theme.js"></script>
 <script type="module">
   
-  import membersService from '../js/api/services/members.js';
-  import loginService from '../js/api/services/login.js';
+  import membersService from '../../js/api/services/members.js';
+  import loginService from '../../js/api/services/login.js';
 
   const members = await membersService.get();
   
@@ -151,8 +151,8 @@
 
 </script>
 
-<script type="module" src="../js/modules/sidebar.js"></script>
-<script type="module" src="../js/modules/verification.js"></script>
+<script type="module" src="../../js/modules/sidebar.js"></script>
+<script type="module" src="../../js/modules/verification.js"></script>
 
 
 </html>
