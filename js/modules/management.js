@@ -9,11 +9,6 @@ const getBasePath = () => {
 
 const basePath = getBasePath();
 
-const admin_registration = document.getElementById('admin-register');
-admin_registration.addEventListener('click', () => {
-    window.location.href = `${basePath}pages/management/admin_registration.html`;
-});
-
 const manageMembers = document.getElementById('manage-members');
 manageMembers.addEventListener('click', () => {
     window.location.href = `${basePath}pages/management/members.html`

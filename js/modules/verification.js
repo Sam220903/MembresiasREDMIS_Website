@@ -27,12 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminRoutes = [
         'membresia.html',
         'applications.html',
-        'admin_registration.html',
         'statistics.html',
         'members.html',
         'application_info.html',
         'member_info.html',
-        'admin_registration.html',
         'AgregarEstado.html',
         'AgregarPais.html',
         'AgregarUniversidad.html'

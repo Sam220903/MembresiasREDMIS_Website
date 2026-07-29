@@ -1,7 +1,9 @@
 import membersService from '../api/services/members.js';
 import loginService from '../api/services/login.js';
 import membresiaUsuarioService from '../api/services/membresiaUsuario.js';
+import rolesService from '../api/services/roles.js';
 import { getPDF } from './pdfProcessor.js';
+import { translate } from './translate.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 const memberID = urlParams.get('memberID');
@@ -46,6 +48,46 @@ memberUniversity.value = member.universidad;
 memberRegisterDate.value = member.fecha_registro;
 memberLastAccess.value = member.ultimo_acceso;
 memberLastUpdate.value = member.ultima_actualizacion;
+
+// --- Rol de administrador (funcionalidad migrada de admin_registration.html) ---
+const roleToggle = document.getElementById('turn-to-admin');
+const roleLabel = document.getElementById('role-label');
+
+const setRoleLabel = (role) => {
+    roleLabel.setAttribute('data-translate', `member_info_role_${role}`);
+    translate();
+};
+
+// El endpoint de detalle (GET api/miembros/:id) no expone un campo "rol"
+// numérico como la lista de miembros: devuelve "tipo_usuario" con el nombre
+// ya resuelto desde la tabla MR_TiposUsuario ("Administrador" o "Usuario").
+// Se usa ese valor para determinar el rol actual real del miembro.
+let currentRole = member.tipo_usuario === 'Administrador' ? 1 : 2;
+roleToggle.checked = currentRole === 1;
+setRoleLabel(currentRole);
+
+roleToggle.addEventListener('change', async (event) => {
+    const confirmacion = confirm('¿Deseas cambiar el rol de este usuario?');
+
+    if (!confirmacion) {
+        event.target.checked = currentRole === 1;
+        return;
+    }
+
+    const newRole = event.target.checked ? 1 : 2;
+
+    try {
+        await rolesService.changeRole(memberID, { role: newRole });
+        currentRole = newRole;
+        setRoleLabel(currentRole);
+        memberUserType.value = newRole === 1 ? 'Administrador' : 'Usuario';
+        alert('El rol del miembro ha sido actualizado correctamente.');
+    } catch (error) {
+        console.error('Error al actualizar el rol:', error);
+        alert('Hubo un error al actualizar el rol del miembro.');
+        event.target.checked = currentRole === 1;
+    }
+});
 
 const deleteUserButton = document.getElementById('delete-user');
 deleteUserButton.addEventListener('click', async () => {
