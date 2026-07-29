@@ -4,6 +4,7 @@ import universitiesService from '../api/services/universities.js';
 import statesService from '../api/services/states.js';
 import countriesService from '../api/services/country.js';
 import cvService from '../api/services/cv.js';
+import investigationLinesService from '../api/services/investigationLines.js';
 import { getPDF } from './pdfProcessor.js';
 
 // Get user data from loginService instead of localStorage directly
@@ -11,13 +12,18 @@ const userData = loginService.getUserData();
 const userId = userData?.userId;
 const token = loginService.getToken();
 
-const fields = ['nombre', 'apellidos', 'genero', 'universidad', 'pais', 'estado', 'email', 'password'];
+const fields = ['nombre', 'apellidos', 'genero', 'universidad', 'linea-investigacion', 'pais', 'estado', 'email', 'password'];
 let currentUniversidadId = null;
 let currentEstadoId = null;
 let currentPaisId = null;
 let universidadesData = [];
 let paisesData = [];
 let estadosData = []; // Todos los estados, cargados una sola vez
+
+// Líneas de investigación: catálogo completo (cargado al entrar en modo edición)
+// y estado de la selección actual del autocompletado.
+let investigationLinesData = [];
+let selectedInvestigationLineId = null;
 
 const enableFields = (enabled) => {
   fields.forEach(fieldId => {
@@ -97,6 +103,95 @@ const previewSelectedCvFile = (file) => {
 document.getElementById('cv-file').addEventListener('change', (event) => {
   previewSelectedCvFile(event.target.files[0]);
 });
+
+// --- Autocompletado de línea de investigación ---
+// Filtra investigationLinesData por coincidencia parcial (sin distinguir mayúsculas)
+// y muestra las sugerencias; si no hay ninguna coincidencia, avisa que se creará una nueva.
+const renderInvestigationSuggestions = (query) => {
+  const suggestionsBox = document.getElementById('linea-investigacion-suggestions');
+  suggestionsBox.innerHTML = '';
+
+  const trimmedQuery = query.trim();
+
+  if (!trimmedQuery) {
+    suggestionsBox.style.display = 'none';
+    return;
+  }
+
+  const matches = investigationLinesData.filter(line =>
+    (line.nombre || '').toLowerCase().includes(trimmedQuery.toLowerCase())
+  );
+
+  if (matches.length === 0) {
+    const hint = document.createElement('div');
+    hint.className = 'suggestion-hint';
+    hint.textContent = `No hay coincidencias: se creará la nueva línea de investigación "${trimmedQuery}".`;
+    suggestionsBox.appendChild(hint);
+    suggestionsBox.style.display = 'block';
+    return;
+  }
+
+  matches.forEach(line => {
+    const item = document.createElement('div');
+    item.className = 'suggestion-item';
+    item.textContent = line.nombre;
+    // mousedown (no click) + preventDefault: evita que el input pierda el foco
+    // (blur) antes de procesar la selección, que es lo que hacía que a veces
+    // el clic no "agarrara" la sugerencia.
+    item.addEventListener('mousedown', (event) => {
+      event.preventDefault();
+      document.getElementById('linea-investigacion').value = line.nombre;
+      selectedInvestigationLineId = line.id;
+      suggestionsBox.innerHTML = '';
+      suggestionsBox.style.display = 'none';
+    });
+    suggestionsBox.appendChild(item);
+  });
+
+  suggestionsBox.style.display = 'block';
+};
+
+document.getElementById('linea-investigacion').addEventListener('input', (event) => {
+  // Cualquier edición manual invalida la selección exacta previa hasta que
+  // vuelva a coincidir con una línea existente o se elija una sugerencia.
+  selectedInvestigationLineId = null;
+  renderInvestigationSuggestions(event.target.value);
+});
+
+document.getElementById('linea-investigacion').addEventListener('blur', () => {
+  // Pequeño retraso para permitir que el click en una sugerencia se registre
+  // antes de ocultar el listado.
+  setTimeout(() => {
+    document.getElementById('linea-investigacion-suggestions').style.display = 'none';
+  }, 150);
+});
+
+// Resuelve el id de línea de investigación a enviar al guardar: reutiliza el id
+// ya seleccionado, busca una coincidencia exacta por nombre, o crea una línea
+// nueva si el texto no corresponde a ninguna existente. Si el campo quedó vacío,
+// devuelve null (se limpia la línea de investigación del miembro).
+const resolveInvestigationLineId = async () => {
+  const typedName = document.getElementById('linea-investigacion').value.trim();
+
+  if (!typedName) {
+    return null;
+  }
+
+  if (selectedInvestigationLineId) {
+    return selectedInvestigationLineId;
+  }
+
+  const exactMatch = investigationLinesData.find(
+    line => (line.nombre || '').toLowerCase() === typedName.toLowerCase()
+  );
+
+  if (exactMatch) {
+    return exactMatch.id;
+  }
+
+  const response = await investigationLinesService.add({ name: typedName });
+  return response?.id ?? null;
+};
 
 const toggleButtons = (editing) => {
   document.getElementById('editBtn').style.display = editing ? 'none' : 'inline-block';
@@ -206,6 +301,8 @@ if (userId && token) {
       document.getElementById('apellidos').value = user.apellidos || '';
       document.getElementById('genero').value = user.genero || '';
       document.getElementById('universidad').value = user.universidad || '';
+      document.getElementById('linea-investigacion').value = user.lineaInvestigacion || '';
+      selectedInvestigationLineId = user.lineaInvestigacionId || null;
       document.getElementById('pais').value = user.pais || '';
       document.getElementById('estado').value = user.estado || '';
       document.getElementById('email').value = user.email || '';
@@ -234,6 +331,14 @@ document.getElementById('editBtn').addEventListener('click', async () => {
 
   // Universidad: select independiente
   universidadesData = await convertToSelect('universidad-container', 'universidad', universitiesService, true);
+
+  // Líneas de investigación: catálogo completo para el autocompletado
+  try {
+    investigationLinesData = await investigationLinesService.get();
+  } catch (error) {
+    console.error('Error al cargar líneas de investigación:', error);
+    investigationLinesData = [];
+  }
 
   // Estados: se cargan TODOS una sola vez (igual que en register.js)
   const estadoTextoActual = document.getElementById('estado').value;
@@ -294,6 +399,15 @@ document.getElementById('acceptBtn').addEventListener('click', async () => {
     }
   }
 
+  // La línea de investigación: coincidencia existente, nueva línea a crear, o null si se dejó vacía
+  try {
+    updatedUser.lineaInvestigacionId = await resolveInvestigationLineId();
+  } catch (error) {
+    console.error('Error al resolver la línea de investigación:', error);
+    alert('No se pudo guardar la línea de investigación indicada.');
+    return;
+  }
+
   membersService.updateMember(userId, updatedUser)
     .then(() => {
       alert('Perfil actualizado correctamente.');
@@ -303,6 +417,7 @@ document.getElementById('acceptBtn').addEventListener('click', async () => {
       document.getElementById('password').value = '********';
       cvFileInput.value = '';
       cvFileInput.style.display = 'none';
+      document.getElementById('linea-investigacion-suggestions').style.display = 'none';
       loadCurrentCv();
     })
     .catch(error => {
