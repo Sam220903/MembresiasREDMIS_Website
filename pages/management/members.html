@@ -28,6 +28,7 @@
     <!-- Sidebar dinámico -->
     <div id="sidebar"></div>
 
+    <div class="background"></div>
 
     <!-- Contenido principal -->
     <main class="main-content">
@@ -47,40 +48,6 @@
           
         </div>
       </section>
-
-      <!-- Sección de solicitudes rechazadas -->
-      <section class="seccion">
-        <h2 class="seccion-titulo rechazadas" data-translate="members_rejected_requests">Solicitudes Rechazadas</h2>
-        <div class="tabla" id="tabla-miembros-rechazados">
-          <div class="tabla-header">
-            <span data-translate="members_name">Nombre</span>
-            <span data-translate="members_membership_type">Tipo de Membresía</span>
-            <span data-translate="members_requested_date">Fecha Solicitada</span>
-            <span></span>
-          </div>
-          <div class="tabla-body">
-            
-          </div>
-          
-        </div>
-      </section>
-
-      <!-- Sección de solicitudes pendientes -->
-      <section class="seccion">
-        <h2 class="seccion-titulo pendientes" data-translate="members_pending_requests">Solicitudes Pendientes</h2>
-        <div class="tabla" id="tabla-miembros-pendientes">
-          <div class="tabla-header">
-            <span data-translate="members_name">Nombre</span>
-            <span data-translate="members_membership_type">Tipo de Membresía</span>
-            <span data-translate="members_requested_date">Fecha Solicitada</span>
-            <span></span>
-          </div>
-          <div class="tabla-body">
-
-          </div>
-
-        </div>
-      </section>
     </main>
   </div>
 </body>
@@ -98,12 +65,8 @@
   
 
   const acceptedMembers = members.filter(member => member.estado === 'APROBADA');
-  const rejectedMembers = members.filter(member => member.estado === 'RECHAZADA'); 
-  const pendingMembers = members.filter(member => member.estado === 'PENDIENTE');
 
   const acceptedTable = document.getElementById('tabla-miembros-aceptados').getElementsByClassName('tabla-body')[0];
-  const rejectedTable = document.getElementById('tabla-miembros-rechazados').getElementsByClassName('tabla-body')[0];
-  const pendingTable = document.getElementById('tabla-miembros-pendientes').getElementsByClassName('tabla-body')[0];
 
   acceptedMembers.forEach(member => {
     const row = document.createElement('div');
@@ -119,34 +82,6 @@
         </button>
     `;
     acceptedTable.appendChild(row);
-  });
-
-  rejectedMembers.forEach(member => {
-    const row = document.createElement('div');
-    row.className = 'fila';
-    row.innerHTML = `
-      <span>${member.nombre_completo}</span>
-      <span>${member.membresia}</span>
-      <span>${new Date(member.fecha_solicitud).toLocaleDateString()}</span>
-      <button class="btn-editar"><i class="fas fa-edit"></i><a href="member_info.html?memberID=${member.usuario_id}">
-        <span data-translate="members_edit">Editar</span>
-        </a></button>
-    `;
-    rejectedTable.appendChild(row);
-  });
-
-  pendingMembers.forEach(member => {
-    const row = document.createElement('div');
-    row.className = 'fila';
-    row.innerHTML = `
-      <span>${member.nombre_completo}</span>
-      <span>${member.membresia}</span>
-      <span>${new Date(member.fecha_solicitud).toLocaleDateString()}</span>
-      <button class="btn-editar"><i class="fas fa-edit"></i><a href="member_info.html?memberID=${member.usuario_id}">
-        <span data-translate="members_edit">Editar</span>
-        </a></button>
-    `;
-    pendingTable.appendChild(row);
   });
 
 </script>

@@ -28,7 +28,7 @@
 <div class="background"></div>
 
 <div class="content">
-    <h1 class="title-container" data-translate="member_info_title">Miembros</h1>
+    <h1 data-translate="member_info_title">Miembros</h1>
     <div class="user-card">
         <div class="user-header">
             <i class="fas fa-user-circle"></i> 
@@ -108,9 +108,13 @@
         }
 
         const member = await membersService.getbyID(memberID);
-        const membership = await membresiaUsuarioService.getByUserId(memberID);
-        // Verificar si existe el estado , si no existe, asignar un valor por defecto
-        const membershipStatus = membership && membership.estatus ? membership.estatus : 'NO REGISTRADO';
+        const membershipResponse = await membresiaUsuarioService.getByUserId(memberID);
+        // La API devuelve { success, data: [...] } — un arreglo de membresías del
+        // miembro (en la práctica, a lo más una activa a la vez). Se toma la más
+        // reciente; si no tiene ninguna, se considera sin membresía registrada.
+        const membershipRecords = membershipResponse?.data || [];
+        const currentMembership = membershipRecords[membershipRecords.length - 1] || null;
+        const membershipStatus = currentMembership ? currentMembership.estado : 'NO REGISTRADO';
 
         const changeMembershipStatus = document.getElementById('change-membership-status');
         
