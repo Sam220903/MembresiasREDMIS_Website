@@ -137,3 +137,21 @@ html, body {
   font-size: 14px;
   color: var(--color-on-primary);
 }
+
+@media only screen and (max-width: 600px) {
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+    padding-top: 80px;
+  }
+
+  .tabla {
+    overflow-x: auto;
+  }
+
+  .tabla-header,
+  .fila {
+    min-width: 480px;
+  }
+}

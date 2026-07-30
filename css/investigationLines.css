@@ -361,6 +361,22 @@ body {
   }
 
   @media (max-width: 600px) {
+    body {
+      padding-left: 0 !important;
+    }
+
+    .title-container {
+      position: static;
+      display: flex;
+      align-items: center;
+      margin-top: 80px;
+      margin-left: 20px;
+    }
+
+    .main-container {
+      margin-top: 20px;
+    }
+
     .modal-content {
       width: 85%;
     }

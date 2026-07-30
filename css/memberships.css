@@ -140,3 +140,39 @@ body
   display: flex;
   gap: 5px;
 }
+
+@media only screen and (max-width: 600px) {
+  body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title-container {
+    position: static;
+    display: flex;
+    align-items: center;
+    margin-top: 80px;
+    margin-left: 20px;
+  }
+
+  .content {
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    width: 92%;
+  }
+
+  .content header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .membership-table {
+    overflow-x: auto;
+  }
+
+  .membership-table table {
+    min-width: 480px;
+  }
+}

@@ -196,3 +196,57 @@
         color: var(--color-primary);
     }
 
+  @media only screen and (max-width: 600px) {
+    body {
+      padding-left: 0 !important;
+    }
+
+    .title-container {
+      position: static;
+      display: flex;
+      align-items: center;
+      margin-top: 80px;
+      margin-left: 20px;
+    }
+
+    .main-container {
+      margin: 20px 0;
+    }
+
+    .panel-selector select {
+      width: 90%;
+      margin-left: 0;
+    }
+
+    .subtitle-container,
+    .statistics-panel .row {
+      width: 92%;
+    }
+
+    .statistics-panel#members-panel {
+      flex-direction: column;
+    }
+
+    .statistics-panel#members-panel .column {
+      width: 100%;
+    }
+
+    .statistic-card#total-members {
+      width: 92% !important;
+    }
+
+    .statistics-panel .row {
+      flex-direction: column;
+    }
+
+    .statistics-panel#applications-panel .statistic-card {
+      width: 80%;
+    }
+
+    #members-per-university-table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+

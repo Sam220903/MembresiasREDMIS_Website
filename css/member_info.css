@@ -121,67 +121,39 @@ body {
     transform: scale(1.05);
 }
 
-/* Toggle de rol (admin <-> usuario), migrado desde admin_registration.css */
-.role-toggle-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-}
+@media only screen and (max-width: 600px) {
+    .title-container {
+        position: static;
+        display: flex;
+        align-items: center;
+        margin-top: 80px;
+        margin-left: 20px;
+    }
 
-.role-toggle-group label {
-    font-size: 14px;
-    margin-bottom: 0;
-}
+    .content {
+        margin-top: 20px;
+        margin-left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px;
+    }
 
-.toggle-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+    .user-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
 
-.toggle-switch {
-    position: relative;
-    width: 50px;
-    height: 25px;
-    flex-shrink: 0;
-}
+    .user-details {
+        grid-template-columns: 1fr;
+    }
 
-.toggle-switch input {
-    display: none;
-}
+    .actions {
+        flex-direction: column;
+    }
 
-.slider {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: gray;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.slider::before {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border-radius: 50%;
-    top: 50%;
-    left: 3px;
-    transform: translateY(-50%);
-    transition: 0.3s;
-}
-
-input:checked+.slider {
-    background-color: var(--color-primary);
-}
-
-input:checked+.slider::before {
-    left: 25px;
-}
-
-#role-label {
-    font-weight: 700;
+    .actions .btn {
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
 }

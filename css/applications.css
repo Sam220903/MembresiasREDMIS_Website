@@ -151,6 +151,31 @@ body {
     color: var(--color-on-primary);
   }
 
+  @media only screen and (max-width: 600px) {
+    .title-container {
+        position: static;
+        display: flex;
+        align-items: center;
+        margin-top: 80px;
+        margin-left: 20px;
+    }
+
+    .table-container {
+        margin-top: 20px;
+        margin-left: 0;
+        padding-left: 0;
+        width: 92%;
+    }
+
+    .table-box {
+        overflow-x: auto;
+    }
+
+    #membership_applications {
+        min-width: 560px;
+    }
+  }
+
 
 
 

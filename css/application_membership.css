@@ -46,7 +46,7 @@ body {
     background-color: var(--color-bg-elevated);
     padding: 20px;
     border-radius: 10px;
-    width: 400px;
+    width: 700px;
     color: var(--color-text-heading);
     font-weight: 600;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
@@ -210,5 +210,14 @@ body {
 
     .form-box {
         width: 270px;
+    }
+
+    textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #submit-membership {
+        margin-left: 0;
     }
 }
