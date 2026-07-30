@@ -30,7 +30,7 @@ const estadoSelect = document.getElementById("estado-select");
 universities.forEach(universidad => {
     const option = document.createElement("option");
     option.value = universidad.id;
-    option.textContent = universidad.nombre;
+    option.textContent = universidad.name;
     universidadSelect.appendChild(option);
 });
 
@@ -38,7 +38,7 @@ universities.forEach(universidad => {
 countries.forEach(pais => {
     const option = document.createElement("option");
     option.value = pais.id;
-    option.textContent = pais.nombre;
+    option.textContent = pais.name;
     paisSelect.appendChild(option);
 });
 
