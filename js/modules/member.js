@@ -2,24 +2,23 @@ import membersService from '../api/services/members.js';
   import loginService from '../api/services/login.js';
 
   const members = await membersService.get();
+  console.log(members);
   
 
-  const acceptedMembers = members.filter(member => member.estado === 'APROBADA');
+  const table = document.getElementById('tabla-miembros').getElementsByClassName('tabla-body')[0];
 
-  const acceptedTable = document.getElementById('tabla-miembros-aceptados').getElementsByClassName('tabla-body')[0];
-
-  acceptedMembers.forEach(member => {
+  members.forEach(member => {
     const row = document.createElement('div');
     row.className = 'fila';
     row.innerHTML = `
-      <span>${member.nombre_completo}</span>
-      <span>${member.membresia}</span>
-      <span>${new Date(member.fecha_solicitud).toLocaleDateString()}</span>
+      <span>${member.name}</span>
+      <span>${member.email}</span>
+      <span>${member.role == 1 ? 'Administrador' : 'Usuario'}</span>
       <button class="btn-editar"><i class="fas fa-edit"></i>
-        <a href="member_info.html?memberID=${member.usuario_id}">
+        <a href="member_info.html?memberID=${member.user_id}">
           <span data-translate="members_edit">Editar</span>
         </a>
         </button>
     `;
-    acceptedTable.appendChild(row);
+    table.appendChild(row);
   });

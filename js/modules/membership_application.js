@@ -169,7 +169,7 @@ if (!cvFile && !hasExistingCv) {
 
 if (cvFile) {
     const allowedTypes = ['application/pdf'];
-    const maxSizeMB = 2;
+    const maxSizeMB = 5;
 
     if (!allowedTypes.includes(cvFile.type)) {
         alert('El archivo debe ser un PDF.');

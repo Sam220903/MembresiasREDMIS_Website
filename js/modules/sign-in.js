@@ -8,6 +8,11 @@ const password = document.getElementById("password")
 
 const confirmPassword = document.getElementById("confirm-password");
 const confirmPasswordInfo = document.getElementById("confirm-password-info");
+const emailField = document.getElementById("email");
+
+emailField.addEventListener('input', () => {
+    emailField.classList.remove('field-error');
+});
 
 // Permitir ver contraseña de manera opcional
 togglePassword.addEventListener("click", function () {
@@ -85,7 +90,6 @@ document.getElementById("register-form").addEventListener("submit", async functi
     const nombreField = document.getElementById("nombre");
     const apellidosField = document.getElementById("apellidos");
     const generoField = document.getElementById("genero");
-    const emailField = document.getElementById("email");
     const passwordField = document.getElementById("password");
 
     const universidadId = universidadSelect.value;
@@ -151,6 +155,15 @@ document.getElementById("register-form").addEventListener("submit", async functi
         window.location.href = `verificacion_mail.html?email=${encodeURIComponent(memberData.email)}`;
     } catch (error) {
         console.error('Error al crear la cuenta:', error);
+
+        // El backend responde 409 cuando el email ya está registrado
+        if (error?.status === 409) {
+            alert(error?.data?.error || 'Ya existe una cuenta registrada con este correo electrónico.');
+            emailField.classList.add('field-error');
+            emailField.focus();
+            return;
+        }
+
         alert('Ocurrió un error al crear la cuenta. Por favor intenta nuevamente.');
     }
 });

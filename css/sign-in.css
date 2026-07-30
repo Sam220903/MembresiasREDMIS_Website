@@ -151,6 +151,11 @@ select {
     background-color: var(--color-success-dark);
 }
 
+.input-field.field-error {
+    border: 2px solid var(--color-error);
+    outline: none;
+}
+
 #toggle-password {
       position: absolute;
       right: 10px;
