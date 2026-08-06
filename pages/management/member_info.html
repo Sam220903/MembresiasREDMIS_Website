@@ -27,11 +27,17 @@
 <div id="sidebar"></div>
 
 <div class="content">
-    <h1 data-translate="member_info_title" class="title-container">Información del miembro</h1>
+
+    <div class="title-container">
+        <i id="go-back-btn" class="fa-solid fa-angle-left" onclick="window.location.href = './members.html'"></i>
+        <a href="./members.html">Miembros</a>
+        /
+        <span data-translate="member_info_title">Información del miembro</span>
+    </div>
     <div class="user-card">
         <div class="user-header">
             <i class="fas fa-user-circle"></i> 
-            <span data-translate="member_info_user">Usuario</span>
+            <span data-translate="member_info_user">Datos del usuario</span>
         </div>
         <div class="user-details">
             <div class="info-group">

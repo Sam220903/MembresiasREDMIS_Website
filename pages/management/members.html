@@ -32,19 +32,31 @@
 
     <!-- Contenido principal -->
     <main class="main-content">
-      <h1 class="titulo" data-translate="members_title">Lista de Miembros</h1>
 
-      <!-- Sección de solicitudes -->
+      <div class="title-container">
+        <i id="go-back-btn" class="fa-solid fa-angle-left"></i>
+        <a href="../management/">Gestión</a>
+        /
+        <span data-translate="members_title">Lista de Miembros</span>
+      </div>
+
+      <!-- Sección de miembros -->
       <section class="seccion">
-        <div class="tabla" id="tabla-miembros">
-          <div class="tabla-header">
-            <span data-translate="members_name">Nombre</span>
-            <span data-translate="members_email">Correo electronico</span>
-            <span data-translate="members_role">Rol</span>
-            <span></span>
-          </div>
-          <div class="tabla-body"></div>
-          
+        <div class="members-table-box">
+          <h3 data-translate="members_table_title">Lista de miembros registrados</h3>
+          <table id="members_table" class="display">
+            <thead>
+              <tr>
+                <th data-translate="members_name">Nombre</th>
+                <th data-translate="members_membership">Membresía</th>
+                <th data-translate="members_email">Correo Electrónico</th>
+                <th data-translate="members_role">Rol</th>
+                <th data-translate="members_actions">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="members_body"></tbody>
+          </table>
+          <div class="pagination-controls" id="members-pagination"></div>
         </div>
       </section>
     </main>
@@ -55,7 +67,7 @@
 
 
 <script type="module" src="../../js/modules/theme.js"></script>
-<script type="module" src="../../js/modules/member.js"></script>
+<script type="module" src="../../js/modules/members.js"></script>
 
 <script type="module" src="../../js/modules/sidebar.js"></script>
 <script type="module" src="../../js/modules/verification.js"></script>

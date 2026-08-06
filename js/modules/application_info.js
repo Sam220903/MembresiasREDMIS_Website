@@ -128,14 +128,14 @@ document.addEventListener('DOMContentLoaded', async() => {
 
 const rejectApplication = async() => {
     try {
-        const rejectReason = document.getElementById('rejection-reason').value.trim();
+        const reason = document.getElementById('rejection-reason').value.trim();
 
-        if(!rejectReason) {
+        if(!reason) {
             alert('Debes escribir el motivo de rechazo de la solicitud');
             return;
         }
 
-        const response = await membershipApplicationService.rechazar(applicationId, {rejectReason});
+        const response = await membershipApplicationService.rechazar(applicationId, {reason});
 
         if (response) {
             alert("La solicitud ha sido rechazada, se notificará al aplicante por correo");
@@ -151,9 +151,9 @@ const rejectApplication = async() => {
 
 const acceptApplication = async() => {
     try {
-        const comments = document.getElementById('accept-comments').value.trim();
+        const reason = document.getElementById('accept-comments').value.trim();
 
-        const response = await membershipApplicationService.aceptar(applicationId, {comments});
+        const response = await membershipApplicationService.aceptar(applicationId, {reason});
         if(response) {
             alert("La solicitud ha sido aprobada, se notificará al aplicante mediante correo electrónico");
             window.location.href = `${basePath}pages/applications.html`;

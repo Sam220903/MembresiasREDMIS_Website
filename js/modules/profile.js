@@ -295,13 +295,15 @@ const convertBackToInput = (containerId, inputId, selectId, assign) => {
 };
 
 if (userId && token) {
+  console.log(membersService.getbyID(userId));
+  
   membersService.getbyID(userId)
     .then(user => {
       document.getElementById('nombre').value = user.nombre || '';
       document.getElementById('apellidos').value = user.apellidos || '';
       document.getElementById('genero').value = user.genero || '';
       document.getElementById('universidad').value = user.universidad || '';
-      document.getElementById('linea-investigacion').value = user.lineaInvestigacion || '';
+      document.getElementById('linea-investigacion').value = user.linea_investigacion || '';
       selectedInvestigationLineId = user.lineaInvestigacionId || null;
       document.getElementById('pais').value = user.pais || '';
       document.getElementById('estado').value = user.estado || '';
@@ -399,9 +401,11 @@ document.getElementById('acceptBtn').addEventListener('click', async () => {
     }
   }
 
-  // La línea de investigación: coincidencia existente, nueva línea a crear, o null si se dejó vacía
+  // La línea de investigación: coincidencia existente, nueva línea a crear, o null si se dejó vacía.
+  // El backend (MiembrosService::updateMember) busca la clave "linea_investigacion" en el payload,
+  // así que debe llamarse exactamente así (no "lineaInvestigacionId") o el update se ignora en silencio.
   try {
-    updatedUser.lineaInvestigacionId = await resolveInvestigationLineId();
+    updatedUser.linea_investigacion = await resolveInvestigationLineId();
   } catch (error) {
     console.error('Error al resolver la línea de investigación:', error);
     alert('No se pudo guardar la línea de investigación indicada.');

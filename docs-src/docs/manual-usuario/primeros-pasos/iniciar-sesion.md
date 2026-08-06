@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Iniciar sesión
 ---
 
@@ -17,4 +17,4 @@ Tu sesión se mantiene activa mediante un token que se guarda en tu navegador. S
 
 ## ¿Problemas para ingresar?
 
-Revisa que tu correo y contraseña sean correctos. Si el problema persiste, contacta al equipo administrador de REDMIS.
+Revisa que tu correo y contraseña sean correctos y que ya hayas completado la [verificación de tu correo electrónico](./verificar-correo). Si el problema persiste, contacta al equipo administrador de REDMIS.

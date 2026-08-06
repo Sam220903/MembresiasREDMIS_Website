@@ -11,10 +11,10 @@ Este manual está dirigido a **usuarios generales** de la plataforma. Si buscas 
 
 ## ¿Qué puedes hacer en esta guía?
 
-- Crear tu cuenta e iniciar sesión.
-- Editar tu información de perfil.
+- Crear tu cuenta, verificar tu correo electrónico e iniciar sesión.
+- Editar tu información de perfil, incluyendo tu línea de investigación y tu CV.
 - Solicitar una membresía y dar seguimiento a tu solicitud.
-- Consultar y descargar la constancia de tus membresías activas.
-- Cambiar el idioma de la plataforma.
+- Consultar y descargar la constancia (carnet de membresía) de tus membresías activas.
+- Cambiar el idioma y el tema (claro/oscuro/sistema) de la plataforma desde **Ajustes**.
 
 Usa el menú lateral para navegar entre las secciones.

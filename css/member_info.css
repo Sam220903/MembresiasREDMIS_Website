@@ -10,9 +10,32 @@ body {
     position: absolute;
     top: 40px;
     left: 300px;
-    margin: 0;
-}
+  }
 
+  .title-container i{
+    font-size: 30px;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: 0.1s ease-in-out;
+  }
+
+  .title-container i:hover{
+    background-color: var(--color-bg-hover);
+    transition: 0.1s ease-in-out;
+  }
+
+  .title-container a{
+    text-decoration: none;
+  }
+
+  .title-container a:visited{
+    color: var(--color-primary);
+  }
+
+  .title-container a:hover{
+    text-decoration: underline;
+  }
+  
 .content {
     display: flex;
     justify-content: center;
@@ -80,10 +103,9 @@ body {
     gap: 20px;
 }
 
-.btn {
+.btn, .btn-disabled {
     padding: 7px 10px;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -92,6 +114,14 @@ body {
     font-weight: bold;
     transition: 0.1s;
     font-size: 16px;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.btn-disabled {
+    cursor: not-allowed;
 }
 
 .btn i {

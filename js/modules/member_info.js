@@ -126,8 +126,9 @@ if (membershipStatus === 'ACTIVA') {
         }
     });
 } else {
-    changeMembershipStatus.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Estado Desconocido';
-    changeMembershipStatus.classList.add('btn-warning');
+    changeMembershipStatus.innerHTML = 'Sin membresía';
+    changeMembershipStatus.classList.remove('btn');
+    changeMembershipStatus.classList.add('btn-disabled');
     changeMembershipStatus.disabled = true;
 
 }

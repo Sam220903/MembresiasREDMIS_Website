@@ -13,6 +13,10 @@ Los posibles estados son:
 - **Aprobada**: tu membresía ya está activa y puedes descargar tu constancia.
 - **Rechazada**: la solicitud no fue aceptada; consulta el motivo indicado, si está disponible.
 
+:::info
+En cuanto un administrador apruebe o rechace tu solicitud, recibirás una notificación en el correo electrónico con el que te registraste.
+:::
+
 :::tip
 Si tu solicitud fue rechazada, revisa que tu perfil y el CV adjuntado cumplan con los requisitos antes de volver a solicitar.
 :::

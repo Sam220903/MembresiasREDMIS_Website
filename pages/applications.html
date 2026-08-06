@@ -16,7 +16,6 @@
   <link rel="stylesheet" href="../css/applications.css">
   <link rel="stylesheet" href="../css/sidebar.css">
   <link rel="stylesheet" href="../../assets/icons/css/all.min.css"> <!-- Estilos de font-awesome -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="../css/general.css">
 </head>
 <body>
@@ -45,62 +44,12 @@
             
           </tbody> 
         </table>
+        <div class="pagination-controls" id="applications-pagination"></div>
       </div>
     </div>
 
-    <!-- jQuery y DataTables -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.5/../js/jquery.dataTables.min.js"></script>
-
     <script type="module" src="../js/modules/theme.js"></script>
-    <script type="module">
-      import membershipApplicationService from '../js/api/services/membershipApplication.js';
-      import loginService from '../js/api/services/login.js';
-
-      const applications = await membershipApplicationService.obtener();
-      const pendingApplications = applications.filter(application => application.estado === 'PENDIENTE');
-
-      const ma_table = document.getElementById('membership_applications_body');
-      ma_table.innerHTML = '';
-      pendingApplications.forEach(application =>{
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><label class="name">${application.nombre_usuario}</label><br><label class="email">${application.email_usuario}</label></td>
-          <td><label class="membership">${application.membresia}</label></td>
-          <td><label class="status" data-translate="applications_status_${application.estado.toLowerCase()}">${application.estado}</label></td>
-          <td><label>${new Date(application.fecha_solicitud).toLocaleDateString()}</label></td>
-          <td>
-            <button class="evaluate"><i class="fa-solid fa-file-fragment"></i><a href="application_info.html?application_id=${application.id}">
-              <span data-translate="applications_evaluate">Evaluar</span>
-              </a></button>
-          </td>`;
-        ma_table.appendChild(tr);
-      }); 
-
-      $(document).ready(function() {
-          $('#membership_applications').DataTable({
-              paging: true,       
-              searching: true,    
-              ordering: true,
-              pageLength: 5,      
-              lengthMenu: [5, 7, 10],   
-              language: {
-                  lengthMenu: "Mostrar _MENU_ registros por página",
-                  zeroRecords: "No hay solicitudes de membresía nuevas",
-                  info: "Mostrando página _PAGE_ de _PAGES_",
-                  infoEmpty: "No hay registros disponibles",
-                  infoFiltered: "(filtrado de _MAX_ registros en total)",
-                  search: "Buscar:",
-                  paginate: {
-                      first: "Primero",
-                      last: "Último",
-                      next: "Siguiente",
-                      previous: "Anterior"
-                  }
-              }
-          });
-      });
-    </script>
+    <script type="module" src="../js/modules/applications.js"></script>
 
 
     

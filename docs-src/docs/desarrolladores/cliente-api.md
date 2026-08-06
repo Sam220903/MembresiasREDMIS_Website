@@ -15,7 +15,7 @@ El cliente HTTP base se encuentra en `js/api/apiClient.js` y es utilizado por to
 - **Autenticación:** soporta `Authorization: Bearer <token>`
 
 :::caution
-Ajusta el `baseURL` en `apiClient.js` si tu backend está desplegado en otra ruta o dominio.
+Ajusta el `baseURL` en `apiClient.js` si tu backend está desplegado en otra ruta o dominio. El archivo incluye, comentadas, otras URLs de referencia (entorno local con Apache y el entorno de producción); descomenta la que corresponda a tu entorno.
 :::
 
 ## Uso general

@@ -38,6 +38,7 @@ html, body {
 /* Contenido principal */
 .main-content {
   margin-left: 250px; /* Deja espacio para el sidebar */
+  margin-top: 100px;
   padding: 40px;
   width: calc(100% - 250px);
   box-sizing: border-box;
@@ -45,21 +46,38 @@ html, body {
   min-height: 100vh;
 }
 
-/* Título principal */
-.titulo {
-  font-size: 36px;
-  font-weight: bold;
-  color: var(--color-primary);
-  margin-bottom: 2rem;
-}
+.title-container {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--color-primary);
+    position: absolute;
+    top: 40px;
+    left: 300px;
+  }
 
-/* Secciones de solicitudes */
-.seccion {
-  background-color: var(--color-bg-page-alt);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  border-radius: 12px;
-}
+  .title-container i{
+    font-size: 30px;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: 0.1s ease-in-out;
+  }
+
+  .title-container i:hover{
+    background-color: var(--color-bg-hover);
+    transition: 0.1s ease-in-out;
+  }
+
+  .title-container a{
+    text-decoration: none;
+  }
+
+  .title-container a:visited{
+    color: var(--color-primary);
+  }
+
+  .title-container a:hover{
+    text-decoration: underline;
+  }
 
 /* Título de cada sección */
 .seccion-titulo {
@@ -69,73 +87,164 @@ html, body {
   margin-bottom: 1rem;
 }
 
-/* Contenedor de la tabla */
-.tabla {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+/* Caja que contiene la tabla de miembros (mismo look que .table-box de applications.css,
+   pero sin position/márgenes propios: el offset de la sidebar ya lo da .main-content) */
+.members-table-box {
+  background-color: var(--color-bg-page-alt);
+  padding: 5px 20px;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--color-bg-body);
+  letter-spacing: 1px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Encabezado y filas de tabla */
-.tabla-header,
-.fila {
-  display: grid;
-  grid-template-columns: 2fr 1.5fr 1.5fr auto;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--color-border-strong);
+.members-table-box h3 {
+  color: var(--color-primary);
 }
 
-.tabla-header {
+.members-table-box table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.members-table-box td,
+.members-table-box th {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.members-table-box th {
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: 14px;
+  text-align: left;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.members-table-box tbody {
+  color: var(--color-text-body);
+}
+
+#members_table tbody tr {
+  height: 70px;
+}
+
+#members_table th,
+#members_table td {
+  padding: 15px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+#members_table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.members-table-box label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.members-table-box label.name {
   font-weight: bold;
-  font-size: 0.95rem;
+}
+
+.members-table-box label.membership {
+  font-weight: 500;
+}
+
+.members-table-box label.role {
+  background-color: var(--color-bg-body);
+  color: var(--color-text-body);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+.members-table-box .empty-row {
+  text-align: center;
   color: var(--color-text-secondary);
+  padding: 30px 15px;
+  white-space: normal;
 }
 
-.fila {
-  font-size: 0.95rem;
-  color: var(--color-text-primary);
-}
-
-/* Botón de editar */
-.btn-editar {
-  padding: 6px 12px;
+/* Botón "Editar" (mismo look que el botón "Evaluar" de applications.css) */
+.members-table-box table button.evaluate {
   background-color: var(--color-primary);
+  align-items: center;
   color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: background-color 0.3s ease;
+  padding: 5px 10px;
   border-radius: 15px;
   font-weight: bold;
   transition: 0.1s;
+  border: none;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   flex-direction: row;
-  align-items: center;
 }
 
-.btn-editar:hover {
-  background-color: var(--color-primary-hover);
-  transition: 0.1s;
+.members-table-box table button.evaluate:hover {
   transform: scale(1.1);
+  transition: 0.1s;
 }
 
-.btn-editar a {
-  color: white;
+.members-table-box table button.evaluate a,
+.members-table-box table button.evaluate a:visited {
   text-decoration: none;
-  padding-left: 7px;
-}
-
-
-.btn-editar a:visited {
-  color: white;
-}
-
-.btn-editar i {
-  font-size: 14px;
   color: var(--color-on-primary);
+}
+
+.members-table-box table button.evaluate i {
+  padding: 2px 8px 2px 0;
+  font-size: medium;
+  color: var(--color-on-primary);
+}
+
+/* Controles de paginación (idénticos a los de applications.css) */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 15px 0 10px;
+}
+
+.pagination-controls .page-btn {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-bg-body);
+  color: var(--color-text-body);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.pagination-controls .page-btn:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  color: var(--color-on-primary);
+  transform: scale(1.05);
+}
+
+.pagination-controls .page-btn.active {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.pagination-controls .page-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 @media only screen and (max-width: 600px) {
@@ -146,12 +255,11 @@ html, body {
     padding-top: 80px;
   }
 
-  .tabla {
+  .members-table-box {
     overflow-x: auto;
   }
 
-  .tabla-header,
-  .fila {
-    min-width: 480px;
+  #members_table {
+    min-width: 560px;
   }
 }

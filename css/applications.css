@@ -151,6 +151,53 @@ body {
     color: var(--color-on-primary);
   }
 
+  .table-box .empty-row {
+    text-align: center;
+    color: var(--color-text-secondary);
+    padding: 30px 15px;
+    white-space: normal;
+  }
+
+  /* Controles de paginación (reemplazan a los que generaba DataTables) */
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 15px 0 10px;
+  }
+
+  .pagination-controls .page-btn {
+    min-width: 34px;
+    height: 34px;
+    padding: 0 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--color-bg-body);
+    color: var(--color-text-body);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+
+  .pagination-controls .page-btn:hover:not(:disabled) {
+    background-color: var(--color-primary-hover);
+    color: var(--color-on-primary);
+    transform: scale(1.05);
+  }
+
+  .pagination-controls .page-btn.active {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  .pagination-controls .page-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
   @media only screen and (max-width: 600px) {
     .title-container {
         position: static;
