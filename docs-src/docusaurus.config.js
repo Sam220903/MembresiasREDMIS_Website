@@ -19,11 +19,10 @@ const config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
-  // Ajusta esta URL a la del despliegue final del sitio.
-  url: 'https://sam220903.github.io',
-  // El sitio se construye dentro de la carpeta docs/ del propio repo del
-  // frontend (ver package.json -> "build": "docusaurus build --out-dir ../docs")
-  baseUrl: '/docs/',
+  // Dominio real donde vive el sitio.
+  url: 'https://lumacad.com.mx',
+  // El sitio se sirve dentro de /REDMIS/docs/ en el servidor.
+  baseUrl: '/REDMIS/docs/',
 
   // GitHub pages deployment config.
   organizationName: 'Sam220903',

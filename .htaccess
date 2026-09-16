@@ -1,6 +1,9 @@
 RewriteEngine On
+RewriteBase /REDMIS/
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
-# Si el usuario accede a /docs sin la diagonal final, redirigir a /docs/
-RewriteRule ^docs$ /docs/ [L,R=301]
+
+# Si el usuario accede a /REDMIS/docs sin la diagonal final, redirigir a /REDMIS/docs/
+RewriteRule ^docs$ /REDMIS/docs/ [L,R=301]
